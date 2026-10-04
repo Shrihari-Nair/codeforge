@@ -1,0 +1,78 @@
+{
+  "scenario_id": "missing_index",
+  "service": "checkout-service",
+  "title": "Index on cart_items dropped",
+  "root_cause": {
+    "commit_sha": "3acd9501af087500fe72be621bc7f9c2e97e9da1",
+    "commit_subject": "chore(db): drop redundant cart_items index",
+    "file": "checkout/db.py",
+    "summary": "A schema cleanup removed the index on cart_items(cart_id), so the cart query scans the whole table.",
+    "category": "missing_index",
+    "introduced_in_deploy": "v1.2.0"
+  },
+  "last_good_commit_sha": "c1377978e6969a7daecab6f2732626e4051183bd",
+  "head_commit_sha": "28f8128c600078053e7884685f3c0a2570f81fe9",
+  "deploy_range_commits": [
+    "3acd9501af087500fe72be621bc7f9c2e97e9da1",
+    "50a30b4f38fdf5a82e14a5d365ed617629c4bf5a",
+    "0982c3015cc60549ad1ae563a96566d26b15c93b",
+    "28f8128c600078053e7884685f3c0a2570f81fe9"
+  ],
+  "red_herrings": [
+    {
+      "description": "inventory_audit slow query (constant rate)",
+      "applies": true,
+      "file": "checkout/audit.py",
+      "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+      "parent_commit_sha": "bbc634745e92509a8df79209c82261dd9b97feb6"
+    }
+  ],
+  "acceptable_fixes": [
+    {
+      "id": "recreate_index",
+      "description": "CREATE INDEX on cart_items(cart_id)"
+    }
+  ],
+  "reference_fix_files": [
+    "checkout/db.py"
+  ],
+  "expected_tools": [
+    "list_deployments",
+    "compare_time_windows",
+    "get_trace",
+    "get_diff",
+    "explain_query"
+  ],
+  "benchmark": {
+    "command": "python benchmark.py --json",
+    "baseline": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 56.2,
+      "requests": 500
+    },
+    "regressed": {
+      "db_queries": 520,
+      "p50_ms": 35.87,
+      "p95_ms": 36.42,
+      "p99_ms": 88.2,
+      "requests": 500
+    },
+    "reference_fix": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 56.2,
+      "requests": 500
+    },
+    "p95_ratio_regressed_vs_baseline": 8.058,
+    "pass_rule": "fixed p95_ms <= baseline p95_ms * 1.10"
+  },
+  "tests_must_pass": "python -m pytest -q",
+  "deploy_commits": {
+    "docs-cost-model": "cfd3a572cd61d507c40f00e7c6b7cd2b94c9d070",
+    "cache-cap": "8967402cff9224c96a86e4bd1adc9c899c42b614",
+    "missing_index-test": "0982c3015cc60549ad1ae563a96566d26b15c93b"
+  }
+}

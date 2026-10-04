@@ -1,0 +1,81 @@
+{
+  "scenario_id": "audit_every_request",
+  "service": "checkout-service",
+  "title": "Inventory audit runs on every request",
+  "root_cause": {
+    "commit_sha": "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+    "commit_subject": "fix(audit): audit every checkout so stock counts never drift",
+    "file": "checkout/audit.py",
+    "summary": "AUDIT_EVERY was changed from 25 to 1, so the slow full-table audit scan runs on every checkout.",
+    "category": "unintended_work_per_request",
+    "introduced_in_deploy": "v1.2.0"
+  },
+  "last_good_commit_sha": "73e52b6b1d2d904aba48f86bdcd82e0a16e6807c",
+  "head_commit_sha": "d52378c780e374316685570aa461a403c4dae741",
+  "deploy_range_commits": [
+    "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+    "7edf90f5d9acd25e2c600262e88c18601437f8cf",
+    "add92b36ba9ee4a734ec6cf33221970284be6296",
+    "d52378c780e374316685570aa461a403c4dae741"
+  ],
+  "red_herrings": [
+    {
+      "description": "the audit slow-query warnings are the CAUSE here (rate jumped), not a constant-rate red herring",
+      "applies": false,
+      "file": "checkout/audit.py",
+      "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+      "parent_commit_sha": "bbc634745e92509a8df79209c82261dd9b97feb6"
+    }
+  ],
+  "acceptable_fixes": [
+    {
+      "id": "restore_cadence",
+      "description": "AUDIT_EVERY back to 25"
+    },
+    {
+      "id": "move_off_hot_path",
+      "description": "run the audit asynchronously / off the request path"
+    }
+  ],
+  "reference_fix_files": [
+    "checkout/audit.py"
+  ],
+  "expected_tools": [
+    "list_deployments",
+    "compare_time_windows",
+    "search_logs",
+    "get_diff"
+  ],
+  "benchmark": {
+    "command": "python benchmark.py --json",
+    "baseline": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 47.0,
+      "requests": 500
+    },
+    "regressed": {
+      "db_queries": 1000,
+      "p50_ms": 46.36,
+      "p95_ms": 47.32,
+      "p99_ms": 47.32,
+      "requests": 500
+    },
+    "reference_fix": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 47.0,
+      "requests": 500
+    },
+    "p95_ratio_regressed_vs_baseline": 10.469,
+    "pass_rule": "fixed p95_ms <= baseline p95_ms * 1.10"
+  },
+  "tests_must_pass": "python -m pytest -q",
+  "deploy_commits": {
+    "docs-cost-model": "cfd3a572cd61d507c40f00e7c6b7cd2b94c9d070",
+    "cache-cap": "8967402cff9224c96a86e4bd1adc9c899c42b614",
+    "audit_every_request-test": "add92b36ba9ee4a734ec6cf33221970284be6296"
+  }
+}

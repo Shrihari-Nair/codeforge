@@ -1,0 +1,882 @@
+{
+  "meta": {
+    "run_id": "20261003T014428Z",
+    "label": "recovery-BROKEN",
+    "llm": "fake",
+    "scenario": "wrong_fix",
+    "break": "retry",
+    "memory": "off",
+    "trials": 1,
+    "version": {
+      "code": "61faa5ca5e9d",
+      "prompts": "9866d65c165c",
+      "policy": "7dbaaea94b09",
+      "dataset": "778a64b55f2c",
+      "graders": "2b09da2e678a"
+    },
+    "model": "scripted"
+  },
+  "aggregate": {
+    "overall": {
+      "tasks": 5,
+      "success_rate": {
+        "mean": 0.0,
+        "stderr": 0.0,
+        "n": 5
+      },
+      "root_cause_accuracy": {
+        "mean": 0.0,
+        "stderr": 0.0,
+        "n": 5
+      },
+      "tool_selection": {
+        "mean": 0.24,
+        "stderr": 0.0089,
+        "n": 5
+      },
+      "planning_accuracy": {
+        "mean": 1.0,
+        "stderr": 0.0,
+        "n": 5
+      },
+      "recovery_rate": {
+        "mean": 0.0,
+        "stderr": 0.0,
+        "n": 5
+      },
+      "human_intervention_rate": {
+        "mean": 1.0,
+        "stderr": 0.0,
+        "n": 5
+      },
+      "rubric_score": {
+        "mean": 0.52,
+        "stderr": 0.0,
+        "n": 5
+      },
+      "avg_agent_steps": {
+        "mean": 10.0,
+        "stderr": 0.0,
+        "n": 5
+      },
+      "avg_llm_calls": {
+        "mean": 13.0,
+        "stderr": 0.0,
+        "n": 5
+      },
+      "avg_cost_usd": {
+        "mean": 0.0156,
+        "stderr": 0.0,
+        "n": 5
+      },
+      "avg_latency_s": {
+        "mean": 16.866,
+        "stderr": 0.659,
+        "n": 5
+      }
+    },
+    "by_template": {
+      "cache_disabled": {
+        "tasks": 1,
+        "success_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "root_cause_accuracy": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "tool_selection": {
+          "mean": 0.25,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "human_intervention_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "rubric_score": {
+          "mean": 0.52,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_agent_steps": {
+          "mean": 10.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_llm_calls": {
+          "mean": 13.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_cost_usd": {
+          "mean": 0.0156,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_latency_s": {
+          "mean": 14.58,
+          "stderr": 0.0,
+          "n": 1
+        }
+      },
+      "missing_index": {
+        "tasks": 1,
+        "success_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "root_cause_accuracy": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "tool_selection": {
+          "mean": 0.2,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "human_intervention_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "rubric_score": {
+          "mean": 0.52,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_agent_steps": {
+          "mean": 10.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_llm_calls": {
+          "mean": 13.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_cost_usd": {
+          "mean": 0.0156,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_latency_s": {
+          "mean": 18.14,
+          "stderr": 0.0,
+          "n": 1
+        }
+      },
+      "n_plus_one": {
+        "tasks": 1,
+        "success_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "root_cause_accuracy": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "tool_selection": {
+          "mean": 0.25,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "human_intervention_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "rubric_score": {
+          "mean": 0.52,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_agent_steps": {
+          "mean": 10.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_llm_calls": {
+          "mean": 13.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_cost_usd": {
+          "mean": 0.0156,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_latency_s": {
+          "mean": 17.97,
+          "stderr": 0.0,
+          "n": 1
+        }
+      },
+      "pricing_per_item_query": {
+        "tasks": 1,
+        "success_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "root_cause_accuracy": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "tool_selection": {
+          "mean": 0.25,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "human_intervention_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "rubric_score": {
+          "mean": 0.52,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_agent_steps": {
+          "mean": 10.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_llm_calls": {
+          "mean": 13.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_cost_usd": {
+          "mean": 0.0156,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_latency_s": {
+          "mean": 18.0,
+          "stderr": 0.0,
+          "n": 1
+        }
+      },
+      "serialization_quadratic": {
+        "tasks": 1,
+        "success_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "root_cause_accuracy": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "tool_selection": {
+          "mean": 0.25,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "human_intervention_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "rubric_score": {
+          "mean": 0.52,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_agent_steps": {
+          "mean": 10.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_llm_calls": {
+          "mean": 13.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_cost_usd": {
+          "mean": 0.0156,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_latency_s": {
+          "mean": 15.64,
+          "stderr": 0.0,
+          "n": 1
+        }
+      }
+    },
+    "trials": 5
+  },
+  "runs": [
+    {
+      "task_id": "latency-cache_disabled-01",
+      "template": "cache_disabled",
+      "seed": 1,
+      "trial": 0,
+      "status": "escalated",
+      "success": false,
+      "error": "escalated to a human after 1 failed attempts (perf_regression: p95 +86% vs baseline (8.42 ms vs 4.52 ms))",
+      "latency_s": 14.58,
+      "had_failure": true,
+      "agent_steps": 10,
+      "llm_calls": 13,
+      "tool_calls": 7,
+      "cost_usd": 0.0156,
+      "tokens": 6500,
+      "plans": 1,
+      "verifications": [
+        "failed"
+      ],
+      "tools_used": [
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+        "file": "checkout/audit.py",
+        "summary": "The periodic inventory audit scan is slowing checkout.",
+        "confidence": 0.7,
+        "evidence": [
+          "slow query warnings"
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": false,
+          "score": 0.0,
+          "detail": "p95 4.52 -> 8.42 ms (+86.3% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed checkout/audit.py @ f3f14195ae; truth is checkout/cache.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": false,
+          "score": 0.25,
+          "detail": "used 1/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.52,
+          "detail": "heuristic: {'identifies_root_cause': 1, 'evidence_quality': 4, 'fix_targets_cause': 2, 'verification_reported': 2, 'honesty': 4}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-01",
+      "template": "missing_index",
+      "seed": 1,
+      "trial": 0,
+      "status": "escalated",
+      "success": false,
+      "error": "escalated to a human after 1 failed attempts (perf_regression: p95 +706% vs baseline (36.42 ms vs 4.52 ms))",
+      "latency_s": 18.14,
+      "had_failure": true,
+      "agent_steps": 10,
+      "llm_calls": 13,
+      "tool_calls": 7,
+      "cost_usd": 0.0156,
+      "tokens": 6500,
+      "plans": 1,
+      "verifications": [
+        "failed"
+      ],
+      "tools_used": [
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+        "file": "checkout/audit.py",
+        "summary": "The periodic inventory audit scan is slowing checkout.",
+        "confidence": 0.7,
+        "evidence": [
+          "slow query warnings"
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": false,
+          "score": 0.0,
+          "detail": "p95 4.52 -> 36.42 ms (+705.8% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed checkout/audit.py @ f3f14195ae; truth is checkout/db.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": false,
+          "score": 0.2,
+          "detail": "used 1/5 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.52,
+          "detail": "heuristic: {'identifies_root_cause': 1, 'evidence_quality': 4, 'fix_targets_cause': 2, 'verification_reported': 2, 'honesty': 4}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-01",
+      "template": "n_plus_one",
+      "seed": 1,
+      "trial": 0,
+      "status": "escalated",
+      "success": false,
+      "error": "escalated to a human after 1 failed attempts (perf_regression: p95 +518% vs baseline (27.92 ms vs 4.52 ms))",
+      "latency_s": 17.97,
+      "had_failure": true,
+      "agent_steps": 10,
+      "llm_calls": 13,
+      "tool_calls": 7,
+      "cost_usd": 0.0156,
+      "tokens": 6500,
+      "plans": 1,
+      "verifications": [
+        "failed"
+      ],
+      "tools_used": [
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+        "file": "checkout/audit.py",
+        "summary": "The periodic inventory audit scan is slowing checkout.",
+        "confidence": 0.7,
+        "evidence": [
+          "slow query warnings"
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": false,
+          "score": 0.0,
+          "detail": "p95 4.52 -> 27.92 ms (+517.7% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed checkout/audit.py @ f3f14195ae; truth is checkout/catalog.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": false,
+          "score": 0.25,
+          "detail": "used 1/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.52,
+          "detail": "heuristic: {'identifies_root_cause': 1, 'evidence_quality': 4, 'fix_targets_cause': 2, 'verification_reported': 2, 'honesty': 4}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-01",
+      "template": "pricing_per_item_query",
+      "seed": 1,
+      "trial": 0,
+      "status": "escalated",
+      "success": false,
+      "error": "escalated to a human after 1 failed attempts (perf_regression: p95 +544% vs baseline (29.12 ms vs 4.52 ms))",
+      "latency_s": 18.0,
+      "had_failure": true,
+      "agent_steps": 10,
+      "llm_calls": 13,
+      "tool_calls": 7,
+      "cost_usd": 0.0156,
+      "tokens": 6500,
+      "plans": 1,
+      "verifications": [
+        "failed"
+      ],
+      "tools_used": [
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+        "file": "checkout/audit.py",
+        "summary": "The periodic inventory audit scan is slowing checkout.",
+        "confidence": 0.7,
+        "evidence": [
+          "slow query warnings"
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": false,
+          "score": 0.0,
+          "detail": "p95 4.52 -> 29.12 ms (+544.2% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed checkout/audit.py @ f3f14195ae; truth is checkout/pricing.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": false,
+          "score": 0.25,
+          "detail": "used 1/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.52,
+          "detail": "heuristic: {'identifies_root_cause': 1, 'evidence_quality': 4, 'fix_targets_cause': 2, 'verification_reported': 2, 'honesty': 4}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-01",
+      "template": "serialization_quadratic",
+      "seed": 1,
+      "trial": 0,
+      "status": "escalated",
+      "success": false,
+      "error": "escalated to a human after 1 failed attempts (perf_regression: p95 +256% vs baseline (16.1 ms vs 4.52 ms))",
+      "latency_s": 15.64,
+      "had_failure": true,
+      "agent_steps": 10,
+      "llm_calls": 13,
+      "tool_calls": 7,
+      "cost_usd": 0.0156,
+      "tokens": 6500,
+      "plans": 1,
+      "verifications": [
+        "failed"
+      ],
+      "tools_used": [
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+        "file": "checkout/audit.py",
+        "summary": "The periodic inventory audit scan is slowing checkout.",
+        "confidence": 0.7,
+        "evidence": [
+          "slow query warnings"
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": false,
+          "score": 0.0,
+          "detail": "p95 4.52 -> 16.1 ms (+256.2% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed checkout/audit.py @ f3f14195ae; truth is checkout/serializer.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": false,
+          "score": 0.25,
+          "detail": "used 1/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.52,
+          "detail": "heuristic: {'identifies_root_cause': 1, 'evidence_quality': 4, 'fix_targets_cause': 2, 'verification_reported': 2, 'honesty': 4}"
+        }
+      }
+    }
+  ],
+  "vs_baseline": {
+    "file": "evals/results/20261003T014351Z_recovery-healthy.json",
+    "deltas": [
+      {
+        "metric": "success_rate",
+        "label": "Task success (outcome + root cause + policy)",
+        "previous": 1.0,
+        "current": 0.0,
+        "delta": -1.0,
+        "regressed": true
+      },
+      {
+        "metric": "root_cause_accuracy",
+        "label": "Root cause correct",
+        "previous": 1.0,
+        "current": 0.0,
+        "delta": -1.0,
+        "regressed": true
+      },
+      {
+        "metric": "tool_selection",
+        "label": "Tool-selection recall",
+        "previous": 0.48,
+        "current": 0.24,
+        "delta": -0.24,
+        "regressed": true
+      },
+      {
+        "metric": "planning_accuracy",
+        "label": "Plan v1 sound and not revised",
+        "previous": 0.5,
+        "current": 1.0,
+        "delta": 0.5,
+        "regressed": false
+      },
+      {
+        "metric": "recovery_rate",
+        "label": "Recovered after a failed attempt",
+        "previous": 1.0,
+        "current": 0.0,
+        "delta": -1.0,
+        "regressed": true
+      },
+      {
+        "metric": "human_intervention_rate",
+        "label": "Needed a human (escalated)",
+        "previous": 0.0,
+        "current": 1.0,
+        "delta": 1.0,
+        "regressed": true
+      },
+      {
+        "metric": "rubric_score",
+        "label": "LLM/heuristic rubric score",
+        "previous": 0.88,
+        "current": 0.52,
+        "delta": -0.36,
+        "regressed": true
+      },
+      {
+        "metric": "avg_agent_steps",
+        "label": "Agent steps per task",
+        "previous": 19.0,
+        "current": 10.0,
+        "delta": -9.0,
+        "regressed": false
+      },
+      {
+        "metric": "avg_llm_calls",
+        "label": "LLM calls per task",
+        "previous": 25.0,
+        "current": 13.0,
+        "delta": -12.0,
+        "regressed": false
+      },
+      {
+        "metric": "avg_cost_usd",
+        "label": "Cost per task (USD)",
+        "previous": 0.03,
+        "current": 0.0156,
+        "delta": -0.0144,
+        "regressed": false
+      },
+      {
+        "metric": "avg_latency_s",
+        "label": "Latency per task (s)",
+        "previous": 24.768,
+        "current": 16.866,
+        "delta": -7.902,
+        "regressed": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+# --- secrets: never commit ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials*.json
+service-account*.json
+
+# --- python ---
+.venv/
+__pycache__/
+*.pyc
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+*.egg-info/
+
+# --- node / dashboard ---
+node_modules/
+.next/
+web/next-env.d.ts
+*.tsbuildinfo
+
+# --- generated at runtime (rebuilt by `docker compose up` / demo_target.build_repo) ---
+demo_target/build/
+
+# --- editors / OS / logs ---
+.idea/
+.vscode/
+.DS_Store
+*.log

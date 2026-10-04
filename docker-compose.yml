@@ -1,0 +1,295 @@
+name: aeos
+
+x-langfuse-env: &langfuse-env
+  NEXTAUTH_URL: http://localhost:3000
+  DATABASE_URL: postgresql://postgres:postgres@langfuse-db:5432/postgres
+  SALT: ${LANGFUSE_SALT:?set LANGFUSE_SALT in .env}
+  ENCRYPTION_KEY: ${LANGFUSE_ENCRYPTION_KEY:?set LANGFUSE_ENCRYPTION_KEY in .env}
+  TELEMETRY_ENABLED: "false"
+  CLICKHOUSE_MIGRATION_URL: clickhouse://langfuse-clickhouse:9000
+  CLICKHOUSE_URL: http://langfuse-clickhouse:8123
+  CLICKHOUSE_USER: clickhouse
+  CLICKHOUSE_PASSWORD: clickhouse
+  CLICKHOUSE_CLUSTER_ENABLED: "false"
+  LANGFUSE_S3_EVENT_UPLOAD_BUCKET: langfuse
+  LANGFUSE_S3_EVENT_UPLOAD_REGION: auto
+  LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID: minio
+  LANGFUSE_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY: ${LANGFUSE_MINIO_PASSWORD:?set LANGFUSE_MINIO_PASSWORD in .env}
+  LANGFUSE_S3_EVENT_UPLOAD_ENDPOINT: http://langfuse-minio:9000
+  LANGFUSE_S3_EVENT_UPLOAD_FORCE_PATH_STYLE: "true"
+  LANGFUSE_S3_EVENT_UPLOAD_PREFIX: events/
+  LANGFUSE_S3_MEDIA_UPLOAD_BUCKET: langfuse
+  LANGFUSE_S3_MEDIA_UPLOAD_REGION: auto
+  LANGFUSE_S3_MEDIA_UPLOAD_ACCESS_KEY_ID: minio
+  LANGFUSE_S3_MEDIA_UPLOAD_SECRET_ACCESS_KEY: ${LANGFUSE_MINIO_PASSWORD:?set LANGFUSE_MINIO_PASSWORD in .env}
+  LANGFUSE_S3_MEDIA_UPLOAD_ENDPOINT: http://localhost:9092
+  LANGFUSE_S3_MEDIA_UPLOAD_FORCE_PATH_STYLE: "true"
+  LANGFUSE_S3_MEDIA_UPLOAD_PREFIX: media/
+  REDIS_HOST: langfuse-redis
+  REDIS_PORT: "6379"
+  REDIS_AUTH: ${LANGFUSE_REDIS_PASSWORD:?set LANGFUSE_REDIS_PASSWORD in .env}
+
+x-langfuse-depends: &langfuse-depends
+  langfuse-db: { condition: service_healthy }
+  langfuse-clickhouse: { condition: service_healthy }
+  langfuse-minio: { condition: service_healthy }
+  langfuse-redis: { condition: service_healthy }
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: aeos
+      POSTGRES_PASSWORD: aeos
+      POSTGRES_DB: aeos
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aeos -d aeos"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6380:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.104.0
+    command: ["--config=/etc/otel/config.yaml"]
+    # base64("<AEOS_LANGFUSE_PUBLIC_KEY>:<AEOS_LANGFUSE_SECRET_KEY>") of the bootstrapped project keys
+    environment:
+      LANGFUSE_BASIC_AUTH: ${LANGFUSE_BASIC_AUTH:?set LANGFUSE_BASIC_AUTH in .env}
+    volumes: ["./infra/otel-collector.yaml:/etc/otel/config.yaml:ro"]
+    ports: ["4317:4317", "4318:4318", "13133:13133"]
+    # Distroless image: no shell for a healthcheck. Liveness is checked via the
+    # health_check extension on :13133 (see docs/DECISIONS.md D-005).
+
+  # ---- Langfuse (profile: observability) ----
+  langfuse-web:
+    profiles: [observability]
+    image: docker.langfuse.com/langfuse/langfuse:4
+    depends_on: *langfuse-depends
+    ports: ["3000:3000"]
+    environment:
+      <<: *langfuse-env
+      NEXTAUTH_SECRET: ${LANGFUSE_NEXTAUTH_SECRET:?set LANGFUSE_NEXTAUTH_SECRET in .env}
+      LANGFUSE_INIT_ORG_ID: aeos
+      LANGFUSE_INIT_ORG_NAME: AEOS
+      LANGFUSE_INIT_PROJECT_ID: aeos
+      LANGFUSE_INIT_PROJECT_NAME: aeos
+      LANGFUSE_INIT_PROJECT_PUBLIC_KEY: ${AEOS_LANGFUSE_PUBLIC_KEY:?set AEOS_LANGFUSE_PUBLIC_KEY in .env}
+      LANGFUSE_INIT_PROJECT_SECRET_KEY: ${AEOS_LANGFUSE_SECRET_KEY:?set AEOS_LANGFUSE_SECRET_KEY in .env}
+      LANGFUSE_INIT_USER_EMAIL: dev@aeos.local
+      LANGFUSE_INIT_USER_NAME: dev
+      LANGFUSE_INIT_USER_PASSWORD: ${LANGFUSE_INIT_PASSWORD:?set LANGFUSE_INIT_PASSWORD in .env}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://$(hostname):3000/api/public/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  langfuse-worker:
+    profiles: [observability]
+    image: docker.langfuse.com/langfuse/langfuse-worker:4
+    depends_on: *langfuse-depends
+    environment: *langfuse-env
+
+  langfuse-clickhouse:
+    profiles: [observability]
+    image: docker.io/clickhouse/clickhouse-server:25.12
+    user: "101:101"
+    environment:
+      CLICKHOUSE_DB: default
+      CLICKHOUSE_USER: clickhouse
+      CLICKHOUSE_PASSWORD: clickhouse
+    volumes:
+      - langfuse_clickhouse_data:/var/lib/clickhouse
+      - langfuse_clickhouse_logs:/var/log/clickhouse-server
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:8123/ping || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  langfuse-minio:
+    profiles: [observability]
+    image: cgr.dev/chainguard/minio
+    entrypoint: sh
+    command: -c 'mkdir -p /data/langfuse && minio server --address ":9000" --console-address ":9001" /data'
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: ${LANGFUSE_MINIO_PASSWORD:?set LANGFUSE_MINIO_PASSWORD in .env}
+    ports: ["9092:9000"]
+    volumes: [langfuse_minio_data:/data]
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+      start_period: 3s
+
+  langfuse-redis:
+    profiles: [observability]
+    image: docker.io/redis:7
+    command: --requirepass ${LANGFUSE_REDIS_PASSWORD:?set LANGFUSE_REDIS_PASSWORD in .env} --maxmemory-policy noeviction
+    volumes: [langfuse_redis_data:/data]
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a ${LANGFUSE_REDIS_PASSWORD} ping | grep PONG"]
+      interval: 3s
+      timeout: 10s
+      retries: 10
+
+  langfuse-db:
+    profiles: [observability]
+    image: docker.io/postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      TZ: UTC
+      PGTZ: UTC
+    volumes: [langfuse_postgres_data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  # ---- Multi-service topology (profile: a2a) --------------------------------------------
+  # Every specialist is its own container: own process, own port, own MCP connections, own
+  # Agent Card. The API+worker delegates to them over A2A. The coding service mounts the Docker
+  # socket so it can create sandbox containers (documented trade-off, see docs/ARCHITECTURE.md).
+  aeos-seed:
+    build: .
+    image: aeos-app:dev
+    # Never destroy an existing remote (it may hold branches of paused tasks): build only once.
+    command: ["sh", "-c", "test -d $$AEOS_GIT_REMOTE_PATH || python -m demo_target.build_repo; python -m demo_target.seed"]
+    environment: &aeos-env
+      AEOS_DATABASE_URL: postgresql://aeos:aeos@postgres:5432/aeos
+      AEOS_READONLY_DATABASE_URL: postgresql://aeos_readonly:aeos_readonly@postgres:5432/aeos
+      AEOS_GIT_REMOTE_PATH: /app/demo_target/build/remote/checkout-service.git
+      AEOS_LLM_PROVIDER: ${AEOS_LLM_PROVIDER:-fake}
+      AEOS_GEMINI_API_KEY: ${AEOS_GEMINI_API_KEY:-}
+      AEOS_A2A_API_KEY: ${AEOS_A2A_API_KEY:-}
+      AEOS_MEMORY_ENABLED: ${AEOS_MEMORY_ENABLED:-false}
+      AEOS_REPLAY: ${AEOS_REPLAY:-}
+      AEOS_OTEL_EXPORTER_ENDPOINT: http://otel-collector:4317
+      AEOS_LANGFUSE_HOST: http://langfuse-web:3000
+    volumes: [demo_build:/app/demo_target/build]
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  # ---- Default stack: `docker compose up -d` => dashboard http://localhost:3100 ----------
+  # api = HTTP API + embedded worker, specialists in-process (the "fast mode" topology).
+  api:
+    image: aeos-app:dev
+    build: .
+    restart: unless-stopped
+    command: ["aeos", "serve", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      <<: *aeos-env
+      # Live Gemini by default (key from .env). For a free scripted demo set in .env:
+      #   AEOS_DASHBOARD_LLM=fake  and  AEOS_DASHBOARD_REPLAY=happy   (or replan / escalate ...)
+      AEOS_LLM_PROVIDER: ${AEOS_DASHBOARD_LLM:-gemini}
+      AEOS_REPLAY: ${AEOS_DASHBOARD_REPLAY:-}
+      # "Change request" tasks work on the real repo in .env (AEOS_GITHUB_REPO + AEOS_GITHUB_TOKEN):
+      # a local mirror is read/edited by the agents, and ONLY after a human approves does an
+      # `aeos/*` branch get pushed and a real PR opened against the repo's default branch. The
+      # seeded demo repo's PRs always stay local. Set AEOS_GITHUB_PUBLISH=false to keep all local.
+      AEOS_GITHUB_PUBLISH: ${AEOS_GITHUB_PUBLISH:-true}
+      AEOS_GITHUB_REPO: ${AEOS_GITHUB_REPO:-}
+      AEOS_GITHUB_TOKEN: ${AEOS_GITHUB_TOKEN:-}
+      AEOS_TARGET_MIRROR_DIR: /app/demo_target/build/target
+    volumes:
+      - demo_build:/app/demo_target/build
+      - /var/run/docker.sock:/var/run/docker.sock  # creates sandbox containers
+    ports: ["8800:8000"]
+    depends_on:
+      aeos-seed: { condition: service_completed_successfully }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8000/healthz')"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+  web:
+    build:
+      context: ./web
+      args:
+        NEXT_PUBLIC_AEOS_API: ${AEOS_PUBLIC_API_URL:-http://localhost:8800}
+    restart: unless-stopped
+    ports: ["3100:3100"]
+    depends_on:
+      api: { condition: service_healthy }
+
+  analytics:
+    profiles: [a2a]
+    image: aeos-app:dev
+    command: ["aeos", "agent", "analytics", "--host", "0.0.0.0", "--port", "9101",
+              "--public-url", "http://analytics:9101"]
+    environment: *aeos-env
+    volumes: [demo_build:/app/demo_target/build]
+    ports: ["9101:9101"]
+    depends_on:
+      aeos-seed: { condition: service_completed_successfully }
+
+  research:
+    profiles: [a2a]
+    image: aeos-app:dev
+    command: ["aeos", "agent", "research", "--host", "0.0.0.0", "--port", "9102",
+              "--public-url", "http://research:9102"]
+    environment: *aeos-env
+    volumes: [demo_build:/app/demo_target/build]
+    ports: ["9102:9102"]
+    depends_on:
+      aeos-seed: { condition: service_completed_successfully }
+
+  coding:
+    profiles: [a2a]
+    image: aeos-app:dev
+    command: ["aeos", "agent", "coding", "--host", "0.0.0.0", "--port", "9103",
+              "--public-url", "http://coding:9103"]
+    environment: *aeos-env
+    volumes:
+      - demo_build:/app/demo_target/build
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports: ["9103:9103"]
+    depends_on:
+      aeos-seed: { condition: service_completed_successfully }
+
+  api-a2a:
+    profiles: [a2a]
+    image: aeos-app:dev
+    command: ["aeos", "serve", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      <<: *aeos-env
+      AEOS_A2A_MODE: a2a
+      AEOS_A2A_ENDPOINTS: >-
+        {"analytics": "http://analytics:9101", "research": "http://research:9102",
+        "coding": "http://coding:9103"}
+    volumes:
+      - demo_build:/app/demo_target/build
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports: ["8801:8000"]
+    depends_on:
+      analytics: { condition: service_started }
+      research: { condition: service_started }
+      coding: { condition: service_started }
+
+volumes:
+  demo_build:
+  pgdata:
+  langfuse_postgres_data:
+  langfuse_clickhouse_data:
+  langfuse_clickhouse_logs:
+  langfuse_minio_data:
+  langfuse_redis_data:

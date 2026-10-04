@@ -1,0 +1,53 @@
+# AEOS risk policy (deterministic; never LLM-controlled).
+#
+# Evaluation:
+#   1. If ANY matching rule says `deny`, the result is deny (position does not matter).
+#   2. Otherwise the FIRST matching rule wins.
+#   3. If nothing matches, `default` applies.
+# Matching uses the risk level DECLARED by the tool's server (meta.aeos.risk), plus the tool
+# name (normalised), server, argument patterns, provenance of the call, and diff context.
+# Sandbox tools are `read`: they only touch an ephemeral, isolated workspace.
+
+rules:
+  - name: never-merge
+    match: { tool: [merge_pull_request, merge_pr, merge, delete_branch, delete_repository, force_push] }
+    decision: deny
+    reason: merging/deleting is never autonomous
+
+  - name: branch-namespace
+    match: { tool: [create_branch, commit_patch, create_pull_request] }
+    when_not: { args: { _any_branch: "^aeos/" } }
+    decision: deny
+    reason: agents may only write to aeos/* branches
+
+  - name: large-diff-needs-approval
+    match: { tool: commit_patch, diff_lines_gt: 300 }
+    decision: require_approval
+    reason: unusually large change
+
+  - name: read-only
+    match: { risk: read }
+    decision: allow
+    reason: read-only
+
+  - name: reversible-branch-writes
+    match: { tool: [create_branch, commit_patch] }
+    decision: allow
+    reason: reversible, namespaced branch write
+
+  - name: pr-needs-approval
+    match: { tool: create_pull_request }
+    decision: require_approval
+    reason: publishing a pull request is visible to others
+
+  - name: irreversible-needs-approval
+    match: { risk: write_irreversible }
+    decision: require_approval
+    reason: irreversible action
+
+  - name: untrusted-driven-writes
+    match: { origin: untrusted_only, risk: [write_reversible, write_irreversible] }
+    decision: require_approval
+    reason: action driven only by untrusted content
+
+default: require_approval

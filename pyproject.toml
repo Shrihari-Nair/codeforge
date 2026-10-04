@@ -1,0 +1,89 @@
+[project]
+name = "aeos"
+version = "0.1.0"
+description = "Autonomous Engineering Operating System"
+requires-python = ">=3.12"
+dependencies = [
+  "a2a-sdk>=1.2.1",
+  "docker>=7.2.0",
+  "fastapi>=0.142.2",
+  "google-genai>=2.27.0",
+  "httpx>=0.28.1",
+  "langgraph>=1.2.12",
+  "langgraph-checkpoint-postgres>=3.1.2",
+  "mcp>=1.2",
+  "opentelemetry-api>=1.45.0",
+  "opentelemetry-exporter-otlp-proto-grpc>=1.45.0",
+  "opentelemetry-sdk>=1.45.0",
+  "psycopg-pool>=3.3.3",
+  "psycopg[binary]>=3.2",
+  "pydantic>=2.7",
+  "pydantic-settings>=2.3",
+  "pyyaml>=6.0.3",
+  "sqlglot>=30.21.0",
+  "uvicorn>=0.54.0",
+]
+
+[project.scripts]
+aeos = "aeos.cli:main"
+
+[dependency-groups]
+dev = [
+  "pytest>=8.2",
+  "pytest-asyncio>=0.23",
+  "ruff>=0.5",
+  "mypy>=1.10",
+  "types-pyyaml>=6.0.12.20260906",
+  "types-protobuf>=7.35.1.20260906",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aeos"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+asyncio_mode = "auto"
+addopts = "-m 'not live and not chaos' -ra"
+markers = [
+  "live: hits a real LLM/provider; excluded from default runs",
+  "docker: needs a Docker daemon (skipped when unavailable)",
+  "chaos: kill -9 worker processes at many points (slow; run with -m chaos)",
+]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+extend-exclude = ["demo_target/build"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+
+[tool.mypy]
+python_version = "3.12"
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = ["docker", "docker.*"]
+ignore_missing_imports = true  # docker-py ships no stubs
+
+[[tool.mypy.overrides]]
+module = ["aeos.core.*", "aeos.llm.*"]
+strict = true
+
+[tool.ruff.lint.per-file-ignores]
+"demo_target/history.py" = ["E501"]  # embedded source bodies
+"demo_target/templates.py" = ["E501"]  # embedded source bodies
+"demo_target/truth.py" = ["E501"]
+"evals/**" = ["E501"]  # task text, rubric text
+"src/aeos/agents/specialists.py" = ["E501"]  # prompt text
+"src/aeos/agents/sandbox_tools.py" = ["E501"]  # tool descriptions
+"src/aeos/agents/supervisor.py" = ["E501"]  # prompt text
+"src/aeos/graph/nodes.py" = ["E501"]  # event/report text
+"src/aeos/demo/trajectories.py" = ["E501"]  # scripted text
+"src/aeos/memory/store.py" = ["E501"]  # SQL
+"tests/**" = ["E501"]  # embedded patches/fixtures

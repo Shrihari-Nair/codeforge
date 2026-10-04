@@ -1,0 +1,81 @@
+{
+  "scenario_id": "pricing_per_item_query",
+  "service": "checkout-service",
+  "title": "Pricing re-validates every price with a query",
+  "root_cause": {
+    "commit_sha": "9cdd3fe2027de3b898084e2c68cf89c5e5df8e18",
+    "commit_subject": "fix(pricing): re-read prices from the database to avoid stale totals",
+    "file": "checkout/pricing.py",
+    "summary": "price_cart now re-reads each product price from the database 'to avoid stale cache', one query per item.",
+    "category": "n_plus_one_query",
+    "introduced_in_deploy": "v1.2.0"
+  },
+  "last_good_commit_sha": "73e52b6b1d2d904aba48f86bdcd82e0a16e6807c",
+  "head_commit_sha": "b55cafd99210192243bdfb329d563e5f732bbe69",
+  "deploy_range_commits": [
+    "9cdd3fe2027de3b898084e2c68cf89c5e5df8e18",
+    "da8a6a1556ca946070dd6d375cf4444c9fb57b2d",
+    "64f6cc1ba0b61c20a6ba172b6fcda715e2bd551a",
+    "b55cafd99210192243bdfb329d563e5f732bbe69"
+  ],
+  "red_herrings": [
+    {
+      "description": "inventory_audit slow query (constant rate)",
+      "applies": true,
+      "file": "checkout/audit.py",
+      "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+      "parent_commit_sha": "bbc634745e92509a8df79209c82261dd9b97feb6"
+    }
+  ],
+  "acceptable_fixes": [
+    {
+      "id": "use_cached_prices",
+      "description": "compute the subtotal from the already-loaded products"
+    },
+    {
+      "id": "batch_revalidation",
+      "description": "if revalidation is required, do it in ONE query"
+    }
+  ],
+  "reference_fix_files": [
+    "checkout/pricing.py"
+  ],
+  "expected_tools": [
+    "list_deployments",
+    "compare_time_windows",
+    "get_trace",
+    "get_diff"
+  ],
+  "benchmark": {
+    "command": "python benchmark.py --json",
+    "baseline": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 47.0,
+      "requests": 500
+    },
+    "regressed": {
+      "db_queries": 3770,
+      "p50_ms": 18.07,
+      "p95_ms": 29.12,
+      "p99_ms": 67.5,
+      "requests": 500
+    },
+    "reference_fix": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 47.0,
+      "requests": 500
+    },
+    "p95_ratio_regressed_vs_baseline": 6.442,
+    "pass_rule": "fixed p95_ms <= baseline p95_ms * 1.10"
+  },
+  "tests_must_pass": "python -m pytest -q",
+  "deploy_commits": {
+    "docs-cost-model": "cfd3a572cd61d507c40f00e7c6b7cd2b94c9d070",
+    "cache-cap": "8967402cff9224c96a86e4bd1adc9c899c42b614",
+    "pricing_per_item_query-test": "64f6cc1ba0b61c20a6ba172b6fcda715e2bd551a"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "scenario_id": "cache_disabled",
+  "service": "checkout-service",
+  "title": "Cache capacity default set to 0",
+  "root_cause": {
+    "commit_sha": "6841990e3f76b7e0632a2652f8a670e0e753e92c",
+    "commit_subject": "refactor(cache): make capacity configurable (0 = unbounded)",
+    "file": "checkout/cache.py",
+    "summary": "A 'configurable capacity' refactor made max_entries default to 0, so every cache set is immediately evicted.",
+    "category": "cache_misconfiguration",
+    "introduced_in_deploy": "v1.2.0"
+  },
+  "last_good_commit_sha": "73e52b6b1d2d904aba48f86bdcd82e0a16e6807c",
+  "head_commit_sha": "e13327897e6b73cf9d479f7b0a6ea7fab75789ad",
+  "deploy_range_commits": [
+    "6841990e3f76b7e0632a2652f8a670e0e753e92c",
+    "30b99706d6b1cc341fd471495479a18509353f59",
+    "6c09b86b6d069f61f363437537e50d3856ef5431",
+    "e13327897e6b73cf9d479f7b0a6ea7fab75789ad"
+  ],
+  "red_herrings": [
+    {
+      "description": "inventory_audit slow query (constant rate)",
+      "applies": true,
+      "file": "checkout/audit.py",
+      "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+      "parent_commit_sha": "bbc634745e92509a8df79209c82261dd9b97feb6"
+    }
+  ],
+  "acceptable_fixes": [
+    {
+      "id": "restore_default_capacity",
+      "description": "default max_entries back to a positive capacity"
+    },
+    {
+      "id": "treat_zero_as_unbounded",
+      "description": "make 0 mean unbounded as the commit message claims"
+    }
+  ],
+  "reference_fix_files": [
+    "checkout/cache.py"
+  ],
+  "expected_tools": [
+    "list_deployments",
+    "compare_time_windows",
+    "get_diff",
+    "get_file"
+  ],
+  "benchmark": {
+    "command": "python benchmark.py --json",
+    "baseline": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 47.0,
+      "requests": 500
+    },
+    "regressed": {
+      "db_queries": 1020,
+      "p50_ms": 6.87,
+      "p95_ms": 8.42,
+      "p99_ms": 50.6,
+      "requests": 500
+    },
+    "reference_fix": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 47.0,
+      "requests": 500
+    },
+    "p95_ratio_regressed_vs_baseline": 1.863,
+    "pass_rule": "fixed p95_ms <= baseline p95_ms * 1.10"
+  },
+  "tests_must_pass": "python -m pytest -q",
+  "deploy_commits": {
+    "docs-cost-model": "cfd3a572cd61d507c40f00e7c6b7cd2b94c9d070",
+    "cache-cap": "8967402cff9224c96a86e4bd1adc9c899c42b614",
+    "cache_disabled-test": "6c09b86b6d069f61f363437537e50d3856ef5431"
+  }
+}

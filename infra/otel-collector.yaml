@@ -1,0 +1,21 @@
+receivers:
+  otlp:
+    protocols:
+      grpc: { endpoint: 0.0.0.0:4317 }
+      http: { endpoint: 0.0.0.0:4318 }
+extensions:
+  health_check: { endpoint: 0.0.0.0:13133 }
+exporters:
+  debug: { verbosity: basic }
+  # Traces also go to Langfuse over OTLP/HTTP (generations, tokens, cost, sessions per task).
+  otlphttp/langfuse:
+    endpoint: http://langfuse-web:3000/api/public/otel
+    headers:
+      Authorization: "Basic ${env:LANGFUSE_BASIC_AUTH}"
+    retry_on_failure: { enabled: true, max_elapsed_time: 30s }
+service:
+  extensions: [health_check]
+  pipelines:
+    traces: { receivers: [otlp], exporters: [debug, otlphttp/langfuse] }
+    metrics: { receivers: [otlp], exporters: [debug] }
+    logs: { receivers: [otlp], exporters: [debug] }

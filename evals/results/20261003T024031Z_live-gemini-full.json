@@ -1,0 +1,3187 @@
+{
+  "meta": {
+    "run_id": "20261003T024031Z",
+    "label": "live-gemini-full",
+    "llm": "gemini",
+    "scenario": "happy",
+    "break": "none",
+    "memory": "off",
+    "trials": 1,
+    "version": {
+      "code": "61faa5ca5e9d",
+      "prompts": "9866d65c165c",
+      "policy": "7dbaaea94b09",
+      "dataset": "778a64b55f2c",
+      "graders": "2b09da2e678a"
+    },
+    "model": "gemini-2.5-flash"
+  },
+  "aggregate": {
+    "overall": {
+      "tasks": 30,
+      "success_rate": {
+        "mean": 0.5,
+        "stderr": 0.0913,
+        "n": 30
+      },
+      "root_cause_accuracy": {
+        "mean": 0.6,
+        "stderr": 0.083,
+        "n": 30
+      },
+      "tool_selection": {
+        "mean": 0.8083,
+        "stderr": 0.0544,
+        "n": 30
+      },
+      "planning_accuracy": {
+        "mean": 0.7667,
+        "stderr": 0.0612,
+        "n": 30
+      },
+      "recovery_rate": {
+        "mean": 0.2222,
+        "stderr": 0.1386,
+        "n": 9
+      },
+      "human_intervention_rate": {
+        "mean": 0.1333,
+        "stderr": 0.0621,
+        "n": 30
+      },
+      "rubric_score": {
+        "mean": 0.0,
+        "stderr": 0.0,
+        "n": 30
+      },
+      "avg_agent_steps": {
+        "mean": 32.0667,
+        "stderr": 3.6818,
+        "n": 30
+      },
+      "avg_llm_calls": {
+        "mean": 35.7333,
+        "stderr": 4.0293,
+        "n": 30
+      },
+      "avg_cost_usd": {
+        "mean": 0.0926,
+        "stderr": 0.0118,
+        "n": 30
+      },
+      "avg_latency_s": {
+        "mean": 321.711,
+        "stderr": 85.9169,
+        "n": 30
+      }
+    },
+    "by_template": {
+      "audit_every_request": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 0.8,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 0.9,
+          "stderr": 0.0894,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 0.9,
+          "stderr": 0.0548,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 0
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 19.4,
+          "stderr": 1.8022,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 22.4,
+          "stderr": 1.8022,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.0468,
+          "stderr": 0.007,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 92.368,
+          "stderr": 7.4296,
+          "n": 5
+        }
+      },
+      "cache_disabled": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 0.2,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 0.4,
+          "stderr": 0.1673,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 0.65,
+          "stderr": 0.1673,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 0.6,
+          "stderr": 0.1673,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 2
+        },
+        "human_intervention_rate": {
+          "mean": 0.2,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 30.0,
+          "stderr": 10.1784,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 33.2,
+          "stderr": 10.9669,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.0973,
+          "stderr": 0.0356,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 507.2128,
+          "stderr": 273.7871,
+          "n": 5
+        }
+      },
+      "missing_index": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 0.4,
+          "stderr": 0.2191,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 0.6,
+          "stderr": 0.2191,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 0.8,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 0.7,
+          "stderr": 0.1095,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 0.25,
+          "stderr": 0.2165,
+          "n": 4
+        },
+        "human_intervention_rate": {
+          "mean": 0.4,
+          "stderr": 0.2191,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 54.6,
+          "stderr": 8.1614,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 60.4,
+          "stderr": 8.8481,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.1596,
+          "stderr": 0.0274,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 229.58,
+          "stderr": 31.8332,
+          "n": 5
+        }
+      },
+      "n_plus_one": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 0.4,
+          "stderr": 0.2191,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 0.4,
+          "stderr": 0.2191,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 0.95,
+          "stderr": 0.0447,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 0.9,
+          "stderr": 0.0894,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 30.4,
+          "stderr": 3.3776,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 33.8,
+          "stderr": 3.703,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.0798,
+          "stderr": 0.01,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 132.712,
+          "stderr": 13.9082,
+          "n": 5
+        }
+      },
+      "pricing_per_item_query": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 0.6,
+          "stderr": 0.2191,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 0.7,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 0.75,
+          "stderr": 0.1732,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 0.7,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 29.0,
+          "stderr": 8.98,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 32.4,
+          "stderr": 10.1058,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.0823,
+          "stderr": 0.0232,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 481.1899,
+          "stderr": 276.6035,
+          "n": 5
+        }
+      },
+      "serialization_quadratic": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 0.6,
+          "stderr": 0.2191,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 0.6,
+          "stderr": 0.2191,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 0.8,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 0.7,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "human_intervention_rate": {
+          "mean": 0.2,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 29.0,
+          "stderr": 9.1477,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 32.2,
+          "stderr": 10.1406,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.0899,
+          "stderr": 0.0307,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 487.2035,
+          "stderr": 276.0493,
+          "n": 5
+        }
+      }
+    },
+    "trials": 30
+  },
+  "runs": [
+    {
+      "task_id": "latency-audit_every_request-01",
+      "template": "audit_every_request",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 82.57,
+      "had_failure": false,
+      "agent_steps": 17,
+      "llm_calls": 20,
+      "tool_calls": 17,
+      "cost_usd": 0.03531,
+      "tokens": 62845,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+        "file": "checkout/audit.py",
+        "summary": "The latency increase is caused by a change in checkout/audit.py (commit c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392) where the AUDIT_EVERY constant was changed from 25 to 1. This change forces an inventory audit to be performed on every checkout operation, significantly increasing the number of database queries per request, particularly slow 'inventory_audit' queries, and consequently increasing overall checkout latency.",
+        "confidence": 0.95,
+        "evidence": [
+          "The diff for commit c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392 shows the change in checkout/audit.py where AUDIT_EVERY was modified from 25 to 1.",
+          "p50 latency increased by 4.456x after deployment.",
+          "avg_db_queries_per_request increased by 1.963x (from 2.0375 to 4.0).",
+          "Rate of 'slow query inventory_audit' log messages increased by 24x (from 60/hour to 1440/hour)."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit c4d6cb4a0d"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 12% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-audit_every_request-02",
+      "template": "audit_every_request",
+      "seed": 2,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 109.7,
+      "had_failure": false,
+      "agent_steps": 21,
+      "llm_calls": 24,
+      "tool_calls": 20,
+      "cost_usd": 0.04908,
+      "tokens": 97396,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+        "file": "checkout/audit.py",
+        "summary": "The latency regression in the checkout process was caused by a change in 'checkout/audit.py' that modified the 'AUDIT_EVERY' constant from 25 to 1. This change resulted in a 'slow full scan' inventory audit being performed on every checkout instead of every 25th, leading to a near-doubling of database queries per request and a significant increase in checkout latency.",
+        "confidence": 1.0,
+        "evidence": [
+          "The diff for commit c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392 on checkout/audit.py shows 'AUDIT_EVERY = 25' changed to 'AUDIT_EVERY = 1'.",
+          "The docstring for checkout/audit.py states 'Periodic inventory audit: a slow full scan on every Nth checkout.'",
+          "The commit message 'fix(audit): audit every checkout so stock counts never drift' directly indicates the intent to change audit frequency.",
+          "avg_db_queries_per_request increased from ~2.0 to ~4.0 (1.981x ratio) after the deployment of checkout-service v1.2.0.",
+          "Log message 'slow query inventory_audit' increased from 60/hour to 1440/hour (1380 delta_per_hour) after the deployment."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit c4d6cb4a0d"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 10% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-audit_every_request-03",
+      "template": "audit_every_request",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 82.12,
+      "had_failure": false,
+      "agent_steps": 19,
+      "llm_calls": 22,
+      "tool_calls": 19,
+      "cost_usd": 0.04268,
+      "tokens": 80857,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+        "file": "checkout/audit.py",
+        "summary": "The latency regression is caused by a change in checkout/audit.py (commit c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392) that modified the AUDIT_EVERY constant from 25 to 1. This change resulted in an inventory audit being performed on every checkout instead of every 25 checkouts, leading to a significant increase in database queries, particularly slow inventory_audit queries, and a corresponding increase in checkout latency.",
+        "confidence": 0.98,
+        "evidence": [
+          "Analytics: Average database queries per request increased by 1.95x (from 2.05 to 4.0).",
+          "Analytics: Rate of 'slow query inventory_audit' log messages increased by 24x (from 60/hour to 1440/hour).",
+          "Analytics: p50 latency increased by 4.45x (from 108.38ms to 482.64ms).",
+          "Research: Commit c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392 changed AUDIT_EVERY from 25 to 1 in checkout/audit.py.",
+          "Research: The commit message 'fix(audit): audit every checkout so stock counts never drift' explains the intent of the change, which directly impacts performance by increasing audit frequency."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit c4d6cb4a0d"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 11% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-audit_every_request-04",
+      "template": "audit_every_request",
+      "seed": 4,
+      "trial": 0,
+      "status": "completed",
+      "success": false,
+      "error": null,
+      "latency_s": 114.64,
+      "had_failure": false,
+      "agent_steps": 26,
+      "llm_calls": 29,
+      "tool_calls": 27,
+      "cost_usd": 0.07547,
+      "tokens": 154992,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code"
+      ],
+      "root_cause": {
+        "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+        "file": "checkout/audit.py",
+        "summary": "The p95 latency regression in checkout-service was caused by commit f3f14195ae9dc461d17122915115714f9cadb3c1, which changed the AUDIT_EVERY constant in checkout/audit.py from 25 to 1. This increased the frequency of a 'slow full scan' inventory audit, leading to a near doubling of database queries per request and a significant increase in 'slow query inventory_audit' log messages, directly causing the observed latency jump.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: p95 latency jumped from ~127ms to ~497ms coinciding with v1.2.0 deployment.",
+          "Analytics: avg_db_queries_per_request ratio increased by 1.97x (from 2.03 to 4.0).",
+          "Analytics: 'slow query inventory_audit' log messages increased from 60/hour to 1440/hour.",
+          "Research: Commit f3f14195ae9dc461d17122915115714f9cadb3c1 changed AUDIT_EVERY from 25 to 1 in checkout/audit.py.",
+          "Research: The maybe_audit function (called on checkout) is described as a 'slow full scan' and involves a database query."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.5,
+          "detail": "right file (checkout/audit.py) but wrong commit f3f14195ae"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-audit_every_request-05",
+      "template": "audit_every_request",
+      "seed": 5,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 72.81,
+      "had_failure": false,
+      "agent_steps": 14,
+      "llm_calls": 17,
+      "tool_calls": 13,
+      "cost_usd": 0.0315,
+      "tokens": 50833,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests"
+      ],
+      "root_cause": {
+        "commit_sha": "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+        "file": "checkout/audit.py",
+        "summary": "The increased checkout latency is caused by a change in the audit frequency. The commit c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392 in checkout/audit.py changed the AUDIT_EVERY constant from 25 to 1, causing an audit to be performed for every checkout instead of every 25. This significantly increased database queries per request, specifically for 'inventory_audit', leading to a substantial increase in checkout latency.",
+        "confidence": 1.0,
+        "evidence": [
+          "p50_ms increased by 4.443x (from 108.67ms to 482.81ms)",
+          "avg_db_queries_per_request increased by 1.962x (from 2.04 to 4.0)",
+          "Log message 'slow query inventory_audit' increased from 60.0/hour to 1440.0/hour (24x increase)",
+          "The commit message 'fix(audit): audit every checkout so stock counts never drift' directly indicates a change in audit frequency.",
+          "The diff shows `AUDIT_EVERY = 25` changed to `AUDIT_EVERY = 1` in `checkout/audit.py`."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit c4d6cb4a0d"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-cache_disabled-01",
+      "template": "cache_disabled",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": false,
+      "error": null,
+      "latency_s": 261.63,
+      "had_failure": true,
+      "agent_steps": 52,
+      "llm_calls": 56,
+      "tool_calls": 50,
+      "cost_usd": 0.18756,
+      "tokens": 367098,
+      "plans": 2,
+      "verifications": [
+        "failed",
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "8967402cff9224c96a86e4bd1adc9c899c42b614",
+        "file": "checkout/cache.py",
+        "summary": "The latency increase was caused by commit 8967402cff9224c96a86e4bd1adc9c899c42b614, which capped the in-memory cache size in `checkout/cache.py`. This led to a complete loss of cache hits, forcing more frequent database lookups and increasing overall checkout latency.",
+        "confidence": 0.95,
+        "evidence": [
+          "Analytics: avg_cache_hits_per_request dropped from 7.3 to 0.0 after the v1.2.0 deployment.",
+          "Analytics: avg_db_queries_per_request increased from 2.03 to 3.03 after the v1.2.0 deployment.",
+          "Research: Commit 8967402cff9224c96a86e4bd1adc9c899c42b614 ('fix(cache): cap cache size') modified `checkout/cache.py` to introduce a `max_entries` parameter and eviction logic.",
+          "Research: A subsequent commit (6841990e3f76b7e0632a2652f8a670e0e753e92c) reverted the default `max_entries` to 0 (unbounded), indicating the previous capping caused issues."
+        ],
+        "ruled_out": [
+          "slow query inventory_audit: Its rate remained constant before and after the change.",
+          "error_rate: Decreased after the change, indicating it's not the cause of increased latency."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.5,
+          "detail": "right file (checkout/cache.py) but wrong commit 8967402cff"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 6% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.5,
+          "detail": "sound plan; replanned"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-cache_disabled-02",
+      "template": "cache_disabled",
+      "seed": 2,
+      "trial": 0,
+      "status": "escalated",
+      "success": false,
+      "error": "analytics malformed: model produced no tool call 3 times (finish_reason='blocked'); needs human attention",
+      "latency_s": 364.32,
+      "had_failure": true,
+      "agent_steps": 59,
+      "llm_calls": 65,
+      "tool_calls": 47,
+      "cost_usd": 0.1911,
+      "tokens": 339733,
+      "plans": 3,
+      "verifications": [
+        "failed",
+        "failed"
+      ],
+      "tools_used": [
+        "compare_time_windows",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_exec",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": null,
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "no root cause reported"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 9% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.5,
+          "detail": "sound plan; replanned"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-cache_disabled-03",
+      "template": "cache_disabled",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": false,
+      "error": null,
+      "latency_s": 133.31,
+      "had_failure": false,
+      "agent_steps": 28,
+      "llm_calls": 31,
+      "tool_calls": 29,
+      "cost_usd": 0.08094,
+      "tokens": 151430,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "6c09b86b6d069f61f363437537e50d3856ef5431",
+        "file": "checkout/cache.py",
+        "summary": "The checkout-service v1.2.0 deployment introduced a caching mechanism failure, leading to a complete loss of cache hits and a significant increase in database queries per request. This is likely due to an issue with cache initialization or configuration in the new deployment, rather than the performance of the eviction loop itself, given the complete absence of cache hits.",
+        "confidence": 0.95,
+        "evidence": [
+          "avg_cache_hits_per_request dropped from 7.59 to 0 after deployment.",
+          "avg_db_queries_per_request increased by 49% (from 2.05 to 3.05) after deployment.",
+          "The regression started precisely with the deployment of checkout-service v1.2.0 (commit 6c09b86b6d069f61f363437537e50d3856ef5431)."
+        ],
+        "ruled_out": [
+          "The `while` loop for cache eviction identified by research is a performance concern when the cache is full, but it does not explain the complete loss of cache hits (i.e., cache not being used at all)."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.5,
+          "detail": "right file (checkout/cache.py) but wrong commit 6c09b86b6d"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 10% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-cache_disabled-04",
+      "template": "cache_disabled",
+      "seed": 4,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 62.92,
+      "had_failure": false,
+      "agent_steps": 11,
+      "llm_calls": 14,
+      "tool_calls": 11,
+      "cost_usd": 0.02665,
+      "tokens": 39353,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests"
+      ],
+      "root_cause": {
+        "commit_sha": "6841990e3f76b7e0632a2652f8a670e0e753e92c",
+        "file": "checkout/cache.py",
+        "summary": "The p95 latency jump in checkout-service was caused by commit 6841990e3f76b7e0632a2652f8a670e0e753e92c, which introduced an unbounded cache by setting 'max_entries' to 0 in 'checkout/cache.py'. This leads to increased memory consumption and more frequent garbage collection cycles, directly impacting p95 latency.",
+        "confidence": 0.95,
+        "evidence": [
+          "diff --git a/checkout/cache.py b/checkout/cache.py\\nindex d5a6cd3..aa9a374 100644\\n--- a/checkout/cache.py\\n+++ b/checkout/cache.py\\n@@ -4,7 +4,7 @@ from checkout.costs import CACHE_OP_MS, Meter\\n \\n \\n class Cache:\\n-    def __init__(self, meter: Meter, max_entries: int = 1024) -> None:\\n+    def __init__(self, meter: Meter, max_entries: int = 0) -> None:\\n         self._meter = meter\\n         self._store = {}\\n         self._max_entries = max_entries\\n"
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 6841990e3f"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": false,
+          "score": 0.5,
+          "detail": "used 2/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-cache_disabled-05",
+      "template": "cache_disabled",
+      "seed": 5,
+      "trial": 0,
+      "status": "crashed",
+      "success": false,
+      "error": "TimeoutError: ",
+      "latency_s": 1713.8839581012726,
+      "had_failure": false,
+      "agent_steps": 0,
+      "llm_calls": 0,
+      "cost_usd": 0.0,
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-01",
+      "template": "missing_index",
+      "seed": 1,
+      "trial": 0,
+      "status": "escalated",
+      "success": false,
+      "error": "escalated to a human after 3 failed attempts (perf_regression: p95 +706% vs baseline (36.42 ms vs 4.52 ms))",
+      "latency_s": 244.88,
+      "had_failure": true,
+      "agent_steps": 56,
+      "llm_calls": 64,
+      "tool_calls": 50,
+      "cost_usd": 0.14947,
+      "tokens": 272402,
+      "plans": 3,
+      "verifications": [
+        "failed",
+        "failed",
+        "failed"
+      ],
+      "tools_used": [
+        "compare_time_windows",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_exec",
+        "sandbox_read_file",
+        "sandbox_run_benchmark",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+        "file": "checkout/service.py",
+        "summary": "The latency regression is caused by the `audit.maybe_audit` function, introduced in commit `f3f14195ae9dc461d17122915115714f9cadb3c1`. This function, called within `handle_checkout` in `checkout/service.py`, periodically (every 25th request) performs an expensive full table scan on the `products` database table, leading to significant latency spikes and an overall increase in p95 latency.",
+        "confidence": 1.0,
+        "evidence": [
+          "Checkout latency significantly increased (p50 by 2.475x, p95 by 2.266x) immediately following the deployment of checkout-service v1.2.0 at 2026-03-10T14:00:00Z.",
+          "The diff for commit `f3f14195ae9dc461d17122915115714f9cadb3c1` shows the addition of `audit.maybe_audit(ctx)` to `handle_checkout` in `checkout/service.py`.",
+          "The content of `checkout/audit.py` at commit `f3f14195ae9dc461d17122915115714f9cadb3c1` reveals that `maybe_audit` performs a `ctx.db.query` with `extra_ms=AUDIT_SCAN_MS` and a full table scan on `products`.",
+          "Previous attempt feedback explicitly stated that commenting out `audit.maybe_audit` significantly reduced p95 latency."
+        ],
+        "ruled_out": [
+          "'slow query inventory_audit' log message rate did not change, so it's not the cause of the latency increase.",
+          "The introduction of the 'handle_checkout' function itself (commit e182c641fde025a7dffde315ebbdfadc1e95a8fd) was previously ruled out by the verifier."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": false,
+          "score": 0.0,
+          "detail": "p95 4.52 -> 36.42 ms (+705.8% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed checkout/service.py @ f3f14195ae; truth is checkout/db.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.8,
+          "detail": "used 4/5 expected tools; 14% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.5,
+          "detail": "sound plan; replanned"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-02",
+      "template": "missing_index",
+      "seed": 2,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 90.48,
+      "had_failure": false,
+      "agent_steps": 20,
+      "llm_calls": 23,
+      "tool_calls": 19,
+      "cost_usd": 0.04631,
+      "tokens": 83891,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "3acd9501af087500fe72be621bc7f9c2e97e9da1",
+        "file": "checkout/db.py",
+        "summary": "The latency regression in the checkout process was caused by the removal of the 'idx_cart_items_cart' database index on the 'cart_items' table's 'cart_id' column. This index removal, introduced by commit 3acd9501af087500fe72be621bc7f9c2e97e9da1 in checkout/db.py, led to full table scans for queries filtering by 'cart_id' in checkout/service.py, significantly increasing P50 and P95 latencies.",
+        "confidence": 0.95,
+        "evidence": [
+          "The checkout process experienced a significant latency regression starting at 2026-03-10T14:00:00Z, coinciding with the deployment of checkout-service v1.2.0. P50 latency increased by 2.48x and P95 latency by 2.26x.",
+          "The diff for commit 3acd9501af087500fe72be621bc7f9c2e97e9da1 shows the removal of 'CREATE INDEX idx_cart_items_cart ON cart_items (cart_id);' from checkout/db.py.",
+          "Code search for 'cart_items' reveals the query 'SELECT product_id, qty FROM cart_items WHERE cart_id = ? ORDER BY rowid' in checkout/service.py, which directly benefits from an index on 'cart_id'."
+        ],
+        "ruled_out": [
+          "'slow query inventory_audit' log message rate did not change across the deployment.",
+          "Error rate decreased after the deployment.",
+          "The request profile (DB queries, cache hits, RPS) remained stable, indicating the regression is not due to workload changes or data access patterns."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 3acd9501af"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.8,
+          "detail": "used 4/5 expected tools; 11% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-03",
+      "template": "missing_index",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 291.5,
+      "had_failure": true,
+      "agent_steps": 59,
+      "llm_calls": 65,
+      "tool_calls": 54,
+      "cost_usd": 0.18454,
+      "tokens": 350082,
+      "plans": 2,
+      "verifications": [
+        "failed",
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "3acd9501af087500fe72be621bc7f9c2e97e9da1",
+        "file": "checkout/db.py",
+        "summary": "The performance regression was caused by the removal of the `idx_cart_items_cart` index, leading to full table scans for cart item lookups. Re-adding this index should resolve the latency issue.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: Checkout service latency increased significantly (P50 by 2.476x) immediately following the deployment of v1.2.0.",
+          "Research: Commit `3acd9501af087500fe72be621bc7f9c2e97e9da1` removed the `idx_cart_items_cart` index from the `cart_items` table in `checkout/db.py`.",
+          "Research: Benchmark results showed p95 latency increase of 706% with no change in `db_queries` count after the index removal.",
+          "Research: Diff of commit `3acd9501af087500fe72be621bc7f9c2e97e9da1` explicitly shows the removal of `CREATE INDEX idx_cart_items_cart ON cart_items (cart_id);`."
+        ],
+        "ruled_out": [
+          "Analytics: slow query inventory_audit (rate unchanged)",
+          "Analytics: minor increase in error_rate",
+          "Previous diagnosis: 'periodic inventory audit' feature in `checkout/audit.py` (commit `f3f14195ae9dc461d17122915115714f9cadb3c1`)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 3acd9501af"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.8,
+          "detail": "used 4/5 expected tools; 9% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.5,
+          "detail": "sound plan; replanned"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-04",
+      "template": "missing_index",
+      "seed": 4,
+      "trial": 0,
+      "status": "completed",
+      "success": false,
+      "error": null,
+      "latency_s": 259.44,
+      "had_failure": true,
+      "agent_steps": 65,
+      "llm_calls": 68,
+      "tool_calls": 66,
+      "cost_usd": 0.19425,
+      "tokens": 439410,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_benchmark",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+        "file": "checkout/service.py",
+        "summary": "The p95 latency regression in checkout-service was caused by the introduction of a periodic inventory audit that performs a slow database scan every 25 requests. This change was part of the v1.2.0 deployment.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: p95 latency jumped from ~127ms to ~287ms at 2026-03-10T14:00:00Z, coinciding with the deployment of checkout-service v1.2.0 (commit 0982c3015cc60549ad1ae563a96566d26b15c93b).",
+          "Research: Commit f3f14195ae9dc461d17122915115714f9cadb3c1 ('feat(audit): periodic inventory audit') introduced checkout/audit.py and integrated audit.maybe_audit into checkout/service.py's handle_checkout.",
+          "Research: The audit.maybe_audit function is called every 25 requests and explicitly performs a slow database query with extra_ms=AUDIT_SCAN_MS, directly explaining the p95 increase.",
+          "Analytics: Error rate increased by 83.3% and 'checkout failed: upstream error' log messages increased, likely due to timeouts or issues caused by the slow audit."
+        ],
+        "ruled_out": [
+          "'slow query inventory_audit' log messages: rate did not change before and after the incident."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed checkout/service.py @ f3f14195ae; truth is checkout/db.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.8,
+          "detail": "used 4/5 expected tools; 8% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-05",
+      "template": "missing_index",
+      "seed": 5,
+      "trial": 0,
+      "status": "escalated",
+      "success": false,
+      "error": "escalated to a human after 3 failed attempts (requirement_not_met: judge: patch does not address the diagnosed root cause: The patch does not restore the missing database index.)",
+      "latency_s": 261.6,
+      "had_failure": true,
+      "agent_steps": 73,
+      "llm_calls": 82,
+      "tool_calls": 66,
+      "cost_usd": 0.22333,
+      "tokens": 404740,
+      "plans": 3,
+      "verifications": [
+        "failed",
+        "failed",
+        "failed"
+      ],
+      "tools_used": [
+        "compare_time_windows",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "3acd9501af087500fe72be621bc7f9c2e97e9da1",
+        "file": "checkout/db.py",
+        "summary": "The definitive root cause of the checkout latency regression is the removal of the `idx_cart_items_cart` database index, which forced full table scans. This caused queries on cart_items filtered by cart_id to perform full table scans instead of using an index, leading to a significant increase in latency.",
+        "confidence": 0.99,
+        "evidence": [
+          "The diff for commit 3acd9501af087500fe72be621bc7f9c2e97e9da1 clearly shows the removal of 'CREATE INDEX idx_cart_items_cart ON cart_items (cart_id);' from checkout/db.py.",
+          "The previous_patch_summary explicitly states: 'The root cause of the p95 regression was the removal of a critical database index on `cart_items (cart_id)`, not the inventory audit. Restoring this index resolved the p95 performance regression.'",
+          "p95_ms increased by 2.261x after the deployment.",
+          "p50_ms increased by 2.469x after the deployment."
+        ],
+        "ruled_out": [
+          "f3f14195ae9dc461d17122915115714f9cadb3c1",
+          "c1377978e6969a7daecab6f2732626e4051183bd"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 3acd9501af"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.8,
+          "detail": "used 4/5 expected tools; 9% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.5,
+          "detail": "sound plan; replanned"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-01",
+      "template": "n_plus_one",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": false,
+      "error": null,
+      "latency_s": 111.04,
+      "had_failure": false,
+      "agent_steps": 26,
+      "llm_calls": 29,
+      "tool_calls": 25,
+      "cost_usd": 0.06446,
+      "tokens": 121690,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "0e285675b4092fd1d5bca95ee1a398b5de30e34a",
+        "file": "checkout-service",
+        "summary": "The checkout latency increase is directly caused by the deployment of checkout-service v1.2.0, which introduced a change that bypasses the cache. This led to a 3.72x increase in database queries per request and a corresponding 2.31x increase in p50 latency and 3.15x increase in p95 latency, with average cache hits per request dropping to 0.",
+        "confidence": 0.9,
+        "evidence": [
+          "Analytics: avg_db_queries_per_request increased by 3.72x",
+          "Analytics: avg_cache_hits_per_request dropped to 0",
+          "Analytics: p50_ms increased by 2.31x",
+          "Analytics: p95_ms increased by 3.15x"
+        ],
+        "ruled_out": [
+          "Research: The periodic inventory audit feature, while adding a slow query every 25 requests, does not explain the complete loss of cache hits or the general 3.72x increase in average database queries across all requests."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed checkout-service @ 0e285675b4; truth is checkout/catalog.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 12% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-02",
+      "template": "n_plus_one",
+      "seed": 2,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 107.65,
+      "had_failure": false,
+      "agent_steps": 23,
+      "llm_calls": 26,
+      "tool_calls": 23,
+      "cost_usd": 0.05919,
+      "tokens": 109598,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "b166e05cbb51137b8c796c881bbd4e687c0ea253",
+        "file": "checkout/catalog.py",
+        "summary": "The latency regression was caused by commit b166e05cbb51137b8c796c881bbd4e687c0ea253, which introduced an N+1 query problem in the `get_products` function in `checkout/catalog.py`. This change removed the batched, cache-aside implementation, leading to a complete loss of cache hits and a significant increase in database queries per request.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: avg_cache_hits_per_request dropped to 0 (from 7.2)",
+          "Analytics: avg_db_queries_per_request increased by 3.69x (from 2.02 to 7.46)",
+          "Research: The diff of commit b166e05cbb51137b8c796c881bbd4e687c0ea253 shows the removal of the caching logic and batched database query in `get_products`, and the introduction of a loop calling `get_product`, which in turn performs a single-item database query."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit b166e05cbb"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 9% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-03",
+      "template": "n_plus_one",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": false,
+      "error": null,
+      "latency_s": 189.88,
+      "had_failure": true,
+      "agent_steps": 44,
+      "llm_calls": 49,
+      "tool_calls": 43,
+      "cost_usd": 0.11919,
+      "tokens": 249818,
+      "plans": 2,
+      "verifications": [
+        "failed",
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_benchmark",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+        "file": "checkout/service.py",
+        "summary": "The latency regression is caused by a newly introduced periodic inventory audit. Every 25th checkout request triggers a slow full scan of products with low stock, leading to a significant increase in database queries and a complete loss of cache hits for those requests, which manifests as a caching regression.",
+        "confidence": 0.95,
+        "evidence": [
+          "Analytics: avg_db_queries_per_request increased by 270.3% and avg_cache_hits_per_request dropped to 0 after deployment of checkout-service v1.2.0.",
+          "Research: Commit f3f14195ae9dc461d17122915115714f9cadb3c1 introduced a `maybe_audit` function in `checkout/service.py` that performs a database query with `extra_ms=AUDIT_SCAN_MS` every 25 requests.",
+          "Research: The audit is described as a 'slow full scan on every Nth checkout'.",
+          "Analytics: The regression coincided with the deployment of checkout-service v1.2.0, which likely included the problematic commit."
+        ],
+        "ruled_out": [
+          "Analytics: 'slow query inventory_audit log message rate did not change' indicates that the *existence* of slow inventory audit queries is not new, but their *frequency/triggering* by the new code is the problem."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed checkout/service.py @ f3f14195ae; truth is checkout/catalog.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 5% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.5,
+          "detail": "sound plan; replanned"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-04",
+      "template": "n_plus_one",
+      "seed": 4,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 113.08,
+      "had_failure": false,
+      "agent_steps": 26,
+      "llm_calls": 29,
+      "tool_calls": 26,
+      "cost_usd": 0.06611,
+      "tokens": 122831,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "b166e05cbb51137b8c796c881bbd4e687c0ea253",
+        "file": "checkout/catalog.py",
+        "summary": "A refactoring in `checkout/catalog.py` introduced an N+1 query problem in product lookup, replacing a batched cache-aside lookup with individual database queries in a loop. This led to a 3.67x increase in database queries per request and a complete loss of cache hits, causing the p95 latency for checkout-service to jump by 3.143x.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: p95 latency for checkout-service increased by 3.143x (from ~127ms to ~399ms).",
+          "Analytics: avg_db_queries_per_request increased by 3.67x (from 2.03 to 7.45).",
+          "Analytics: avg_cache_hits_per_request dropped from 7.56 to 0.0.",
+          "Research: Commit b166e05cbb51137b8c796c881bbd4e687c0ea253 in checkout/catalog.py changed `catalog.get_products` to use a loop calling `get_product` for each item, which performs an individual database query, creating an N+1 query problem.",
+          "Research: The diff for commit b166e05cbb51137b8c796c881bbd4e687c0ea253 shows the removal of batched database queries and caching.",
+          "Research: The `handle_checkout` function in `checkout/service.py` calls `catalog.get_products`, triggering the N+1 query issue."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit b166e05cbb"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 8% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-05",
+      "template": "n_plus_one",
+      "seed": 5,
+      "trial": 0,
+      "status": "completed",
+      "success": false,
+      "error": null,
+      "latency_s": 141.91,
+      "had_failure": false,
+      "agent_steps": 33,
+      "llm_calls": 36,
+      "tool_calls": 31,
+      "cost_usd": 0.09028,
+      "tokens": 171510,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_code"
+      ],
+      "root_cause": {
+        "commit_sha": "0e285675b4092fd1d5bca95ee1a398b5de30e34a",
+        "file": "checkout/cache.py",
+        "summary": "The deployment of v1.2.0 introduced a regression that disabled or broke the caching mechanism in checkout/cache.py, leading to a 3.7x increase in database queries per request and a complete loss of cache hits, causing the observed latency increase.",
+        "confidence": 0.9,
+        "evidence": [
+          "avg_db_queries_per_request increased by 3.698x (from 2.03 to 7.53)",
+          "avg_cache_hits_per_request dropped to 0.0 from 7.48",
+          "Latency increased by 2.324x (p50_ms)",
+          "Log message 'slow query inventory_audit' rate did not change, ruling out the inventory audit as the cause of the regression."
+        ],
+        "ruled_out": [
+          "f3f14195ae9dc461d17122915115714f9cadb3c1 (periodic inventory audit)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed checkout/cache.py @ 0e285675b4; truth is checkout/catalog.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 3% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-01",
+      "template": "pricing_per_item_query",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 269.23,
+      "had_failure": true,
+      "agent_steps": 62,
+      "llm_calls": 70,
+      "tool_calls": 57,
+      "cost_usd": 0.15787,
+      "tokens": 289292,
+      "plans": 3,
+      "verifications": [
+        "failed",
+        "failed",
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_exec",
+        "sandbox_read_file",
+        "sandbox_run_benchmark",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "9cdd3fe2027de3b898084e2c68cf89c5e5df8e18",
+        "file": "checkout/pricing.py",
+        "summary": "The checkout latency increase is caused by the re-introduction of an N+1 query problem in the `price_cart` function within `checkout/pricing.py`. Commit 9cdd3fe2027de3b898084e2c68cf89c5e5df8e18 modified the `price_cart` function to perform a separate database query for each product to fetch its price, leading to a 4.212x increase in average database queries per request.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: The checkout latency increase is caused by the deployment of checkout-service v1.2.0, which led to a 4.212x increase in average database queries per request (from 2.03 to 8.55).",
+          "Research: Commit 9cdd3fe2027de3b898084e2c68cf89c5e5df8e18, with the subject \"fix(pricing): re-read prices from the database to avoid stale totals\", modified the `price_cart` function. It replaced a direct sum calculation with a loop that performs a separate database query for each product to fetch its price, introducing an N+1 query pattern.",
+          "Research: The diff for commit 9cdd3fe2027de3b898084e2c68cf89c5e5df8e18 in `checkout/pricing.py` clearly shows the introduction of a `for` loop that executes a database query for each product to retrieve its price."
+        ],
+        "ruled_out": [
+          "2eb22bf69d1431454d4250bb9bf87848fa07f8d3"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 9cdd3fe202"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 9% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.5,
+          "detail": "sound plan; replanned"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-02",
+      "template": "pricing_per_item_query",
+      "seed": 2,
+      "trial": 0,
+      "status": "crashed",
+      "success": false,
+      "error": "TimeoutError: ",
+      "latency_s": 1714.0293128490448,
+      "had_failure": false,
+      "agent_steps": 0,
+      "llm_calls": 0,
+      "cost_usd": 0.0,
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-03",
+      "template": "pricing_per_item_query",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": false,
+      "error": null,
+      "latency_s": 157.86,
+      "had_failure": false,
+      "agent_steps": 35,
+      "llm_calls": 38,
+      "tool_calls": 34,
+      "cost_usd": 0.10933,
+      "tokens": 214787,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "da8a6a1556ca946070dd6d375cf4444c9fb57b2d",
+        "file": "checkout/pricing.py",
+        "summary": "The `price_cart` function was modified to perform an N+1 database query for each product in the cart, instead of an efficient in-memory calculation. This change, introduced by commit da8a6a1556ca946070dd6d375cf4444c9fb57b2d, led to a 4.145x increase in average database queries per request and a substantial increase in checkout request latencies.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: avg_db_queries_per_request increased by 4.145x from 2.04 to 8.46 after the v1.2.0 deployment.",
+          "Analytics: p50 latency increased by 2.542x (from 108.3ms to 275.3ms) after the v1.2.0 deployment.",
+          "Research: Commit da8a6a1556ca946070dd6d375cf4444c9fb57b2d in checkout/pricing.py introduced an N+1 query problem in the `price_cart` function.",
+          "Research: The `price_cart` function switched from an efficient in-memory calculation to a database query for each product in the cart."
+        ],
+        "ruled_out": [
+          "slow query inventory_audit: The rate of this log message remained constant before and after the degradation, indicating it is not the cause."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.5,
+          "detail": "right file (checkout/pricing.py) but wrong commit da8a6a1556"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 12% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-04",
+      "template": "pricing_per_item_query",
+      "seed": 4,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 125.83,
+      "had_failure": false,
+      "agent_steps": 24,
+      "llm_calls": 27,
+      "tool_calls": 24,
+      "cost_usd": 0.0707,
+      "tokens": 120695,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "9cdd3fe2027de3b898084e2c68cf89c5e5df8e18",
+        "file": "checkout/pricing.py",
+        "summary": "Commit 9cdd3fe2027de3b898084e2c68cf89c5e5df8e18 introduced an N+1 query problem in `checkout/pricing.py`, specifically in the `price_cart` function. This change caused the system to re-read prices from the database for each item in the cart within a loop, leading to a significant increase in database queries per request and consequently, higher p95 latency for the checkout-service.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics observed a 4.16x increase in average database queries per request (from 2.03 to 8.45) coinciding with the deployment of checkout-service v1.2.0, which aligns with the N+1 query problem.",
+          "Research identified commit 9cdd3fe2027de3b898084e2c68cf89c5e5df8e18 as introducing `ctx.db.query` inside a `for` loop in `checkout/pricing.py`, confirming the N+1 query issue."
+        ],
+        "ruled_out": [
+          "'slow query inventory_audit' log message rate did not change, ruling out a general slow query as the cause."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 9cdd3fe202"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 12% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-05",
+      "template": "pricing_per_item_query",
+      "seed": 5,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 139.0,
+      "had_failure": false,
+      "agent_steps": 24,
+      "llm_calls": 27,
+      "tool_calls": 25,
+      "cost_usd": 0.07366,
+      "tokens": 121271,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code"
+      ],
+      "root_cause": {
+        "commit_sha": "9cdd3fe2027de3b898084e2c68cf89c5e5df8e18",
+        "file": "checkout/pricing.py",
+        "summary": "The commit 'fix(pricing): re-read prices from the database to avoid stale totals' introduced an N+1 query problem in the price_cart function, causing a latency regression by performing a database query for each product in the cart instead of a single operation.",
+        "confidence": 0.8,
+        "evidence": [
+          "diff --git a/checkout/pricing.py b/checkout/pricing.py\nindex 39dee36..aca47cb 100644\n--- a/checkout/pricing.py\n+++ b/checkout/pricing.py\n@@ -14,6 +14,9 @@ def tax_rate(ctx, region):\n \n \n def price_cart(ctx, products, qtys, region):\n-    subtotal = sum(p[\"price_cents\"] * q for p, q in zip(products, qtys, strict=True))\n+    subtotal = 0\n+    for p, q in zip(products, qtys, strict=True):\n+        row = ctx.db.query(\"SELECT price_cents FROM products WHERE id = ?\", (p[\"id\"],))\n+        subtotal += row[0][0] * q\n     tax = round(subtotal * tax_rate(ctx, region))\n     return {\"subtotal_cents\": subtotal, \"tax_cents\": tax, \"total_cents\": subtotal + tax}\n"
+        ],
+        "ruled_out": [
+          "slow query inventory_audit"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 9cdd3fe202"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-01",
+      "template": "serialization_quadratic",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 133.82,
+      "had_failure": false,
+      "agent_steps": 26,
+      "llm_calls": 29,
+      "tool_calls": 25,
+      "cost_usd": 0.07683,
+      "tokens": 138205,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "e6e4f131609d68103604ed860b4ea3013d473dea",
+        "file": "checkout/serializer.py",
+        "summary": "The `serialize_receipt` function in `checkout/serializer.py` was refactored, changing its time complexity from O(n) to O(n^2) with respect to the number of items in the receipt. This quadratic increase in work for larger receipts directly caused the observed latency regression after the deployment of checkout-service v1.2.0.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: All latency percentiles (p50, p95, p99) showed significant increases immediately after the deployment of checkout-service v1.2.0 (commit 0e533d90f375cd7837b41bb1e4ee30a53a306a41).",
+          "Analytics: The request profile remained stable, suggesting an internal change within the service.",
+          "Research: Commit e6e4f131609d68103604ed860b4ea3013d473dea changed the receipt serialization logic in `checkout/serializer.py` from O(n) to O(n^2) complexity.",
+          "Research: The cost metering `ctx.meter.add(SERIALIZE_ITEM_MS * 15 * (i + 1))` within the loop explicitly indicates a quadratic increase in measured work."
+        ],
+        "ruled_out": [
+          "'slow query inventory_audit' log message rate did not change across the deployment, indicating it's not the cause of the latency increase."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit e6e4f13160"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 12% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-02",
+      "template": "serialization_quadratic",
+      "seed": 2,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 141.95,
+      "had_failure": false,
+      "agent_steps": 30,
+      "llm_calls": 33,
+      "tool_calls": 30,
+      "cost_usd": 0.087,
+      "tokens": 167695,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "e6e4f131609d68103604ed860b4ea3013d473dea",
+        "file": "checkout/serializer.py",
+        "summary": "A refactor of the receipt serialization logic in checkout/serializer.py introduced a quadratic time complexity (O(N^2)) due to a loop that re-encodes all previously processed items in each iteration. This change, part of the checkout-service v1.2.0 deployment, caused a significant increase in checkout latency.",
+        "confidence": 0.95,
+        "evidence": [
+          "Analytics: Checkout performance regressed significantly after the deployment of checkout-service v1.2.0 at 2026-03-10T14:00:00Z, with p50, p95, and p99 latencies increasing substantially.",
+          "Research: Commit e6e4f131609d68103604ed860b4ea3013d473dea in checkout/serializer.py introduced a loop that re-encodes all items processed so far (items[:i+1]) in each iteration, changing the serialization process from O(N) to O(N^2)."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit e6e4f13160"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 7% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-03",
+      "template": "serialization_quadratic",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 125.28,
+      "had_failure": false,
+      "agent_steps": 25,
+      "llm_calls": 28,
+      "tool_calls": 24,
+      "cost_usd": 0.0732,
+      "tokens": 133428,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "e6e4f131609d68103604ed860b4ea3013d473dea",
+        "file": "checkout/serializer.py",
+        "summary": "The `serialize_receipt` function in `checkout/serializer.py` was refactored in commit `e6e4f131609d68103604ed860b4ea3013d473dea`, introducing quadratic time complexity. The new implementation repeatedly serializes already processed items within a loop, leading to a significant increase in latency, particularly for P95 and P99, coinciding with the deployment of checkout-service v1.2.0.",
+        "confidence": 0.99,
+        "evidence": [
+          "Analytics shows a significant latency increase (P50 by ~70%, P95 by ~182%, P99 by ~27%) starting with the deployment of checkout-service v1.2.0.",
+          "Research identified commit `e6e4f131609d68103604ed860b4ea3013d473dea` as introducing quadratic complexity in `checkout/serializer.py` due to repeated serialization within a loop.",
+          "The metering logic within the problematic function also contributes to a quadratic increase in reported cost.",
+          "Other request profile metrics (RPS, DB queries, cache hits) remained stable, isolating the issue to the serialization logic."
+        ],
+        "ruled_out": [
+          "Deployment commit `0e533d90f375cd7837b41bb1e4ee30a53a306a41` (from analytics) was ruled out as the direct cause by research, implying it was the release containing the problematic commit.",
+          "Slow query inventory_audit was ruled out as its rate did not change before and after the regression."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit e6e4f13160"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 12% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-04",
+      "template": "serialization_quadratic",
+      "seed": 4,
+      "trial": 0,
+      "status": "crashed",
+      "success": false,
+      "error": "TimeoutError: ",
+      "latency_s": 1713.0475528240204,
+      "had_failure": false,
+      "agent_steps": 0,
+      "llm_calls": 0,
+      "cost_usd": 0.0,
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "run crashed"
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-05",
+      "template": "serialization_quadratic",
+      "seed": 5,
+      "trial": 0,
+      "status": "escalated",
+      "success": false,
+      "error": "escalated to a human after 3 failed attempts (verifier_error: benchmark_failed: \npython: can't open file '/workspace/benchmark.py': [Errno 2] No such file or directory\n)",
+      "latency_s": 321.92,
+      "had_failure": true,
+      "agent_steps": 64,
+      "llm_calls": 71,
+      "tool_calls": 57,
+      "cost_usd": 0.21263,
+      "tokens": 397994,
+      "plans": 3,
+      "verifications": [
+        "failed",
+        "failed",
+        "failed"
+      ],
+      "tools_used": [
+        "compare_time_windows",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_exec",
+        "sandbox_read_file",
+        "sandbox_run_benchmark",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_code",
+        "search_logs"
+      ],
+      "root_cause": null,
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "no root cause reported"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 16% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.5,
+          "detail": "sound plan; replanned"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.0,
+          "detail": "judge unavailable: gemini error 404: This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,990 @@
+{
+  "meta": {
+    "run_id": "20261002T165544Z",
+    "label": "smoke-healthy",
+    "llm": "fake",
+    "scenario": "happy",
+    "break": "none",
+    "memory": "off",
+    "trials": 1,
+    "version": {
+      "code": "61faa5ca5e9d",
+      "prompts": "9866d65c165c",
+      "policy": "7dbaaea94b09",
+      "dataset": "778a64b55f2c",
+      "graders": "2b09da2e678a"
+    },
+    "model": "scripted"
+  },
+  "aggregate": {
+    "overall": {
+      "tasks": 6,
+      "success_rate": {
+        "mean": 1.0,
+        "stderr": 0.0,
+        "n": 6
+      },
+      "root_cause_accuracy": {
+        "mean": 1.0,
+        "stderr": 0.0,
+        "n": 6
+      },
+      "tool_selection": {
+        "mean": 0.7667,
+        "stderr": 0.0481,
+        "n": 6
+      },
+      "planning_accuracy": {
+        "mean": 1.0,
+        "stderr": 0.0,
+        "n": 6
+      },
+      "recovery_rate": {
+        "mean": 0.0,
+        "stderr": 0.0,
+        "n": 0
+      },
+      "human_intervention_rate": {
+        "mean": 0.0,
+        "stderr": 0.0,
+        "n": 6
+      },
+      "rubric_score": {
+        "mean": 0.88,
+        "stderr": 0.0,
+        "n": 6
+      },
+      "avg_agent_steps": {
+        "mean": 14.0,
+        "stderr": 0.0,
+        "n": 6
+      },
+      "avg_llm_calls": {
+        "mean": 17.0,
+        "stderr": 0.0,
+        "n": 6
+      },
+      "avg_cost_usd": {
+        "mean": 0.0204,
+        "stderr": 0.0,
+        "n": 6
+      },
+      "avg_latency_s": {
+        "mean": 13.6267,
+        "stderr": 0.6256,
+        "n": 6
+      }
+    },
+    "by_template": {
+      "audit_every_request": {
+        "tasks": 1,
+        "success_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "root_cause_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "tool_selection": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 0
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "rubric_score": {
+          "mean": 0.88,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_agent_steps": {
+          "mean": 14.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_llm_calls": {
+          "mean": 17.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_cost_usd": {
+          "mean": 0.0204,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_latency_s": {
+          "mean": 14.36,
+          "stderr": 0.0,
+          "n": 1
+        }
+      },
+      "cache_disabled": {
+        "tasks": 1,
+        "success_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "root_cause_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "tool_selection": {
+          "mean": 0.75,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 0
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "rubric_score": {
+          "mean": 0.88,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_agent_steps": {
+          "mean": 14.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_llm_calls": {
+          "mean": 17.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_cost_usd": {
+          "mean": 0.0204,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_latency_s": {
+          "mean": 15.98,
+          "stderr": 0.0,
+          "n": 1
+        }
+      },
+      "missing_index": {
+        "tasks": 1,
+        "success_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "root_cause_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "tool_selection": {
+          "mean": 0.6,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 0
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "rubric_score": {
+          "mean": 0.88,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_agent_steps": {
+          "mean": 14.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_llm_calls": {
+          "mean": 17.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_cost_usd": {
+          "mean": 0.0204,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_latency_s": {
+          "mean": 11.86,
+          "stderr": 0.0,
+          "n": 1
+        }
+      },
+      "n_plus_one": {
+        "tasks": 1,
+        "success_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "root_cause_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "tool_selection": {
+          "mean": 0.75,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 0
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "rubric_score": {
+          "mean": 0.88,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_agent_steps": {
+          "mean": 14.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_llm_calls": {
+          "mean": 17.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_cost_usd": {
+          "mean": 0.0204,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_latency_s": {
+          "mean": 12.64,
+          "stderr": 0.0,
+          "n": 1
+        }
+      },
+      "pricing_per_item_query": {
+        "tasks": 1,
+        "success_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "root_cause_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "tool_selection": {
+          "mean": 0.75,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 0
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "rubric_score": {
+          "mean": 0.88,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_agent_steps": {
+          "mean": 14.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_llm_calls": {
+          "mean": 17.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_cost_usd": {
+          "mean": 0.0204,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_latency_s": {
+          "mean": 12.07,
+          "stderr": 0.0,
+          "n": 1
+        }
+      },
+      "serialization_quadratic": {
+        "tasks": 1,
+        "success_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "root_cause_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "tool_selection": {
+          "mean": 0.75,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 0
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "rubric_score": {
+          "mean": 0.88,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_agent_steps": {
+          "mean": 14.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_llm_calls": {
+          "mean": 17.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_cost_usd": {
+          "mean": 0.0204,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "avg_latency_s": {
+          "mean": 14.85,
+          "stderr": 0.0,
+          "n": 1
+        }
+      }
+    },
+    "trials": 6
+  },
+  "runs": [
+    {
+      "task_id": "latency-audit_every_request-01",
+      "template": "audit_every_request",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 14.36,
+      "had_failure": false,
+      "agent_steps": 14,
+      "llm_calls": 17,
+      "tool_calls": 14,
+      "cost_usd": 0.0204,
+      "tokens": 8500,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+        "file": "checkout/audit.py",
+        "summary": "AUDIT_EVERY was changed from 25 to 1, so the slow full-table audit scan runs on every checkout.",
+        "confidence": 0.95,
+        "evidence": [
+          "compare_time_windows: request profile changed at the deploy",
+          "diff of the suspected commit"
+        ],
+        "ruled_out": [
+          "inventory_audit slow query (unchanged rate)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit c4d6cb4a0d"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 0.88,
+          "detail": "heuristic: {'identifies_root_cause': 5, 'evidence_quality': 4, 'fix_targets_cause': 4, 'verification_reported': 5, 'honesty': 4}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-cache_disabled-01",
+      "template": "cache_disabled",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 15.98,
+      "had_failure": false,
+      "agent_steps": 14,
+      "llm_calls": 17,
+      "tool_calls": 14,
+      "cost_usd": 0.0204,
+      "tokens": 8500,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "6841990e3f76b7e0632a2652f8a670e0e753e92c",
+        "file": "checkout/cache.py",
+        "summary": "A 'configurable capacity' refactor made max_entries default to 0, so every cache set is immediately evicted.",
+        "confidence": 0.95,
+        "evidence": [
+          "compare_time_windows: request profile changed at the deploy",
+          "diff of the suspected commit"
+        ],
+        "ruled_out": [
+          "inventory_audit slow query (unchanged rate)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 6841990e3f"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 0.88,
+          "detail": "heuristic: {'identifies_root_cause': 5, 'evidence_quality': 4, 'fix_targets_cause': 4, 'verification_reported': 5, 'honesty': 4}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-01",
+      "template": "missing_index",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 11.86,
+      "had_failure": false,
+      "agent_steps": 14,
+      "llm_calls": 17,
+      "tool_calls": 14,
+      "cost_usd": 0.0204,
+      "tokens": 8500,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "3acd9501af087500fe72be621bc7f9c2e97e9da1",
+        "file": "checkout/db.py",
+        "summary": "A schema cleanup removed the index on cart_items(cart_id), so the cart query scans the whole table.",
+        "confidence": 0.95,
+        "evidence": [
+          "compare_time_windows: request profile changed at the deploy",
+          "diff of the suspected commit"
+        ],
+        "ruled_out": [
+          "inventory_audit slow query (unchanged rate)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 3acd9501af"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": false,
+          "score": 0.6,
+          "detail": "used 3/5 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 0.88,
+          "detail": "heuristic: {'identifies_root_cause': 5, 'evidence_quality': 4, 'fix_targets_cause': 4, 'verification_reported': 5, 'honesty': 4}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-01",
+      "template": "n_plus_one",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 12.64,
+      "had_failure": false,
+      "agent_steps": 14,
+      "llm_calls": 17,
+      "tool_calls": 14,
+      "cost_usd": 0.0204,
+      "tokens": 8500,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "b166e05cbb51137b8c796c881bbd4e687c0ea253",
+        "file": "checkout/catalog.py",
+        "summary": "get_products replaced a batched cache-aside lookup with one SELECT per product.",
+        "confidence": 0.95,
+        "evidence": [
+          "compare_time_windows: request profile changed at the deploy",
+          "diff of the suspected commit"
+        ],
+        "ruled_out": [
+          "inventory_audit slow query (unchanged rate)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit b166e05cbb"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 0.88,
+          "detail": "heuristic: {'identifies_root_cause': 5, 'evidence_quality': 4, 'fix_targets_cause': 4, 'verification_reported': 5, 'honesty': 4}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-01",
+      "template": "pricing_per_item_query",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 12.07,
+      "had_failure": false,
+      "agent_steps": 14,
+      "llm_calls": 17,
+      "tool_calls": 14,
+      "cost_usd": 0.0204,
+      "tokens": 8500,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "9cdd3fe2027de3b898084e2c68cf89c5e5df8e18",
+        "file": "checkout/pricing.py",
+        "summary": "price_cart now re-reads each product price from the database 'to avoid stale cache', one query per item.",
+        "confidence": 0.95,
+        "evidence": [
+          "compare_time_windows: request profile changed at the deploy",
+          "diff of the suspected commit"
+        ],
+        "ruled_out": [
+          "inventory_audit slow query (unchanged rate)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 9cdd3fe202"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 0.88,
+          "detail": "heuristic: {'identifies_root_cause': 5, 'evidence_quality': 4, 'fix_targets_cause': 4, 'verification_reported': 5, 'honesty': 4}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-01",
+      "template": "serialization_quadratic",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "error": null,
+      "latency_s": 14.85,
+      "had_failure": false,
+      "agent_steps": 14,
+      "llm_calls": 17,
+      "tool_calls": 14,
+      "cost_usd": 0.0204,
+      "tokens": 8500,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_logs"
+      ],
+      "root_cause": {
+        "commit_sha": "e6e4f131609d68103604ed860b4ea3013d473dea",
+        "file": "checkout/serializer.py",
+        "summary": "A serializer rewrite re-encodes the growing prefix for every item, so cost grows with items squared.",
+        "confidence": 0.95,
+        "evidence": [
+          "compare_time_windows: request profile changed at the deploy",
+          "diff of the suspected commit"
+        ],
+        "ruled_out": [
+          "inventory_audit slow query (unchanged rate)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit e6e4f13160"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 0.88,
+          "detail": "heuristic: {'identifies_root_cause': 5, 'evidence_quality': 4, 'fix_targets_cause': 4, 'verification_reported': 5, 'honesty': 4}"
+        }
+      }
+    }
+  ]
+}

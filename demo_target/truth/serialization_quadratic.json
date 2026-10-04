@@ -1,0 +1,77 @@
+{
+  "scenario_id": "serialization_quadratic",
+  "service": "checkout-service",
+  "title": "Receipt serialization became quadratic",
+  "root_cause": {
+    "commit_sha": "e6e4f131609d68103604ed860b4ea3013d473dea",
+    "commit_subject": "refactor(serializer): stream items so partial receipts can be flushed",
+    "file": "checkout/serializer.py",
+    "summary": "A serializer rewrite re-encodes the growing prefix for every item, so cost grows with items squared.",
+    "category": "algorithmic_complexity",
+    "introduced_in_deploy": "v1.2.0"
+  },
+  "last_good_commit_sha": "73e52b6b1d2d904aba48f86bdcd82e0a16e6807c",
+  "head_commit_sha": "2d8ab433646adf4a10c1997850b82c2d104dc624",
+  "deploy_range_commits": [
+    "e6e4f131609d68103604ed860b4ea3013d473dea",
+    "79b113e71c631c3213b376990a44fd7b3d929732",
+    "0e533d90f375cd7837b41bb1e4ee30a53a306a41",
+    "2d8ab433646adf4a10c1997850b82c2d104dc624"
+  ],
+  "red_herrings": [
+    {
+      "description": "inventory_audit slow query (constant rate)",
+      "applies": true,
+      "file": "checkout/audit.py",
+      "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+      "parent_commit_sha": "bbc634745e92509a8df79209c82261dd9b97feb6"
+    }
+  ],
+  "acceptable_fixes": [
+    {
+      "id": "encode_once",
+      "description": "encode each item once (linear), restore the single json.dumps"
+    }
+  ],
+  "reference_fix_files": [
+    "checkout/serializer.py"
+  ],
+  "expected_tools": [
+    "list_deployments",
+    "compare_time_windows",
+    "get_trace",
+    "get_diff"
+  ],
+  "benchmark": {
+    "command": "python benchmark.py --json",
+    "baseline": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 47.0,
+      "requests": 500
+    },
+    "regressed": {
+      "db_queries": 520,
+      "p50_ms": 7.85,
+      "p95_ms": 16.1,
+      "p99_ms": 55.15,
+      "requests": 500
+    },
+    "reference_fix": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 47.0,
+      "requests": 500
+    },
+    "p95_ratio_regressed_vs_baseline": 3.562,
+    "pass_rule": "fixed p95_ms <= baseline p95_ms * 1.10"
+  },
+  "tests_must_pass": "python -m pytest -q",
+  "deploy_commits": {
+    "docs-cost-model": "cfd3a572cd61d507c40f00e7c6b7cd2b94c9d070",
+    "cache-cap": "8967402cff9224c96a86e4bd1adc9c899c42b614",
+    "serialization_quadratic-test": "0e533d90f375cd7837b41bb1e4ee30a53a306a41"
+  }
+}

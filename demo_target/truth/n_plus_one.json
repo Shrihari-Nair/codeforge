@@ -1,0 +1,81 @@
+{
+  "scenario_id": "n_plus_one",
+  "service": "checkout-service",
+  "title": "Product lookup became N+1 and bypassed the cache",
+  "root_cause": {
+    "commit_sha": "b166e05cbb51137b8c796c881bbd4e687c0ea253",
+    "commit_subject": "refactor(catalog): simplify product lookup",
+    "file": "checkout/catalog.py",
+    "summary": "get_products replaced a batched cache-aside lookup with one SELECT per product.",
+    "category": "n_plus_one_query",
+    "introduced_in_deploy": "v1.2.0"
+  },
+  "last_good_commit_sha": "73e52b6b1d2d904aba48f86bdcd82e0a16e6807c",
+  "head_commit_sha": "31a731f4f681144a309eafef0c9f4a794054d0cf",
+  "deploy_range_commits": [
+    "b166e05cbb51137b8c796c881bbd4e687c0ea253",
+    "636bfd09118415c4e5f892a87efcc16d3b93173b",
+    "0e285675b4092fd1d5bca95ee1a398b5de30e34a",
+    "31a731f4f681144a309eafef0c9f4a794054d0cf"
+  ],
+  "red_herrings": [
+    {
+      "description": "inventory_audit slow query (constant rate)",
+      "applies": true,
+      "file": "checkout/audit.py",
+      "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+      "parent_commit_sha": "bbc634745e92509a8df79209c82261dd9b97feb6"
+    }
+  ],
+  "acceptable_fixes": [
+    {
+      "id": "restore_batched_lookup",
+      "description": "single IN (...) query"
+    },
+    {
+      "id": "restore_cache_aside",
+      "description": "use the cache for product lookups"
+    }
+  ],
+  "reference_fix_files": [
+    "checkout/catalog.py"
+  ],
+  "expected_tools": [
+    "list_deployments",
+    "compare_time_windows",
+    "get_trace",
+    "get_diff"
+  ],
+  "benchmark": {
+    "command": "python benchmark.py --json",
+    "baseline": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 47.0,
+      "requests": 500
+    },
+    "regressed": {
+      "db_queries": 3770,
+      "p50_ms": 17.37,
+      "p95_ms": 27.92,
+      "p99_ms": 66.5,
+      "requests": 500
+    },
+    "reference_fix": {
+      "db_queries": 520,
+      "p50_ms": 3.72,
+      "p95_ms": 4.52,
+      "p99_ms": 47.0,
+      "requests": 500
+    },
+    "p95_ratio_regressed_vs_baseline": 6.177,
+    "pass_rule": "fixed p95_ms <= baseline p95_ms * 1.10"
+  },
+  "tests_must_pass": "python -m pytest -q",
+  "deploy_commits": {
+    "docs-cost-model": "cfd3a572cd61d507c40f00e7c6b7cd2b94c9d070",
+    "cache-cap": "8967402cff9224c96a86e4bd1adc9c899c42b614",
+    "test-catalog": "0e285675b4092fd1d5bca95ee1a398b5de30e34a"
+  }
+}
