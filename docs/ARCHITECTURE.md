@@ -152,3 +152,12 @@ stale-able hints. Its benefit is a measured claim (see `EVAL_RESULTS.md`), not a
   MCP servers as child processes, sandbox on local Docker.
 * **Full topology** (`docker compose --profile a2a`): Postgres, Redis, OTel collector, Langfuse
   (profile `observability`), plus seed, analytics, research, coding and api+worker containers.
+
+## 9. Clients
+
+The dashboard (`web/`) and the terminal client (`src/aeos/client/`) are both thin clients of the same
+REST + SSE API, so they always show the same state and can be used at once. The terminal client has
+no access to the database, graph or sandbox: `api.py` (HTTP + SSE with resume), `render.py` (pure
+functions from API JSON to rich views), `watch.py`/`prompts.py` (live follow and the inline approval
+card), `commands.py` (one-shot commands) and `chat.py` (interactive session). Everything an agent can
+influence is passed through `sanitize.py` before it reaches the terminal.

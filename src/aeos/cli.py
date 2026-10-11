@@ -7,6 +7,11 @@ aeos submit <goal>         enqueue a task for a worker
 aeos status <task_id>      show a task's status line
 aeos approvals             list pending approvals
 aeos approve|reject <id>   decide (records the actor; the task resumes on a worker)
+
+Terminal client of the running API (same features as the dashboard):
+aeos chat                  interactive session: type a request, watch, approve inline
+aeos tasks | new | show | watch | events | stats | open
+(status/approvals/approve/reject use the API when --api or AEOS_API_URL is set)
 """
 
 import argparse
@@ -87,8 +92,9 @@ async def _run(args: argparse.Namespace) -> TaskState:
         open_checkpointer(settings) as saver,
     ):
         return await run_task(
-            rt, args.task, task_id=args.task_id, checkpointer=saver, approver=approver
-        )
+            rt, args.task, task_id=args.task_id, checkpointer=saver, approver=approver,
+            kind=args.kind,
+        )  # fmt: skip
 
 
 # ---------------------------------------------------------------------- worker / serve
@@ -180,7 +186,47 @@ def _decide(args: argparse.Namespace, decision: str) -> int:
     return 0
 
 
-def main(argv: list[str] | None = None) -> int:
+CLIENT_CMDS = {"tasks", "new", "show", "watch", "events", "stats", "open", "chat"}
+LEGACY_CMDS = {"status", "approvals", "approve", "reject"}  # DB-backed unless --api / AEOS_API_URL
+
+
+def _client_flags(p: argparse.ArgumentParser) -> None:
+    p.add_argument("--api", help="AEOS API URL (default: $AEOS_API_URL or http://localhost:8800)")
+    p.add_argument("--actor", help="your name for the audit log (default: $AEOS_ACTOR or $USER)")
+
+
+def _client_commands(sub: Any) -> None:
+    def add(name: str, help_: str, *flags: str) -> argparse.ArgumentParser:
+        p: argparse.ArgumentParser = sub.add_parser(name, help=help_)
+        _client_flags(p)
+        for f in flags:
+            p.add_argument(f, action="store_true")
+        return p
+
+    t = add("tasks", "list tasks", "--watch", "--json")
+    t.add_argument("--status")
+    n = add("new", "submit a request", "--watch", "--yes")
+    n.add_argument("goal")
+    n.add_argument("--kind", choices=["change", "regression"])
+    s = add("show", "show a task", "--plan", "--findings", "--root-cause", "--verify", "--diff",
+            "--stats", "--feedback", "--pr", "--json")  # fmt: skip
+    s.add_argument("task_id")
+    s.add_argument("--step")
+    s.add_argument("--version", type=int)
+    for name, help_ in (
+        ("watch", "follow a task live"),
+        ("stats", "cost and usage"),
+        ("open", "trace and PR links"),
+    ):
+        add(name, help_, *(("--json",) if name == "stats" else ())).add_argument("task_id")
+    e = add("events", "task events", "--follow")
+    e.add_argument("task_id")
+    e.add_argument("--after", type=int, default=0)
+    c = add("chat", "interactive session")
+    c.add_argument("--kind", choices=["change", "regression"])
+
+
+def main(argv: list[str] | None = None, *, _client: Any = None, _console: Any = None) -> int:
     parser = argparse.ArgumentParser(prog="aeos", description="Autonomous Engineering OS")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
@@ -218,18 +264,42 @@ def main(argv: list[str] | None = None) -> int:
     agent.add_argument("--public-url")
     llm_flags(agent)
 
-    submit = sub.add_parser("submit", help="enqueue a task")
+    submit = sub.add_parser("submit", help="enqueue a task (direct, no API)")
     submit.add_argument("goal", nargs="?", default=DEMO_TASK)
     status = sub.add_parser("status", help="show a task")
     status.add_argument("task_id")
-    sub.add_parser("approvals", help="list pending approvals")
+    _client_flags(status)
+    appr = sub.add_parser("approvals", help="list pending approvals")
+    appr.add_argument("--all", action="store_true")
+    appr.add_argument("--json", action="store_true")
+    _client_flags(appr)
     for name in ("approve", "reject"):
         d = sub.add_parser(name, help=f"{name} a pending request")
         d.add_argument("approval_id")
-        d.add_argument("--actor", default=os.environ.get("USER", "cli-user"))
+        d.add_argument("--actor", default=None)
+        d.add_argument("--api")
         d.add_argument("--feedback")
+        d.add_argument("--yes", action="store_true", help="skip showing the approval card")
+    _client_commands(sub)
+    run.add_argument("--kind", choices=["change", "regression"], default="regression")
 
     args = parser.parse_args(argv)
+    api_only_flags = getattr(args, "all", False) or getattr(args, "json", False)
+    if args.cmd in CLIENT_CMDS or (
+        args.cmd in LEGACY_CMDS
+        and (getattr(args, "api", None) or os.environ.get("AEOS_API_URL") or api_only_flags)
+    ):
+        from rich.console import Console
+
+        from aeos.client.api import AeosClient, default_api_url
+        from aeos.client.commands import run_command
+
+        client = _client or AeosClient(getattr(args, "api", None) or default_api_url())
+        return run_command(
+            args, client, _console or Console(markup=False, highlight=False, emoji=False)
+        )
+    if args.cmd in ("approve", "reject"):
+        args.actor = args.actor or os.environ.get("USER", "cli-user")
     configure_logging("INFO" if getattr(args, "verbose", False) else "ERROR")
     from aeos.telemetry.setup import init_telemetry
 

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Run the aeos CLI against the running stack: inside the api container if it is up (no local
+# Python needed), otherwise through uv.   ./scripts/aeos chat
+cd "$(dirname "$0")/.." || exit 1
+if docker compose ps --status running --services 2>/dev/null | grep -qx api; then
+  tty=(); { [ -t 0 ] && [ -t 1 ]; } || tty=(-T)
+  exec docker compose exec "${tty[@]}" -e AEOS_ACTOR="${AEOS_ACTOR:-${USER:-}}" api aeos "$@"
+fi
+exec uv run aeos "$@"

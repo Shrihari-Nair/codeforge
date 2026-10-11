@@ -184,3 +184,8 @@ Built:
 Verified: span-tree test walks task -> node -> agent -> llm.call (decision in the output) -> tool.call -> mcp.call, plus sandbox/verifier/approval spans, all in one trace; a task paused for approval and resumed by a brand-new runtime stays in the SAME trace; trace context crosses real MCP and A2A boundaries. Live check: a replayed task produced 88 observations in Langfuse (71 spans, 17 generations, 6,800/1,700 tokens, $0.0204) under session = task id; the collector also received the metrics.
 
 Bugs found by looking at real output: attributes set on an already-ended `sandbox.exec` span; Langfuse v4 serves observations via `/api/public/v2/observations` (the v1 traces API is disabled in events-only mode).
+
+## Terminal client (2026-10-11)
+`aeos chat` plus `tasks/new/show/watch/events/stats/open` (and API-backed `status/approvals/approve/reject`):
+full dashboard parity from the terminal. Plan: `docs/superpowers/plans/2026-10-07-terminal-client.md`.
+64 client tests incl. an end-to-end test (real server, SSE, inline approval, PR). Legacy DB-direct commands are unchanged unless `--api`/`AEOS_API_URL` is set.

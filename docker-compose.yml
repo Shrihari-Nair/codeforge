@@ -208,6 +208,7 @@ services:
       AEOS_GITHUB_REPO: ${AEOS_GITHUB_REPO:-}
       AEOS_GITHUB_TOKEN: ${AEOS_GITHUB_TOKEN:-}
       AEOS_TARGET_MIRROR_DIR: /app/demo_target/build/target
+      AEOS_API_URL: http://localhost:8000   # the terminal client (`aeos chat`) inside this container
     volumes:
       - demo_build:/app/demo_target/build
       - /var/run/docker.sock:/var/run/docker.sock  # creates sandbox containers
