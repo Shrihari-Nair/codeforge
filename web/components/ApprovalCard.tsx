@@ -24,7 +24,7 @@ export default function ApprovalCard({ a, onDone }: { a: Approval; onDone: () =>
   const ev = a.evidence ?? {};
   const pending = a.status === "pending";
   return (
-    <section className="card">
+    <section className={`card ${pending ? "approval beam" : ""}`}>
       <div className="row">
         <h2 style={{ margin: 0 }}>Approval request</h2>
         <Badge s={a.status} />
@@ -34,7 +34,7 @@ export default function ApprovalCard({ a, onDone }: { a: Approval; onDone: () =>
       <p>
         <b>{a.tool}</b>: {a.arguments.title}{" "}
         <span className="dim">
-          ({a.arguments.head} → {a.arguments.base})
+          ({a.arguments.head} into {a.arguments.base})
         </span>
       </p>
       <p className="dim">{a.rationale}</p>
@@ -44,7 +44,7 @@ export default function ApprovalCard({ a, onDone }: { a: Approval; onDone: () =>
       <Bench b={ev.benchmark} />
       {ev.root_cause && (
         <p>
-          <span className="dim">Root cause:</span> {ev.root_cause.file} — {ev.root_cause.summary}
+          <span className="dim">Root cause:</span> {ev.root_cause.file}: {ev.root_cause.summary}
         </p>
       )}
       {ev.patch && (
@@ -71,7 +71,7 @@ export default function ApprovalCard({ a, onDone }: { a: Approval; onDone: () =>
           </div>
         </div>
       ) : (
-        <p className="dim">Decided by {a.actor ?? "—"}.</p>
+        <p className="dim">Decided by {a.actor ?? "unknown"}.</p>
       )}
     </section>
   );

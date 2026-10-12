@@ -1,19 +1,22 @@
 import "./globals.css";
-import Link from "next/link";
+import { Inter, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
+import Nav from "@/components/Nav";
+import Palette from "@/components/Palette";
+
+const inter = Inter({ subsets: ["latin"], variable: "--f-sans", display: "swap" });
+const mono = Geist_Mono({ subsets: ["latin"], variable: "--f-mono", display: "swap" });
 
 export const metadata = { title: "AEOS", description: "Autonomous Engineering OS dashboard" };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body>
-        <header className="top">
-          <b>AEOS</b>
-          <Link href="/">Tasks</Link>
-          <Link href="/approvals">Approvals</Link>
-        </header>
-        <main>{children}</main>
+        <a className="skip" href="#main">Skip to content</a>
+        <Nav />
+        <Palette />
+        <main id="main">{children}</main>
       </body>
     </html>
   );

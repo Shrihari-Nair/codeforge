@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SKIP_DIRS = {".venv", "node_modules", ".git", ".next", ".mypy_cache", ".ruff_cache",
+SKIP_DIRS = {".claude", ".venv", "node_modules", ".git", ".next", ".mypy_cache", ".ruff_cache",
              ".pytest_cache", "__pycache__", "build", "htmlcov"}  # fmt: skip
 SKIP_FILES = {".env", "uv.lock", "package-lock.json"}
 SECRET_KEY_NAME = re.compile(r"KEY|TOKEN|SECRET|PASSWORD|SALT|BASIC_AUTH")

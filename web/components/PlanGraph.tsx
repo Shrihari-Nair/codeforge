@@ -23,8 +23,8 @@ export default function PlanGraph({ plan, selected, onSelect }: { plan: PlanVers
     <div className="plan">
       {levels(plan.steps).map((col, i) => (
         <div className="col" key={i}>
-          {col.map((s) => (
-            <div key={s.id} className={`node n-${s.status} ${selected === s.id ? "sel" : ""}`} onClick={() => onSelect(s.id)}>
+          {col.map((s, i) => (
+            <div key={s.id} className={`node n-${s.status} ${selected === s.id ? "sel" : ""} ${s.status === "running" ? "beam" : ""}`} style={{ ["--i" as string]: i }} onClick={() => onSelect(s.id)}>
               <div className="own">
                 {s.owner} · {s.status}
                 {s.attempts > 1 ? ` · attempt ${s.attempts}` : ""}

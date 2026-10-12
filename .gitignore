@@ -31,8 +31,14 @@ web/next-env.d.ts
 # --- generated at runtime (rebuilt by `docker compose up` / demo_target.build_repo) ---
 demo_target/build/
 
+# --- third-party Claude Code skills installed locally (27 MB; reinstall from their repos) ---
+.claude/skills/
+
 # --- editors / OS / logs ---
 .idea/
 .vscode/
 .DS_Store
 *.log
+
+# --- generated demo videos (brag skill) ---
+brag-output/

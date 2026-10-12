@@ -64,7 +64,10 @@ export function useEvents(taskId: string) {
 
 export function useActor(): [string, (v: string) => void] {
   const [actor, setActor] = useState("");
-  useEffect(() => setActor(localStorage.getItem("aeos.actor") ?? "alice"), []);
+  useEffect(() => {
+    const v = localStorage.getItem("aeos.actor");
+    setActor(!v || v === "alice" ? "Shrihari" : v); // "alice" was the old default
+  }, []);
   const set = (v: string) => {
     setActor(v);
     localStorage.setItem("aeos.actor", v);

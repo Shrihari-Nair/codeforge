@@ -10,7 +10,13 @@ from its last checkpoint.
 > [Shrihari-Nair/broadcast-server#1](https://github.com/Shrihari-Nair/broadcast-server/pull/1):
 > `ws` 8.18.3 → 8.22.0 with a regenerated lockfile, 17 LLM calls, 79k tokens, about $0.03, 65 s.
 
-![Task page: plan, findings, verification gates, patch, PR link and approval](docs/img/dashboard-task.png)
+![AEOS walkthrough: goal, pipeline, a failed verification that is replanned and retried, then human approval and the PR](docs/img/aeos-walkthrough.gif)
+
+<sub>Walkthrough (24 s): type a goal, watch the pipeline, see verification fail, replan and pass on the second attempt, then approve. The retry segment is illustrative; the rest follows a real run.</sub>
+
+![Dashboard home: new task composer, live pipeline, stats and task list](docs/img/dashboard-home.png)
+
+![Task page: pipeline, plan, findings, verification gates, patch, PR link and approval](docs/img/dashboard-task.png)
 
 ## What it can do
 
@@ -95,14 +101,14 @@ The same API drives a terminal client, so you can work without a browser (or alo
 
 ```text
 $ ./scripts/aeos chat
-AEOS chat · api http://localhost:8000 · repo owner/name · target change · you are alice
+AEOS chat · api http://localhost:8000 · repo owner/name · target change · you are Shrihari
 aeos> update the ws dependency to the latest version and raise a PR
 t-1a2b3c4d  (change)
 10:02:11  supervisor  plan_created  plan v1: s1:research | s2:coding | v1:verifier | p1:supervisor
 ...
 APPROVAL ap-... [pending]   (gates, benchmark, files)
 [a]pprove  [r]eject  [d]iff  [f]indings  [s]kip > a
-approved as alice; the task resumes on the worker
+approved as Shrihari; the task resumes on the worker
 pull request: https://github.com/owner/name/pull/2
 ```
 
