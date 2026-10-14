@@ -1,5 +1,7 @@
 # AEOS: Autonomous Engineering OS
 
+[![ci](https://github.com/Shrihari-Nair/codeforge/actions/workflows/ci.yml/badge.svg)](https://github.com/Shrihari-Nair/codeforge/actions/workflows/ci.yml)
+
 A multi-agent system that takes an engineering request in plain English, investigates it, makes
 the change in an isolated sandbox, **verifies it independently**, **waits for a human to approve**,
 and then opens a **real GitHub pull request**. Every step is traced, and a crashed worker resumes
@@ -17,6 +19,8 @@ from its last checkpoint.
 ![Dashboard home: new task composer, live pipeline, stats and task list](docs/img/dashboard-home.png)
 
 ![Task page: pipeline, plan, findings, verification gates, patch, PR link and approval](docs/img/dashboard-task.png)
+
+<sub>A recorded run of the scripted `wrong_fix` scenario: the first fix fails verification (p95 +518%), the supervisor replans (v2, rejecting the red-herring diagnosis), and the second attempt passes. The tools, sandbox and verifier are real; only the model's answers are canned.</sub>
 
 ## What it can do
 
@@ -61,8 +65,10 @@ flowchart LR
   risk level). Specialists can also run as separate services speaking the A2A protocol.
 
 More detail: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) (components, failure table, span schema),
-[docs/DECISIONS.md](docs/DECISIONS.md) (45 design decisions with reasons),
-[docs/INTERVIEW_PREP.md](docs/INTERVIEW_PREP.md) (plain-language walkthrough).
+[docs/DECISIONS.md](docs/DECISIONS.md) (50 design decisions with reasons),
+[docs/PROMPT_INJECTION.md](docs/PROMPT_INJECTION.md) (what is defended, tested, and not covered),
+[docs/INTERVIEW_PREP.md](docs/INTERVIEW_PREP.md) (plain-language walkthrough),
+[CONTRIBUTING.md](CONTRIBUTING.md) (setup and how to run the tests safely).
 
 ## Quick start
 
@@ -89,12 +95,56 @@ Then open **http://localhost:3100**.
    with feedback, which triggers a re-plan).
 4. For a change request, the PR link appears on the task page.
 
-No API key? Set `AEOS_DASHBOARD_LLM=fake` and `AEOS_DASHBOARD_REPLAY=happy` in `.env` to replay a
-scripted run of the demo scenario for free.
+### Try it free (no API key, no GitHub token)
+
+```bash
+make demo        # scripted run: creates .env if missing, builds and starts everything
+make demo-down   # stop it
+```
+
+Open http://localhost:3100, submit the pre-filled task and approve it. The `wrong_fix` scenario makes
+the first fix fail verification, so you see the supervisor replan and the second attempt pass. Use
+`AEOS_DASHBOARD_REPLAY=happy` instead for a run with no failure. The scripts replay against the real
+tools and the real verifier; only the model's answers are canned.
 
 `.env` is git-ignored. `make secrets` (also run in CI) fails if a real key could be committed.
 
-## Terminal (everything the dashboard does)
+## Dashboard features
+
+- **Pipeline and trace.** Each task shows its stages (Research, Code, Verify, Approve; Analyze for
+  latency regressions), a waterfall of every step and tool call with the time spent waiting for a
+  human, every verification attempt (so a failed first attempt and the replan stay visible), and
+  budget meters (cost, tokens, steps and time against their caps).
+- **Review with comments.** The approval diff has split and unified views. Press **+** on any line to
+  leave a comment; comments are sent with your approve or reject, and a rejection's feedback drives the replan.
+- **Cancel, run again, cost cap.** Stop an unfinished task (its pending approval is closed and the
+  sandbox reaped), re-run any finished one, and set an optional cost cap when you submit.
+- **Evals page.** `/evals` shows each run in `evals/results/` (headline numbers, success by scenario,
+  and the comparison against a baseline, including the run where the retry logic was broken on purpose
+  to prove the evals notice). Weak numbers are shown as they are.
+- **Ctrl+K** opens a command palette for tasks, approvals and actions.
+
+![Evals page: headline numbers and success rate by scenario](docs/img/dashboard-evals.png)
+
+## Login (optional)
+
+Off by default. To turn it on, make an entry for each person, add it to `.env`, and restart the API:
+
+```bash
+docker compose run --rm api python -m aeos.api.auth hash   # prompts for a username and password
+# put the printed line in .env, plus a secret so sessions survive restarts:
+#   AEOS_AUTH_USERS=Shrihari:scrypt.<salt>.<hash>        (comma-separate several users)
+#   AEOS_AUTH_SECRET=<output of: openssl rand -hex 32>
+#   AEOS_API_TOKEN=<output of: openssl rand -hex 24>      (lets the terminal client in)
+docker compose up -d --no-deps api
+```
+
+Everything except `/healthz` then needs a login (an HttpOnly session cookie) or the service token.
+The name you log in with is recorded on approvals and cancellations and cannot be overridden by a
+header. Set `AEOS_AUTH_COOKIE_SECURE=true` if you serve the dashboard over https. There are no roles,
+no password reset and no OAuth; it is a shared-team login, not a full identity system.
+
+## Terminal (most of what the dashboard does)
 
 The same API drives a terminal client, so you can work without a browser (or alongside it).
 `./scripts/aeos <command>` runs it inside the API container (no local Python needed).
@@ -121,6 +171,8 @@ pull request: https://github.com/owner/name/pull/2
 | Approvals inbox | `aeos approvals` |
 | Langfuse + PR links | `aeos open <id>` |
 
+Cancel, run-again, the trace waterfall, line comments and the Evals page are dashboard-only for now.
+
 Inside `aeos chat` the same things are slash commands (`/tasks`, `/show`, `/watch`, `/approvals`,
 `/approve`, `/reject`, `/stats`, `/diff`, `/open`, `/target`, `/actor`, `/help`). Ctrl+C while
 watching detaches; the task keeps running. Agent output is stripped of terminal escape codes
@@ -145,9 +197,13 @@ before it is printed. Exit codes: 0 completed, 1 failed, 2 API unreachable, 3 wa
   The LLM judge agrees with human labels at Spearman 0.80 (100% pass/fail agreement). With a
   deliberately broken retry policy the scripted suite's success rate falls from 100% to 0%,
   so the evals do detect regressions.
-- **Live Gemini result:** the one recorded full run solved **15 of 30** tasks (50%). Later fixes
-  (blame lookup, baseline selection, stronger planning model) improved it in a follow-up run that
-  was not saved, so no newer number is claimed here.
+- **Live Gemini result:** an October run solved **15 of 30** tasks (50%). After later fixes (blame
+  lookup, baseline selection, stronger planning model) a full run on 12 Oct solved **26 of 30
+  (87%, about ±6 points; one trial per task)** at about $0.065 and 2 minutes per task. 29 of 30 delivered
+  a verified fix; three of the four misses named the wrong file or commit in the report. Only 2
+  tasks needed a retry, so the recovery rate (1 of 2) is too small a sample to mean anything. The
+  two runs also differ in prompts, code and graders, so the improvement is not attributed to one
+  change. The report is on the Evals page.
 
 ## Project layout
 
@@ -177,14 +233,16 @@ GitHub REST API, pytest, ruff, mypy, uv, GitHub Actions.
 
 ## Known limitations
 
-- Repos without a test suite (like the demo target repo, `broadcast-server`) can only be checked
-  for syntax, diff safety and lockfile consistency; the PR body says so. Review before merging.
+- A change request runs the repo's own tests only if they can run offline in the sandbox (pytest,
+  or Node's built-in `node --test`); suites that need `npm install` (jest, mocha, ...) cannot, and a
+  repo with no tests (like the demo target, `broadcast-server`) is checked for syntax, diff safety
+  and lockfile consistency only. The PR body says which of these applied. Review before merging.
 - Change requests run in single-process mode (not over A2A) and use Node/Python syntax checks only.
 - The test suite shares the dev database: **do not run `make test` while using the dashboard**;
   some tests clear the task queue.
 - Memory is implemented, but a small comparison (3 runs per arm) showed no measurable benefit.
-- A prototype, not a production service: single worker, no authentication on the dashboard
-  (the "acting as" name is typed in).
+- A prototype, not a production service: single worker, and login is optional and basic (see
+  "Login"). Without it, the "acting as" name is typed in and anyone who can reach the dashboard can approve.
 
 ## Development
 
