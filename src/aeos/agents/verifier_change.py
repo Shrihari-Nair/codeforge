@@ -4,13 +4,16 @@ Same principle as the regression verifier: nothing is taken on the coding agent'
 is re-applied to a fresh checkout of the target branch and checked deterministically. The gates are
 honest about what exists: a repository without a test suite cannot be test-verified, so the gates
 are diff safety, syntax of every touched file, manifest/lockfile consistency, and an advisory LLM
-judgement of completeness. `metrics["tests"]` records that no suite was run.
+judgement of completeness. If the repository has a test suite that can run offline in the sandbox
+(pytest, or Node's built-in `node --test`) it is run too; a failure only counts against the patch
+if the same suite passed on the unpatched checkout. `metrics["tests"]` records what actually ran.
 """
 
 import asyncio
 import json
 import re
 
+from aeos.agents.suite import find_suite, run_suite
 from aeos.agents.verifier import GateConfig, parse_patch, static_gates
 from aeos.core.state import Issue, VerificationResult
 from aeos.sandbox import RepoRef, SandboxError, SandboxManager
@@ -85,7 +88,7 @@ async def _run(
     files = parse_patch(patch)
     metrics: dict[str, object] = {
         "files": [f.model_dump() for f in files],
-        "tests": {"ran": False, "note": "no automated test suite is run for this repository"},
+        "tests": {"ran": False, "note": "no test suite found in the repository"},
     }
     focus: list[str] = []
 
@@ -136,6 +139,44 @@ async def _run(
                         Issue(type="lockfile_inconsistent", detail="; ".join(problems[:4]))
                     )
                     focus.append("use npm_update_dependency so package.json and the lockfile agree")
+            if syntax_ok:  # a patch that does not even parse needs no test run
+                run_repo_tests(sid)
+
+    def run_repo_tests(sid: str) -> None:
+        runner, why = find_suite(mgr, sid)
+        if runner is None:
+            metrics["tests"] = {"ran": False, "note": why}
+            return
+        res = run_suite(mgr, sid, runner)
+        if res.total == 0 and not res.timed_out and res.ok:
+            metrics["tests"] = {"ran": False, "note": f"{runner} found no tests to run"}
+            return
+        t: dict[str, object] = {
+            "ran": True,
+            "runner": runner,
+            "total": res.total,
+            "failed": res.failed,
+        }
+        if res.ok:
+            gates["tests_pass"] = True
+        else:
+            with mgr.sandbox(base, task_id=task_id) as before_sid:  # same suite, unpatched
+                before = run_suite(mgr, before_sid, runner)
+            if before.ok:
+                gates["tests_pass"] = False
+                what = "timed out" if res.timed_out else f"{res.failed} failing"
+                issues.append(
+                    Issue(
+                        type="test_regression",
+                        detail=f"{runner}: {what} after the change, none before. {res.tail[-300:]}",
+                    )
+                )
+                focus.append("make the repository's existing tests pass again")
+            else:
+                t["note"] = (
+                    "the suite already fails without this change, so it is not held against it"
+                )
+        metrics["tests"] = t
 
     try:
         await asyncio.to_thread(checks)

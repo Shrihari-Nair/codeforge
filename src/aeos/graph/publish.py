@@ -48,10 +48,18 @@ def pr_body_change(state: TaskState) -> str:
         lines += ["## Risks"] + [f"- {r}" for r in research["risks"]] + [""]
     lines += ["## Verification (independent)"]
     lines += [f"- {'✓' if ok else '✗'} {g}" for g, ok in v.gates.items()]
-    lines.append(
-        "- no automated test suite was run: this repository has none the verifier can execute; "
-        "review the diff and run the app before merging"
-    )
+    tests = v.metrics.get("tests") or {}
+    if tests.get("ran"):
+        note = f" ({tests['note']})" if tests.get("note") else ""
+        lines.append(
+            f"- tests ({tests.get('runner')}): {tests.get('total')} run, "
+            f"{tests.get('failed')} failing{note}"
+        )
+    else:
+        lines.append(
+            f"- no repository tests were run: {tests.get('note') or 'none could be executed'}; "
+            "review the diff and run the app before merging"
+        )
     judge = v.judgement or {}
     for c in judge.get("concerns", []):
         lines.append(f"- judge concern: {c}")

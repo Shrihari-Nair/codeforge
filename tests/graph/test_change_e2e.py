@@ -170,7 +170,7 @@ async def test_change_task_updates_dependency_and_opens_real_pr(
     assert "chore: bump ws to 8.18.0" in api.pulls[0]["title"]
     assert (
         "Where changes were made" in api.pulls[0]["body"]
-        and "no automated test suite" in api.pulls[0]["body"]
+        and "no repository tests were run" in api.pulls[0]["body"]
     )
     heads = _out(bare, "for-each-ref", "--format=%(refname:short)", "refs/heads").split()
     assert sorted(heads) == sorted(["main", f"aeos/{state.task_id}-v1"])  # main itself untouched

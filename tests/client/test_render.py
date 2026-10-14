@@ -44,7 +44,7 @@ def test_step_view_lists_observations_with_trust_and_tool_calls() -> None:
 def test_verification_shows_gates_issues_and_benchmark() -> None:
     out = text(render.verification_panel(TASK_REPLANNED))
     assert "✗" in out and "✓" in out and "perf_regression" in out and "4.5" in out and "18.0" in out
-    assert "no automated test suite" in text(render.verification_panel(TASK))
+    assert "no repository tests were run" in text(render.verification_panel(TASK))
 
 
 def test_diff_view_colours_added_and_removed_lines() -> None:

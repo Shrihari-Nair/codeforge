@@ -199,8 +199,14 @@ def verification_panel(task: dict[str, Any]) -> RenderableType | None:
     m = v.get("metrics", {})
     if m.get("benchmark"):
         parts.append(_bench(m["benchmark"]))
-    if (m.get("tests") or {}).get("ran") is False:
-        parts.append(safe("no automated test suite was run for this repository", "dim"))
+    tests = m.get("tests") or {}
+    if tests.get("ran"):
+        parts.append(
+            safe(f"tests ({tests.get('runner')}): {tests.get('total')} run, "
+                 f"{tests.get('failed')} failing", "dim")
+        )  # fmt: skip
+    elif tests.get("ran") is False:
+        parts.append(safe(f"no repository tests were run: {tests.get('note', '')}", "dim"))
     parts += [safe(f"{i['type']}: {i['detail']}", "red") for i in v.get("issues", [])]
     parts += [
         safe(f"judge concern: {c}", "yellow")

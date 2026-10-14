@@ -95,3 +95,74 @@ async def test_package_json_change_without_lockfile_fails(mgr, tmp_path) -> None
 async def test_protected_locations_are_rejected(mgr, tmp_path) -> None:  # type: ignore[no-untyped-def]
     r = await _gates(mgr, tmp_path, {".env": "A=1\n"}, _patch(".env", "A=1", "A=2"))
     assert r.gates["paths_allowed"] is False
+
+
+# ---------------------------------------------------------------- the repo's own tests
+NODE_PKG = json.dumps({"name": "x", "scripts": {"test": "node --test"}}) + "\n"
+ADD_OK = "exports.add = (a, b) => a + b;\n"
+ADD_TEST = (
+    "const test = require('node:test');\nconst assert = require('node:assert');\n"
+    "const { add } = require('./add');\ntest('adds', () => { assert.strictEqual(add(1, 2), 3); });\n"
+)
+
+
+async def test_node_suite_passes_and_is_reported(mgr, tmp_path) -> None:  # type: ignore[no-untyped-def]
+    files = {"package.json": NODE_PKG, "add.js": ADD_OK, "add.test.js": ADD_TEST}
+    r = await _gates(
+        mgr, tmp_path, files, _patch("add.js", ADD_OK.strip(), "exports.add = (a, b) => b + a;")
+    )
+    assert r.status == "passed" and r.gates["tests_pass"] is True
+    assert r.metrics["tests"]["ran"] is True and r.metrics["tests"]["runner"] == "node --test"
+    assert r.metrics["tests"]["total"] == 1
+
+
+async def test_a_patch_that_breaks_the_suite_is_caught(mgr, tmp_path) -> None:  # type: ignore[no-untyped-def]
+    files = {"package.json": NODE_PKG, "add.js": ADD_OK, "add.test.js": ADD_TEST}
+    r = await _gates(
+        mgr, tmp_path, files, _patch("add.js", ADD_OK.strip(), "exports.add = (a, b) => a - b;")
+    )
+    assert r.status == "failed" and r.gates["tests_pass"] is False
+    assert r.issues[0].type == "test_regression" and "none before" in r.issues[0].detail
+
+
+async def test_a_suite_that_already_fails_is_not_blamed_on_the_patch(mgr, tmp_path) -> None:  # type: ignore[no-untyped-def]
+    broken = "exports.add = (a, b) => 0;\n"  # the test fails before the change too
+    files = {"package.json": NODE_PKG, "add.js": broken, "add.test.js": ADD_TEST}
+    r = await _gates(
+        mgr, tmp_path, files, _patch("add.js", broken.strip(), "exports.add = (a, b) => 1;")
+    )
+    assert "tests_pass" not in r.gates and r.status == "passed"
+    assert "already fails" in r.metrics["tests"]["note"]
+
+
+async def test_a_suite_that_needs_npm_install_is_reported_as_not_run(mgr, tmp_path) -> None:  # type: ignore[no-untyped-def]
+    pkg = json.dumps({"scripts": {"test": "jest"}, "devDependencies": {"jest": "^29.0.0"}}) + "\n"
+    r = await _gates(
+        mgr,
+        tmp_path,
+        {"package.json": pkg, "a.js": "const a = 1;\n"},
+        _patch("a.js", "const a = 1;", "const a = 2;"),
+    )
+    assert r.metrics["tests"]["ran"] is False and "needs npm install" in r.metrics["tests"]["note"]
+    assert "tests_pass" not in r.gates  # never claims a pass it did not observe
+
+
+def _calc_patch(new_body: str) -> str:
+    return (
+        "diff --git a/calc.py b/calc.py\n--- a/calc.py\n+++ b/calc.py\n@@ -1,2 +1,2 @@\n"
+        f" def add(a, b):\n-    return a + b\n+    {new_body}\n"
+    )
+
+
+async def test_python_repo_runs_pytest(mgr, tmp_path) -> None:  # type: ignore[no-untyped-def]
+    (tmp_path / "ok").mkdir()
+    (tmp_path / "bad").mkdir()
+    files = {
+        "calc.py": "def add(a, b):\n    return a + b\n",
+        "test_calc.py": "from calc import add\n\n\ndef test_add():\n    assert add(1, 2) == 3\n",
+    }
+    ok = await _gates(mgr, tmp_path / "ok", files, _calc_patch("return b + a"))
+    assert ok.metrics["tests"].get("runner") == "pytest", (ok.metrics["tests"], ok.issues)
+    assert ok.gates["tests_pass"] is True
+    bad = await _gates(mgr, tmp_path / "bad", files, _calc_patch("return a - b"))
+    assert bad.status == "failed" and bad.issues[0].type == "test_regression"
