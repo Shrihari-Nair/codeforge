@@ -175,6 +175,22 @@ def release_with_error(task_id: str, worker_id: str, error: str) -> None:
         )
 
 
+def cancel(task_id: str, reason: str) -> TaskRow | None:
+    """Stop a task that has not finished (queued, running or waiting for approval).
+
+    A running worker is fenced out: its next heartbeat sees the row is no longer `running` under
+    its id and it abandons the work. None means the task is unknown or already finished.
+    """
+    with _connect() as conn:
+        row = conn.execute(
+            "UPDATE aeos.tasks SET status = 'cancelled', worker_id = NULL, lease_expires_at = NULL,"
+            " pending_resume = NULL, last_error = %s, updated_at = now()"
+            " WHERE task_id = %s AND status IN ('queued', 'running', 'paused') RETURNING *",
+            (reason, task_id),
+        ).fetchone()
+    return TaskRow(**row) if row else None
+
+
 def active_task_ids() -> set[str]:
     with _connect() as conn:
         rows = conn.execute(

@@ -233,6 +233,23 @@ def decide(
         )
 
 
+def cancel_pending(task_id: str, actor: str) -> list[ApprovalRequest]:
+    """A cancelled task no longer needs its pending approvals: close them (no resume is queued)."""
+    with _connect() as conn:
+        rows = conn.execute(
+            "UPDATE aeos.approvals SET status = 'expired', decided_at = now()"
+            " WHERE task_id = %s AND status = 'pending' RETURNING *",
+            (task_id,),
+        ).fetchall()
+        for r in rows:
+            conn.execute(
+                "INSERT INTO aeos.audit_log (task_id, actor, event, data) VALUES (%s, %s,"
+                " 'approval_cancelled', %s)",
+                (task_id, actor, Jsonb({"approval_id": r["id"]})),
+            )
+    return [ApprovalRequest(**r) for r in rows]
+
+
 def expire_due() -> list[ApprovalRequest]:
     """Mark pending requests past their deadline as expired. Returns the newly expired ones."""
     with _connect() as conn:

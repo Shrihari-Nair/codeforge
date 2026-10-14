@@ -48,7 +48,12 @@ class AeosClient:
         self, base_url: str, *, timeout: float = 15.0, transport: httpx.BaseTransport | None = None
     ) -> None:
         self.base_url = base_url.rstrip("/")
-        self._http = httpx.Client(base_url=self.base_url, timeout=timeout, transport=transport)
+        headers = (
+            {"Authorization": f"Bearer {tok}"} if (tok := os.environ.get("AEOS_API_TOKEN")) else {}
+        )
+        self._http = httpx.Client(
+            base_url=self.base_url, timeout=timeout, transport=transport, headers=headers
+        )
 
     def _request(self, method: str, path: str, **kw: Any) -> Any:
         try:

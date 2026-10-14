@@ -54,6 +54,16 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:3100,http://127.0.0.1:3100"  # dashboard origins
     langfuse_public_url: str = "http://localhost:3000"  # for deep links from the dashboard
     telemetry_enabled: bool = True  # export traces/metrics to the OTLP collector
+    # Optional login (see aeos.api.auth). No users configured = no login, like before.
+    auth_users: str = (
+        ""  # "name:scrypt.salt.hash,name2:..." (make entries with `python -m aeos.api.auth hash`)
+    )
+    auth_secret: SecretStr | None = (
+        None  # signs session cookies; set it so sessions survive restarts
+    )
+    api_token: SecretStr | None = None  # service token for the terminal client and scripts
+    auth_cookie_secure: bool = False  # set true when the dashboard is served over https
+    evals_dir: str = "evals/results"  # eval result files the dashboard can show
     approval_ttl_s: float = 86_400.0  # pending approvals expire after this long
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
 

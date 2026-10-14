@@ -197,7 +197,7 @@ services:
     environment:
       <<: *aeos-env
       # Live Gemini by default (key from .env). For a free scripted demo set in .env:
-      #   AEOS_DASHBOARD_LLM=fake  and  AEOS_DASHBOARD_REPLAY=happy   (or replan / escalate ...)
+      #   AEOS_DASHBOARD_LLM=fake  and  AEOS_DASHBOARD_REPLAY=happy   (or wrong_fix: first fix fails, replans, passes)
       AEOS_LLM_PROVIDER: ${AEOS_DASHBOARD_LLM:-gemini}
       AEOS_REPLAY: ${AEOS_DASHBOARD_REPLAY:-}
       # "Change request" tasks work on the real repo in .env (AEOS_GITHUB_REPO + AEOS_GITHUB_TOKEN):
@@ -207,11 +207,17 @@ services:
       AEOS_GITHUB_PUBLISH: ${AEOS_GITHUB_PUBLISH:-true}
       AEOS_GITHUB_REPO: ${AEOS_GITHUB_REPO:-}
       AEOS_GITHUB_TOKEN: ${AEOS_GITHUB_TOKEN:-}
+      # Optional login. Leave these unset for no login. See "Login" in the README.
+      AEOS_AUTH_USERS: ${AEOS_AUTH_USERS:-}
+      AEOS_AUTH_SECRET: ${AEOS_AUTH_SECRET:-}
+      AEOS_API_TOKEN: ${AEOS_API_TOKEN:-}
+      AEOS_AUTH_COOKIE_SECURE: ${AEOS_AUTH_COOKIE_SECURE:-false}
       AEOS_TARGET_MIRROR_DIR: /app/demo_target/build/target
       AEOS_API_URL: http://localhost:8000   # the terminal client (`aeos chat`) inside this container
     volumes:
       - demo_build:/app/demo_target/build
       - /var/run/docker.sock:/var/run/docker.sock  # creates sandbox containers
+      - ./evals/results:/app/evals/results:ro  # shown on the dashboard's Evals page
     ports: ["8800:8000"]
     depends_on:
       aeos-seed: { condition: service_completed_successfully }

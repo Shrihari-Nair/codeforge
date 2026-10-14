@@ -60,6 +60,18 @@ def list_events(task_id: str, after_id: int = 0, limit: int = 500) -> list[Store
     return [StoredEvent(**r) for r in rows]
 
 
+def record(
+    task_id: str, type_: str, message: str, agent: str = "api", data: dict[str, Any] | None = None
+) -> None:
+    """Write one event straight away (for things the API itself does, like a cancellation)."""
+    with psycopg.connect(get_settings().database_url, autocommit=True) as conn:
+        conn.execute(
+            "INSERT INTO aeos.events (task_id, ts, type, agent, message, data)"
+            " VALUES (%s, now(), %s, %s, %s, %s)",
+            (task_id, type_, agent, message[:2000], Jsonb(data or {})),
+        )
+
+
 class DbSink:
     """Writes events to Postgres from a daemon thread (never blocks the caller)."""
 

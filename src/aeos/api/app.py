@@ -14,6 +14,7 @@ import time
 import uuid
 from collections.abc import AsyncIterator, Callable
 from contextlib import AbstractAsyncContextManager, asynccontextmanager
+from pathlib import Path
 from typing import Any, Literal
 
 from fastapi import FastAPI, Header, HTTPException, Query, Request
@@ -22,6 +23,8 @@ from fastapi.responses import StreamingResponse
 from langgraph.checkpoint.base import BaseCheckpointSaver
 from pydantic import BaseModel, Field
 
+from aeos.api.auth import Auth, AuthGate, actor_for, auth_router
+from aeos.api.evals import evals_router
 from aeos.core.config import Settings, get_settings
 from aeos.core.state import Budget, TaskState
 from aeos.core.stats import task_stats
@@ -136,12 +139,20 @@ def create_app(
                         await ctx.worker_task
 
     app = FastAPI(title="AEOS", version="0.1.0", lifespan=lifespan)
+    auth = Auth(s)
+    app.add_middleware(
+        AuthGate, auth=auth
+    )  # added before CORS so CORS wraps it (401s keep headers)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=[o.strip() for o in s.cors_origins.split(",") if o.strip()],
         allow_methods=["GET", "POST"],
         allow_headers=["*"],
+        allow_credentials=True,  # the session cookie; origins are an explicit list, never "*"
     )
+    app.include_router(auth_router(auth))
+
+    app.include_router(evals_router(Path(s.evals_dir)))
 
     def ctx() -> AppContext:
         c: AppContext = app.state.ctx
@@ -159,7 +170,11 @@ def create_app(
                     "queue_status": row.status, "attempts": row.attempts, "status_line":
                     f"Task {task_id} [{row.status}]"}  # fmt: skip
         state, _ = await _snapshot(graph, task_id)
-        return task_view(state, row)
+        out = task_view(state, row)
+        if row.status == "cancelled":  # the checkpoint still says "running"
+            out["status"] = "cancelled"
+            out["error"] = row.last_error
+        return out
 
     async def wait_idle(task_id: str, limit_s: float = 600.0) -> None:
         """Wait until the task is paused or finished (not queued/running)."""
@@ -190,6 +205,39 @@ def create_app(
     @app.get("/tasks/{task_id}")
     async def get_task(task_id: str) -> dict[str, Any]:
         return await view(task_id)
+
+    @app.post("/tasks/{task_id}/cancel")
+    async def cancel_task(
+        task_id: str, request: Request, x_actor: str | None = Header(default=None)
+    ) -> dict[str, Any]:
+        """Stop an unfinished task: close its pending approvals and reap its sandbox."""
+        claimed = actor_for(request, x_actor)
+        if not claimed or not claimed.strip():
+            raise HTTPException(400, "X-Actor header is required to record who cancelled")
+        actor = claimed.strip()
+        if await asyncio.to_thread(tasks.get, task_id) is None:
+            raise HTTPException(404, f"no task {task_id}")
+        row = await asyncio.to_thread(tasks.cancel, task_id, f"cancelled by {actor}")
+        if row is None:
+            raise HTTPException(409, "task already finished")
+        await asyncio.to_thread(approvals.cancel_pending, task_id, actor)
+        await asyncio.to_thread(approvals.audit, task_id, actor, "task_cancelled")
+        await asyncio.to_thread(events.record, task_id, "task_cancelled", f"cancelled by {actor}")
+        with contextlib.suppress(Exception):  # a missing sandbox must not fail the cancel
+            await asyncio.to_thread(ctx().rt.sandbox.reap_task, task_id)
+        return {"task_id": task_id, "status": "cancelled"}
+
+    @app.post("/tasks/{task_id}/retry", status_code=202)
+    async def retry_task(task_id: str) -> dict[str, str]:
+        """Run the same request again as a new task (the original stays as it was)."""
+        row = await asyncio.to_thread(tasks.get, task_id)
+        if row is None:
+            raise HTTPException(404, f"no task {task_id}")
+        if row.status not in tasks.TERMINAL:
+            raise HTTPException(409, "task is still active")
+        new_id = f"t-{uuid.uuid4().hex[:8]}"
+        await asyncio.to_thread(tasks.enqueue, new_id, row.goal, row.budget, row.kind)
+        return {"task_id": new_id, "retry_of": task_id}
 
     @app.get("/tasks/{task_id}/stats")
     async def get_stats(task_id: str) -> dict[str, Any]:
@@ -253,20 +301,24 @@ def create_app(
     @app.post("/approvals/{approval_id}/approve")
     async def approve(
         approval_id: str,
+        request: Request,
         body: DecisionRequest | None = None,
         x_actor: str | None = Header(default=None),
         wait: bool = False,
     ) -> dict[str, Any]:
-        return await decide(approval_id, "approved", x_actor, body or DecisionRequest(), wait)
+        actor = actor_for(request, x_actor)
+        return await decide(approval_id, "approved", actor, body or DecisionRequest(), wait)
 
     @app.post("/approvals/{approval_id}/reject")
     async def reject(
         approval_id: str,
+        request: Request,
         body: DecisionRequest | None = None,
         x_actor: str | None = Header(default=None),
         wait: bool = False,
     ) -> dict[str, Any]:
-        return await decide(approval_id, "rejected", x_actor, body or DecisionRequest(), wait)
+        actor = actor_for(request, x_actor)
+        return await decide(approval_id, "rejected", actor, body or DecisionRequest(), wait)
 
     @app.post("/approvals/expire")
     async def expire_overdue() -> dict[str, Any]:
