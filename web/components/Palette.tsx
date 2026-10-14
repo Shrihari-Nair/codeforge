@@ -48,6 +48,7 @@ export default function Palette() {
       { id: "new", label: "New task", hint: "action", go: () => { router.push("/"); setTimeout(() => document.getElementById("composer-goal")?.focus(), 150); } },
       { id: "tasks", label: "Go to tasks", hint: "page", go: () => router.push("/") },
       { id: "approvals", label: "Go to approvals", hint: "page", go: () => router.push("/approvals") },
+      { id: "evals", label: "Go to evals", hint: "page", go: () => router.push("/evals") },
     ];
     const all = [...base, ...dyn];
     const s = q.trim().toLowerCase();

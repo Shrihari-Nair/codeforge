@@ -2,18 +2,23 @@
 import { useState } from "react";
 import { Approval, api } from "@/lib/api";
 import { useActor } from "@/lib/hooks";
-import { Badge, Bench, DiffView, Gates } from "./ui";
+import { useMe } from "@/lib/auth";
+import { Badge, Bench, DiffView, Gates, type LineComment } from "./ui";
 
 export default function ApprovalCard({ a, onDone }: { a: Approval; onDone: () => void }) {
   const [actor, setActor] = useActor();
+  const authed = useMe().authRequired;
   const [feedback, setFeedback] = useState("");
+  const [lines, setLines] = useState<LineComment[]>([]);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const decide = async (d: "approve" | "reject") => {
     setBusy(true);
     setErr(null);
     try {
-      await api.decide(a.id, d, actor || "anonymous", feedback);
+      // Free text plus any per-line comments, quoted so the planner sees what each one refers to.
+      const notes = lines.map((c) => `On \`${c.line.replace(/^[-+ ]/, "").trim().slice(0, 80)}\`: ${c.text}`);
+      await api.decide(a.id, d, actor || "anonymous", [feedback.trim(), ...notes].filter(Boolean).join("\n").slice(0, 2000));
       onDone();
     } catch (e) {
       setErr(e instanceof Error ? e.message : String(e));
@@ -50,14 +55,14 @@ export default function ApprovalCard({ a, onDone }: { a: Approval; onDone: () =>
       {ev.patch && (
         <>
           <h2 style={{ marginTop: 10 }}>Diff</h2>
-          <DiffView patch={ev.patch} />
+          <DiffView patch={ev.patch} onComments={pending ? setLines : undefined} />
         </>
       )}
       {pending ? (
         <div style={{ marginTop: 12 }}>
           <div className="row" style={{ marginBottom: 8 }}>
             <span className="dim">Acting as</span>
-            <input value={actor} onChange={(e) => setActor(e.target.value)} size={14} />
+            <input value={actor} onChange={(e) => setActor(e.target.value)} size={14} readOnly={authed} title={authed ? "You are signed in; this name is recorded" : undefined} />
           </div>
           <textarea rows={2} placeholder="Feedback (optional)" value={feedback} onChange={(e) => setFeedback(e.target.value)} />
           <div className="row" style={{ marginTop: 8 }}>

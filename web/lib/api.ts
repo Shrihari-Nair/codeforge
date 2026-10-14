@@ -76,7 +76,19 @@ export interface TaskDetail {
   pull_request?: { number: number; url: string; title: string } | null;
   verifications?: Verification[];
   risk_decisions?: RiskDecision[];
-  budget?: { llm_calls: number; tool_calls: number; tokens_used: number; cost_usd: number };
+  budget?: {
+    llm_calls: number;
+    tool_calls: number;
+    tokens_used: number;
+    cost_usd: number;
+    steps_used: number;
+    max_steps: number;
+    max_tokens: number;
+    max_cost_usd: number;
+    max_wall_seconds: number;
+    started_at: number | null;
+    finished_at: number | null;
+  };
   tool_calls?: ToolCall[];
   observations?: Observation[];
   human_feedback?: { actor: string; feedback: string }[];
@@ -152,6 +164,56 @@ export interface Meta {
   github_publish: boolean;
 }
 
+export interface Stat {
+  mean: number;
+  stderr: number;
+  n: number;
+}
+export type EvalMetricKey =
+  | "success_rate" | "root_cause_accuracy" | "tool_selection" | "planning_accuracy" | "recovery_rate"
+  | "human_intervention_rate" | "rubric_score" | "avg_agent_steps" | "avg_llm_calls" | "avg_cost_usd"
+  | "avg_latency_s";
+export type EvalAggregate = { tasks: number } & Record<EvalMetricKey, Stat>;
+export interface EvalMeta {
+  run_id: string;
+  label: string;
+  llm: string;
+  scenario: string;
+  break: string;
+  memory: string;
+  trials: number;
+  model?: string;
+}
+export interface EvalSummary {
+  id: string;
+  meta: EvalMeta;
+  overall: EvalAggregate | null;
+  compared_to_baseline: boolean;
+}
+export interface EvalDelta {
+  metric: string;
+  label: string;
+  previous: number;
+  current: number;
+  delta: number;
+  regressed: boolean;
+}
+export interface EvalRow {
+  task_id: string;
+  template: string;
+  status: string | null;
+  success: boolean | null;
+  latency_s: number | null;
+  cost_usd: number | null;
+}
+export interface EvalRun {
+  id: string;
+  meta: EvalMeta;
+  aggregate: { overall: EvalAggregate; by_template: Record<string, EvalAggregate> };
+  vs_baseline: { file: string; deltas: EvalDelta[] } | null;
+  runs: EvalRow[];
+}
+
 export class ApiError extends Error {
   constructor(public status: number, message: string) {
     super(message);
@@ -159,7 +221,10 @@ export class ApiError extends Error {
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${API}${path}`, { cache: "no-store", ...init });
+  const res = await fetch(`${API}${path}`, { cache: "no-store", credentials: "include", ...init });
+  if (res.status === 401 && path !== "/auth/login" && !path.startsWith("/auth/me") && typeof window !== "undefined") {
+    if (window.location.pathname !== "/login") window.location.assign("/login"); // session expired
+  }
   if (!res.ok) {
     let detail = res.statusText;
     try {
@@ -172,18 +237,31 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const api = {
   meta: () => request<Meta>("/meta"),
+  me: () => request<{ auth_required: boolean; user: string | null }>("/auth/me"),
+  login: (username: string, password: string) =>
+    request<{ user: string }>("/auth/login", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    }),
+  logout: () => request<{ status: string }>("/auth/logout", { method: "POST" }),
+  evals: () => request<EvalSummary[]>("/evals"),
+  evalRun: (id: string) => request<EvalRun>(`/evals/${id}`),
   tasks: () => request<TaskRow[]>("/tasks"),
   task: (id: string) => request<TaskDetail>(`/tasks/${id}`),
   stats: (id: string) => request<Stats>(`/tasks/${id}/stats`),
   events: (id: string, after = 0) => request<AeosEvent[]>(`/tasks/${id}/events?after=${after}`),
   approvals: (status = "pending") => request<Approval[]>(`/approvals?status=${status}`),
   approvalsFor: (taskId: string) => request<Approval[]>(`/approvals?status=&task_id=${taskId}`),
-  createTask: (goal: string, kind?: "regression" | "change") =>
+  createTask: (goal: string, kind?: "regression" | "change", maxCostUsd?: number) =>
     request<{ task_id: string }>("/tasks", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ goal, kind }),
+      body: JSON.stringify({ goal, kind, max_cost_usd: maxCostUsd }),
     }),
+  cancel: (id: string, actor: string) =>
+    request<{ status: string }>(`/tasks/${id}/cancel`, { method: "POST", headers: { "X-Actor": actor } }),
+  retry: (id: string) => request<{ task_id: string }>(`/tasks/${id}/retry`, { method: "POST" }),
   decide: (id: string, decision: "approve" | "reject", actor: string, feedback: string) =>
     request<unknown>(`/approvals/${id}/${decision}`, {
       method: "POST",

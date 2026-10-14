@@ -1,13 +1,16 @@
 "use client";
 import { use, useState } from "react";
+import { useRouter } from "next/navigation";
 import { api, ToolCall } from "@/lib/api";
-import { TERMINAL, useEvents, usePoll } from "@/lib/hooks";
+import { TERMINAL, useActor, useEvents, usePoll } from "@/lib/hooks";
 import ApprovalCard from "@/components/ApprovalCard";
 import Pipeline from "@/components/Pipeline";
 import PlanGraph from "@/components/PlanGraph";
 import StatsPanel from "@/components/StatsPanel";
 import StepDrilldown from "@/components/StepDrilldown";
 import Timeline from "@/components/Timeline";
+import TraceWaterfall from "@/components/TraceWaterfall";
+import BudgetMeters from "@/components/BudgetMeters";
 import { Badge, Bench, Card, DiffView, ErrorNote, Gates } from "@/components/ui";
 
 export default function TaskPage({ params }: { params: Promise<{ id: string }> }) {
@@ -19,13 +22,26 @@ export default function TaskPage({ params }: { params: Promise<{ id: string }> }
   const { events, live } = useEvents(id);
   const [ver, setVer] = useState<number | null>(null);
   const [sel, setSel] = useState<string | null>(null);
+  const router = useRouter();
+  const [actor] = useActor();
+  const [confirming, setConfirming] = useState(false);
+  const [ctlErr, setCtlErr] = useState<string | null>(null);
+  const control = async (fn: () => Promise<unknown>) => {
+    setCtlErr(null);
+    try {
+      await fn();
+      setConfirming(false);
+      refresh();
+    } catch (e) {
+      setCtlErr(e instanceof Error ? e.message : String(e));
+    }
+  };
 
   if (!t) return <><ErrorNote e={error} /><div className="skel" style={{ width: "40%", height: 28 }} /></>;
   const plans = t.plans ?? [];
   const plan = plans.find((p) => p.version === (ver ?? t.plan_version)) ?? plans[plans.length - 1];
   const mine = (approvals ?? []).filter((a) => a.task_id === id);
   const pending = mine.filter((a) => a.status === "pending");
-  const lastV = t.verifications?.[t.verifications.length - 1];
   const langfuse = meta && t.trace_id ? `${meta.langfuse_url.replace(/\/$/, "")}/traces/${t.trace_id}` : null;
   const calls: ToolCall[] = t.tool_calls ?? [];
   const done = plan?.steps.filter((s) => s.status === "done").length ?? 0;
@@ -38,7 +54,22 @@ export default function TaskPage({ params }: { params: Promise<{ id: string }> }
         <Badge s={t.status} />
         <span className="badge">{t.kind === "change" ? "change request" : "regression"}</span>
         {langfuse && <a href={langfuse} target="_blank" rel="noreferrer">Open trace in Langfuse ↗</a>}
+        <span className="sp" />
+        {!TERMINAL.includes(t.status) &&
+          (confirming ? (
+            <span className="row">
+              <span className="dim">Stop this task?</span>
+              <button className="no" onClick={() => control(() => api.cancel(id, actor || "anonymous"))}>Yes, cancel</button>
+              <button onClick={() => setConfirming(false)}>Keep running</button>
+            </span>
+          ) : (
+            <button onClick={() => setConfirming(true)}>Cancel task</button>
+          ))}
+        {TERMINAL.includes(t.status) && t.status !== "completed" && (
+          <button className="primary" onClick={() => control(async () => router.push(`/tasks/${(await api.retry(id)).task_id}`))}>Run again</button>
+        )}
       </div>
+      {ctlErr && <p className="err">{ctlErr}</p>}
       <p style={{ fontSize: 18, maxWidth: "70ch" }}>{t.goal}</p>
       <p className="dim">{t.status_line}</p>
       <div className={`progress ${TERMINAL.includes(t.status) ? "" : "live"}`} role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Plan progress">
@@ -66,6 +97,7 @@ export default function TaskPage({ params }: { params: Promise<{ id: string }> }
             {plan?.reason_for_change && <p className="dim">Replanned because: {plan.reason_for_change}</p>}
             {plan ? <PlanGraph plan={plan} selected={sel} onSelect={setSel} /> : <p className="dim">Planning…</p>}
           </Card>
+          <Card title="Trace"><TraceWaterfall events={events} calls={calls} /></Card>
           {sel && (
             <Card>
               <StepDrilldown stepId={sel} calls={calls} obs={t.observations ?? []} />
@@ -90,14 +122,14 @@ export default function TaskPage({ params }: { params: Promise<{ id: string }> }
               ))}
             </Card>
           )}
-          {lastV && (
-            <Card title={`Verification (attempt ${lastV.attempt})`}>
-              <Badge s={lastV.status} />
-              <Gates gates={lastV.gates} />
-              <Bench b={lastV.metrics.benchmark} />
-              {lastV.issues.map((i, k) => <p key={k} className="err">{i.type}: {i.detail}</p>)}
+          {(t.verifications ?? []).map((v) => (
+            <Card key={v.attempt} title={`Verification (attempt ${v.attempt})`}>
+              <Badge s={v.status} />
+              <Gates gates={v.gates} />
+              <Bench b={v.metrics.benchmark} />
+              {v.issues.map((i, k) => <p key={k} className="err">{i.type}: {i.detail}</p>)}
             </Card>
-          )}
+          ))}
           {t.artifacts?.patch && (
             <Card title="Patch">
               <DiffView patch={t.artifacts.patch} />
@@ -123,7 +155,7 @@ export default function TaskPage({ params }: { params: Promise<{ id: string }> }
           ))}
         </div>
         <div>
-          <Card title="Stats"><StatsPanel s={stats} /></Card>
+          <Card title="Stats"><StatsPanel s={stats} /><BudgetMeters b={t.budget} /></Card>
           <Card><Timeline events={events} live={live} /></Card>
           {(t.human_feedback?.length ?? 0) > 0 && (
             <Card title="Human feedback">

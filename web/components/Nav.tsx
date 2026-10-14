@@ -1,11 +1,14 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 import { usePoll } from "@/lib/hooks";
+import { useMe } from "@/lib/auth";
 
 export default function Nav() {
   const path = usePathname();
+  const router = useRouter();
+  const me = useMe();
   const { data: meta, error } = usePoll(() => api.meta(), 15000);
   const { data: pending } = usePoll(() => api.approvals("pending"), 5000);
   const n = pending?.length ?? 0;
@@ -23,12 +26,19 @@ export default function Nav() {
       <nav className="navlinks" aria-label="Main">
         {link("/", "Tasks", path === "/" || path.startsWith("/tasks"))}
         {link("/approvals", "Approvals", path.startsWith("/approvals"))}
+        {link("/evals", "Evals", path.startsWith("/evals"))}
       </nav>
       <span className="sp" />
       <button className="kbtn" onClick={() => window.dispatchEvent(new Event("aeos:palette"))} aria-label="Open command palette">
         Search <kbd>Ctrl K</kbd>
       </button>
       {meta && <span className="pill hide mono">{meta.llm_provider}</span>}
+      {me.authRequired && me.user && (
+        <span className="pill">
+          {me.user}
+          <button className="linkbtn" onClick={async () => { await api.logout(); await me.refresh(); router.replace("/login"); }}>Sign out</button>
+        </span>
+      )}
       <span className={`pill ${error ? "warn" : meta ? "live" : ""}`}>
         <i />
         {error ? "API offline" : meta ? "API live" : "Connecting"}

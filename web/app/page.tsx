@@ -31,6 +31,7 @@ export default function Home() {
   const [filter, setFilter] = useState<Filter>("all");
   const effKind = kind ?? (meta?.target_repo ? "change" : "regression");
   const effGoal = goal ?? (effKind === "change" ? CHANGE_GOAL : DEMO_GOAL);
+  const [cap, setCap] = useState("");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const { data: rows, error } = usePoll(() => api.tasks(), 3000);
@@ -38,7 +39,8 @@ export default function Home() {
     setBusy(true);
     setErr(null);
     try {
-      const { task_id } = await api.createTask(effGoal, effKind);
+      const cost = parseFloat(cap);
+      const { task_id } = await api.createTask(effGoal, effKind, cost > 0 ? cost : undefined);
       router.push(`/tasks/${task_id}`);
     } catch (e) {
       setErr(e instanceof Error ? e.message : String(e));
@@ -87,6 +89,10 @@ export default function Home() {
                 <option value="regression">Latency regression (demo repo)</option>
               </select>
               <span className="row">
+                <label className="cap">
+                  <span>Cost cap</span>
+                  <input type="number" min="0.01" max="50" step="0.01" inputMode="decimal" placeholder="5.00" value={cap} onChange={(e) => setCap(e.target.value)} aria-label="Cost cap in US dollars" />
+                </label>
                 <kbd>Ctrl Enter</kbd>
                 <button className="primary" disabled={busy || !effGoal.trim()} onClick={submit}>
                   {busy ? "Starting" : "Run task"}

@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AeosEvent, api, eventStreamUrl } from "./api";
+import { useMe } from "./auth";
 
 /** Poll `fn` every `ms`; `stop(data)` ends polling (e.g. task finished). State lives in the backend. */
 export function usePoll<T>(fn: () => Promise<T>, ms: number, deps: unknown[] = [], stop?: (d: T) => boolean) {
@@ -49,7 +50,7 @@ export function useEvents(taskId: string) {
         add(await api.events(taskId, 0));
       } catch {}
       if (cancelled) return;
-      es = new EventSource(eventStreamUrl(taskId, last));
+      es = new EventSource(eventStreamUrl(taskId, last), { withCredentials: true });
       es.onopen = () => setLive(true);
       es.onerror = () => setLive(false); // the browser reconnects and re-sends Last-Event-ID
       es.addEventListener("aeos", (m) => add([JSON.parse((m as MessageEvent).data)]));
@@ -63,6 +64,7 @@ export function useEvents(taskId: string) {
 }
 
 export function useActor(): [string, (v: string) => void] {
+  const me = useMe();
   const [actor, setActor] = useState("");
   useEffect(() => {
     const v = localStorage.getItem("aeos.actor");
@@ -72,7 +74,8 @@ export function useActor(): [string, (v: string) => void] {
     setActor(v);
     localStorage.setItem("aeos.actor", v);
   };
-  return [actor, set];
+  // Signed in: the server records the login name no matter what is sent, so show that name.
+  return me.authRequired && me.user ? [me.user, () => {}] : [actor, set];
 }
 
 export const TERMINAL = ["completed", "failed", "escalated", "cancelled"];
