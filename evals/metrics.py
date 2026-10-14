@@ -91,6 +91,8 @@ def compare(
                      "recovery_rate", "rubric_score"}  # fmt: skip
     rows = []
     for key, label in METRICS:
+        if key not in previous["overall"] or key not in current["overall"]:
+            continue  # a newer metric than the older results file: nothing to compare against
         cur, prev = current["overall"][key]["mean"], previous["overall"][key]["mean"]
         delta = cur - prev
         if key in higher_better:

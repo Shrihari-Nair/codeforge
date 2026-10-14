@@ -247,3 +247,12 @@ def test_compare_flags_quality_drops_and_cost_growth_but_not_improvements() -> N
     assert not any(r["regressed"] for r in same.values())
     better = {r["metric"]: r for r in compare(prev, worse)}
     assert not better["success_rate"]["regressed"]
+
+
+def test_compare_with_an_older_results_file_skips_metrics_it_lacks() -> None:
+    """A live run crashed here once: the October file predates the `fix_rate` metric."""
+    cur = aggregate([run("a", "t", True), run("b", "t", True)])
+    old = aggregate([run("a", "t", True), run("b", "t", True)])
+    del old["overall"]["fix_rate"]
+    rows = {r["metric"]: r for r in compare(cur, old)}
+    assert "fix_rate" not in rows and "success_rate" in rows

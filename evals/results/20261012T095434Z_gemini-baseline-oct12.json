@@ -1,0 +1,3465 @@
+{
+  "meta": {
+    "run_id": "20261012T095434Z",
+    "label": "gemini-baseline-oct12",
+    "llm": "gemini",
+    "scenario": "happy",
+    "break": "none",
+    "memory": "off",
+    "trials": 1,
+    "version": {
+      "code": "02fe54dfda03",
+      "prompts": "e8919857ce1f",
+      "policy": "7dbaaea94b09",
+      "dataset": "778a64b55f2c",
+      "graders": "44f262cacf55"
+    },
+    "model": "gemini-2.5-flash"
+  },
+  "aggregate": {
+    "overall": {
+      "tasks": 30,
+      "success_rate": {
+        "mean": 0.8667,
+        "stderr": 0.0621,
+        "n": 30
+      },
+      "fix_rate": {
+        "mean": 0.9667,
+        "stderr": 0.0328,
+        "n": 30
+      },
+      "root_cause_accuracy": {
+        "mean": 0.8833,
+        "stderr": 0.0562,
+        "n": 30
+      },
+      "tool_selection": {
+        "mean": 0.8867,
+        "stderr": 0.0252,
+        "n": 30
+      },
+      "planning_accuracy": {
+        "mean": 0.9667,
+        "stderr": 0.0228,
+        "n": 30
+      },
+      "recovery_rate": {
+        "mean": 0.5,
+        "stderr": 0.3536,
+        "n": 2
+      },
+      "human_intervention_rate": {
+        "mean": 0.0333,
+        "stderr": 0.0328,
+        "n": 30
+      },
+      "rubric_score": {
+        "mean": 0.9627,
+        "stderr": 0.0202,
+        "n": 30
+      },
+      "avg_agent_steps": {
+        "mean": 22.3667,
+        "stderr": 1.7748,
+        "n": 30
+      },
+      "avg_llm_calls": {
+        "mean": 25.6,
+        "stderr": 1.9006,
+        "n": 30
+      },
+      "avg_cost_usd": {
+        "mean": 0.0653,
+        "stderr": 0.0064,
+        "n": 30
+      },
+      "avg_latency_s": {
+        "mean": 115.7787,
+        "stderr": 8.7833,
+        "n": 30
+      }
+    },
+    "by_template": {
+      "audit_every_request": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "fix_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 0.75,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 0
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 17.6,
+          "stderr": 0.9633,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 20.6,
+          "stderr": 0.9633,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.0487,
+          "stderr": 0.0042,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 92.918,
+          "stderr": 5.9002,
+          "n": 5
+        }
+      },
+      "cache_disabled": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 0.8,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "fix_rate": {
+          "mean": 0.8,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 0.8,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 0.8,
+          "stderr": 0.0447,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 0.9,
+          "stderr": 0.0894,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "human_intervention_rate": {
+          "mean": 0.2,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 0.904,
+          "stderr": 0.0859,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 22.0,
+          "stderr": 6.2801,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 25.8,
+          "stderr": 6.9937,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.061,
+          "stderr": 0.0206,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 112.956,
+          "stderr": 28.2092,
+          "n": 5
+        }
+      },
+      "missing_index": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 0.6,
+          "stderr": 0.2191,
+          "n": 5
+        },
+        "fix_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 0.7,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 0.92,
+          "stderr": 0.0438,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 0
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 19.4,
+          "stderr": 1.3145,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 22.4,
+          "stderr": 1.3145,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.0517,
+          "stderr": 0.0026,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 95.538,
+          "stderr": 3.053,
+          "n": 5
+        }
+      },
+      "n_plus_one": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 0.8,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "fix_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 0.8,
+          "stderr": 0.1789,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 0
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 0.92,
+          "stderr": 0.0716,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 20.2,
+          "stderr": 2.4232,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 23.2,
+          "stderr": 2.4232,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.0573,
+          "stderr": 0.0064,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 103.746,
+          "stderr": 9.906,
+          "n": 5
+        }
+      },
+      "pricing_per_item_query": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "fix_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 0.9,
+          "stderr": 0.0894,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 0.9,
+          "stderr": 0.0894,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 1
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 0.984,
+          "stderr": 0.0143,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 28.6,
+          "stderr": 5.8145,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 32.2,
+          "stderr": 6.2827,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.0886,
+          "stderr": 0.0224,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 151.776,
+          "stderr": 32.5076,
+          "n": 5
+        }
+      },
+      "serialization_quadratic": {
+        "tasks": 5,
+        "success_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "fix_rate": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "root_cause_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "tool_selection": {
+          "mean": 0.95,
+          "stderr": 0.0447,
+          "n": 5
+        },
+        "planning_accuracy": {
+          "mean": 1.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "recovery_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 0
+        },
+        "human_intervention_rate": {
+          "mean": 0.0,
+          "stderr": 0.0,
+          "n": 5
+        },
+        "rubric_score": {
+          "mean": 0.968,
+          "stderr": 0.0175,
+          "n": 5
+        },
+        "avg_agent_steps": {
+          "mean": 26.4,
+          "stderr": 3.6508,
+          "n": 5
+        },
+        "avg_llm_calls": {
+          "mean": 29.4,
+          "stderr": 3.6508,
+          "n": 5
+        },
+        "avg_cost_usd": {
+          "mean": 0.0842,
+          "stderr": 0.0133,
+          "n": 5
+        },
+        "avg_latency_s": {
+          "mean": 137.738,
+          "stderr": 14.4876,
+          "n": 5
+        }
+      }
+    },
+    "trials": 30
+  },
+  "runs": [
+    {
+      "task_id": "latency-audit_every_request-01",
+      "template": "audit_every_request",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 109.79,
+      "had_failure": false,
+      "agent_steps": 21,
+      "llm_calls": 24,
+      "tool_calls": 21,
+      "cost_usd": 0.06157,
+      "tokens": 105273,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_blame",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code"
+      ],
+      "root_cause": {
+        "commit_sha": "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+        "file": "checkout/audit.py",
+        "summary": "The `AUDIT_EVERY` constant in `checkout/audit.py` was changed from `25` to `1` in commit `c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392`. This caused the periodic inventory audit, which is a slow full scan, to execute on every checkout request instead of every 25th, leading to a significant increase in database queries and checkout latency.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: avg_db_queries_per_request increased from 2.03 to 4.0 (1.97x ratio) after deployment v1.2.0.",
+          "Analytics: Log message 'slow query inventory_audit' increased from 60/hour to 1440/hour.",
+          "Research: Commit `c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392` changed `AUDIT_EVERY` in `checkout/audit.py` from `25` to `1`.",
+          "Research: Commit message for `c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392` is 'fix(audit): audit every checkout so stock counts never drift'."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit c4d6cb4a0d"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-audit_every_request-02",
+      "template": "audit_every_request",
+      "seed": 2,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 79.06,
+      "had_failure": false,
+      "agent_steps": 16,
+      "llm_calls": 19,
+      "tool_calls": 16,
+      "cost_usd": 0.03881,
+      "tokens": 65871,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_blame",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+        "file": "checkout/audit.py",
+        "summary": "The commit 'fix(audit): audit every checkout so stock counts never drift' changed the AUDIT_EVERY constant in checkout/audit.py from 25 to 1. This caused the 'inventory_audit' database query to be executed on every checkout instead of every 25, leading to a significant increase in its execution frequency and overall checkout latency. This is evidenced by a ~4x increase in p50/p95 latency, a ~2x increase in average database queries per request, and a 24x increase in 'slow query inventory_audit' log messages.",
+        "confidence": 0.95,
+        "evidence": [
+          "p50_ms increased by 4.463x",
+          "p95_ms increased by 3.923x",
+          "avg_db_queries_per_request increased by 1.981x (from ~2.02 to 4.0)",
+          "Rate of 'slow query inventory_audit' log messages increased by 24x (from 60/hour to 1440/hour)",
+          "Trace analysis shows 'inventory_audit' query taking ~350ms within a ~500ms checkout request",
+          "Commit c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392 changed AUDIT_EVERY from 25 to 1 in checkout/audit.py"
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit c4d6cb4a0d"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-audit_every_request-03",
+      "template": "audit_every_request",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 95.86,
+      "had_failure": false,
+      "agent_steps": 17,
+      "llm_calls": 20,
+      "tool_calls": 17,
+      "cost_usd": 0.04967,
+      "tokens": 81071,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_blame",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code"
+      ],
+      "root_cause": {
+        "commit_sha": "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+        "file": "checkout/audit.py",
+        "summary": "The change to AUDIT_EVERY in checkout/audit.py from 25 to 1 caused the expensive inventory audit to run on every checkout, significantly increasing database queries and latency.",
+        "confidence": 0.9,
+        "evidence": [
+          "p50 latency increased by 345%",
+          "Average database queries per request increased by 95.4%",
+          "Log message 'slow query inventory_audit' increased by 1380 per hour",
+          "The `get_blame` output for `checkout/audit.py` shows line 5, 'AUDIT_EVERY = 1', was introduced by commit `c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392`.",
+          "The `get_file` output for `checkout/audit.py` at commit `cfd3a572cd61d507c40f00e7c6b7cd2b94c9d070` (an ancestor of the suspected commit) shows `AUDIT_EVERY = 25`."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit c4d6cb4a0d"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-audit_every_request-04",
+      "template": "audit_every_request",
+      "seed": 4,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 76.39,
+      "had_failure": false,
+      "agent_steps": 15,
+      "llm_calls": 18,
+      "tool_calls": 15,
+      "cost_usd": 0.03746,
+      "tokens": 66434,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+        "file": "checkout/audit.py",
+        "summary": "The latency regression was caused by a change in 'checkout/audit.py' (commit c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392) that modified the 'AUDIT_EVERY' constant from 25 to 1. This change increased the frequency of the slow 'inventory_audit' database query by 25 times, leading to a 3.9x increase in p95 latency and a doubling of average database queries per request.",
+        "confidence": 1.0,
+        "evidence": [
+          "The p95 latency for checkout-service jumped by 3.9x after deployment of v1.2.0.",
+          "Average DB queries per request doubled from 2.03 to 4.0 after deployment.",
+          "Rate of 'slow query inventory_audit' logs increased from 60/hour to 1440/hour.",
+          "Trace analysis shows a 350ms db.query to inventory_audit within a slow checkout request.",
+          "The diff for commit c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392 shows the change in checkout/audit.py: -AUDIT_EVERY = 25 +AUDIT_EVERY = 1"
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit c4d6cb4a0d"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-audit_every_request-05",
+      "template": "audit_every_request",
+      "seed": 5,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 103.49,
+      "had_failure": false,
+      "agent_steps": 19,
+      "llm_calls": 22,
+      "tool_calls": 17,
+      "cost_usd": 0.05617,
+      "tokens": 106079,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392",
+        "file": "checkout/audit.py",
+        "summary": "The latency regression was caused by changing the inventory audit frequency from every 25 checkouts to every checkout. This significantly increased the overhead per checkout operation.",
+        "confidence": 0.9,
+        "evidence": [
+          "Research findings indicate commit c4d6cb4a0d45e385c9d0ebf94eb5a92e7b253392 changed AUDIT_EVERY from 25 to 1 in checkout/audit.py.",
+          "Analytics findings identify 'inventory_audit' as a slow query (350ms) contributing to high latency, which would be exacerbated by increased frequency."
+        ],
+        "ruled_out": [
+          "Analytics finding that 'slow query inventory_audit' appears at a constant rate before and after the deployment is inconsistent with the observed latency regression and the code change."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit c4d6cb4a0d"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-cache_disabled-01",
+      "template": "cache_disabled",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 83.09,
+      "had_failure": false,
+      "agent_steps": 17,
+      "llm_calls": 20,
+      "tool_calls": 17,
+      "cost_usd": 0.04189,
+      "tokens": 72377,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "6841990e3f76b7e0632a2652f8a670e0e753e92c",
+        "file": "checkout/cache.py",
+        "summary": "The root cause is a change in checkout/cache.py (commit 6841990e3f76b7e0632a2652f8a670e0e753e92c) that set the default cache capacity (max_entries) to 0. Due to existing eviction logic, this effectively disabled the product details cache, leading to all product details being fetched directly from the database instead of the cache, causing increased latency.",
+        "confidence": 0.9,
+        "evidence": [
+          "The diff shows `max_entries: int = 1024` changed to `max_entries: int = 0` in `checkout/cache.py`.",
+          "The `set` method in `checkout/cache.py` contains the eviction logic `while len(self._store) > self._max_entries:`, which, with `_max_entries = 0`, causes immediate eviction.",
+          "avg_cache_hits_per_request dropped from 7.3 to 0.0 after deployment.",
+          "avg_db_queries_per_request increased from 2.03 to 3.03 after deployment.",
+          "Trace c8e41f36176650f0120eb1783175e431 shows 'cache: miss' for product details query."
+        ],
+        "ruled_out": [
+          "'slow query inventory_audit' log message (rate did not change)",
+          "Error rate decreased (not related to latency increase)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 6841990e3f"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-cache_disabled-02",
+      "template": "cache_disabled",
+      "seed": 2,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 80.0,
+      "had_failure": false,
+      "agent_steps": 14,
+      "llm_calls": 17,
+      "tool_calls": 14,
+      "cost_usd": 0.03891,
+      "tokens": 60624,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests"
+      ],
+      "root_cause": {
+        "commit_sha": "6841990e3f76b7e0632a2652f8a670e0e753e92c",
+        "file": "checkout/cache.py",
+        "summary": "The latency regression was caused by commit 6841990e3f76b7e0632a2652f8a670e0e753e92c, which changed the default capacity of the cache to be unbounded (max_entries=0). This effectively disabled the cache's ability to retain useful entries, leading to a complete loss of cache hits, a 51% increase in database queries per request, and a 23.4% increase in p50 latency.",
+        "confidence": 1.0,
+        "evidence": [
+          "avg_cache_hits_per_request dropped to 0",
+          "avg_db_queries_per_request increased by 51%",
+          "p50 latency increased by 23.4%",
+          "The diff for commit 6841990e3f76b7e0632a2652f8a670e0e753e92c shows the change from `max_entries: int = 1024` to `max_entries: int = 0` in `checkout/cache.py`.",
+          "The commit message indicates that `0` means the cache is unbounded."
+        ],
+        "ruled_out": [
+          "slow query inventory_audit"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 6841990e3f"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-cache_disabled-03",
+      "template": "cache_disabled",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 82.28,
+      "had_failure": false,
+      "agent_steps": 15,
+      "llm_calls": 18,
+      "tool_calls": 15,
+      "cost_usd": 0.03624,
+      "tokens": 62666,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "6841990e3f76b7e0632a2652f8a670e0e753e92c",
+        "file": "checkout/cache.py",
+        "summary": "The latency regression is caused by a change in checkout/cache.py where the default cache capacity (max_entries) was set to 0, making the cache unbounded. This led to indefinite memory growth, increased lookup times, and effectively resulted in a complete loss of cache hits, forcing all product information lookups to the database.",
+        "confidence": 0.9,
+        "evidence": [
+          "avg_cache_hits_per_request dropped from 7.59 to 0.0 after the deployment.",
+          "avg_db_queries_per_request increased by 49% (from 2.05 to 3.05) after the deployment.",
+          "The diff for commit 6841990e3f76b7e0632a2652f8a670e0e753e92c shows the change in checkout/cache.py from max_entries=1024 to max_entries=0.",
+          "The commit message explicitly states '(0 = unbounded)' for cache capacity."
+        ],
+        "ruled_out": [
+          "6c09b86b6d069f61f363437537e50d3856ef5431"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 6841990e3f"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-cache_disabled-04",
+      "template": "cache_disabled",
+      "seed": 4,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 80.32,
+      "had_failure": false,
+      "agent_steps": 14,
+      "llm_calls": 17,
+      "tool_calls": 14,
+      "cost_usd": 0.03489,
+      "tokens": 56981,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "6841990e3f76b7e0632a2652f8a670e0e753e92c",
+        "file": "checkout/cache.py",
+        "summary": "The latency regression was caused by commit 6841990e3f76b7e0632a2652f8a670e0e753e92c, which changed the default cache capacity to unbounded (max_entries=0). This led to excessive memory usage, increased garbage collection overhead, and effectively rendered the cache non-functional, resulting in all requests going to the database and significantly increasing p95 latency.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: avg_cache_hits_per_request dropped to 0.0, avg_db_queries_per_request increased by 49%, p95 latency increased.",
+          "Research: Commit 6841990e3f76b7e0632a2652f8a670e0e753e92c changed `max_entries` in `checkout/cache.py` from `1024` to `0` (unbounded cache).",
+          "Research: Subsequent commit 8967402cff9224c96a86e4bd1adc9c899c42b614 fixed the issue by re-capping the cache size."
+        ],
+        "ruled_out": [
+          "slow query inventory_audit"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 6841990e3f"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-cache_disabled-05",
+      "template": "cache_disabled",
+      "seed": 5,
+      "trial": 0,
+      "status": "escalated",
+      "success": false,
+      "fix_success": false,
+      "error": "escalated to a human after 3 failed attempts (requirement_not_met: judge: patch does not address the diagnosed root cause: The root cause was not identified, making it difficult to definitively link the patch to the underlying problem, even though the patch itself seems to address a plausible cause for latency.)",
+      "latency_s": 239.09,
+      "had_failure": true,
+      "agent_steps": 50,
+      "llm_calls": 57,
+      "tool_calls": 46,
+      "cost_usd": 0.15289,
+      "tokens": 285274,
+      "plans": 3,
+      "verifications": [
+        "failed",
+        "failed",
+        "failed"
+      ],
+      "tools_used": [
+        "compare_time_windows",
+        "get_diff",
+        "get_metrics",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_exec",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_traces"
+      ],
+      "root_cause": null,
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "no root cause reported"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 2% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.5,
+          "detail": "sound plan; replanned"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.52,
+          "detail": "llm: {'identifies_root_cause': 1, 'evidence_quality': 1, 'fix_targets_cause': 2, 'verification_reported': 4, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-01",
+      "template": "missing_index",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 96.85,
+      "had_failure": false,
+      "agent_steps": 19,
+      "llm_calls": 22,
+      "tool_calls": 19,
+      "cost_usd": 0.049,
+      "tokens": 88243,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "explain_query",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_schema",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "3acd9501af087500fe72be621bc7f9c2e97e9da1",
+        "file": "checkout/db.py",
+        "summary": "The root cause of the checkout latency increase is the removal of the `idx_cart_items_cart` index on the `cart_items` table's `cart_id` column. This change, introduced in commit 3acd9501af087500fe72be621bc7f9c2e97e9da1, caused the `SELECT product_id, qty FROM cart_items WHERE cart_id = ?` query in the checkout hot path to perform full table scans instead of efficient indexed lookups, leading to a significant latency regression.",
+        "confidence": 1.0,
+        "evidence": [
+          "Checkout latency increased significantly (p50 by 2.475x) after the deployment of checkout-service v1.2.0.",
+          "A database query performing a full table scan on `cart_items` for `cart_id` is the likely cause, indicating a missing index.",
+          "db.plan: SCAN cart_items with 650 rows scanned for 12 rows returned.",
+          "The commit '3acd9501af087500fe72be621bc7f9c2e97e9da1' with subject 'chore(db): drop redundant cart_items index' removed the index `idx_cart_items_cart` from the `cart_items` table in `checkout/db.py`.",
+          "The diff for commit 3acd9501af087500fe72be621bc7f9c2e97e9da1 shows '-CREATE INDEX idx_cart_items_cart ON cart_items (cart_id);' in checkout/db.py.",
+          "The query 'SELECT product_id, qty FROM cart_items WHERE cart_id = ? ORDER BY rowid' in 'checkout/service.py' directly benefits from the removed index."
+        ],
+        "ruled_out": [
+          "slow query inventory_audit log message (rate did not change)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 3acd9501af"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 5/5 expected tools; 11% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-02",
+      "template": "missing_index",
+      "seed": 2,
+      "trial": 0,
+      "status": "completed",
+      "success": false,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 105.64,
+      "had_failure": false,
+      "agent_steps": 25,
+      "llm_calls": 28,
+      "tool_calls": 24,
+      "cost_usd": 0.06272,
+      "tokens": 126107,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "explain_query",
+        "get_blame",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_schema",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "0982c3015cc60549ad1ae563a96566d26b15c93b",
+        "file": "cart_items_table",
+        "summary": "A missing index on the 'cart_id' column in the 'cart_items' table is causing full table scans during checkout operations, leading to a significant increase in P50 latency. This change coincided with the deployment of checkout-service v1.2.0.",
+        "confidence": 0.9,
+        "evidence": [
+          "Trace analysis shows 'db.query' span with 'db.plan: SCAN cart_items' and 'db.rows_scanned: 650' for 'SELECT product_id, qty FROM cart_items WHERE cart_id = ?'. This query took 185ms out of a 289ms total request duration in a sample trace.",
+          "P50 latency increased by 2.48x after the deployment of checkout-service v1.2.0 (commit 0982c3015cc60549ad1ae563a96566d26b15c93b)."
+        ],
+        "ruled_out": [
+          "The cache size capping (commit 8967402cff9224c96a86e4bd1adc9c899c42b614) is a plausible cause for increased latency due to cache misses, but the analytics findings provide more direct and specific evidence of a database-related slowdown (full table scans) that accounts for a large portion of the increased request duration. Without further evidence linking the cache misses directly to the observed database scans, the missing index is the more directly supported root cause."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed cart_items_table @ 0982c3015c; truth is checkout/db.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 5/5 expected tools; 4% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-03",
+      "template": "missing_index",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 87.52,
+      "had_failure": false,
+      "agent_steps": 19,
+      "llm_calls": 22,
+      "tool_calls": 18,
+      "cost_usd": 0.05175,
+      "tokens": 100452,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_schema",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "3acd9501af087500fe72be621bc7f9c2e97e9da1",
+        "file": "checkout/db.py",
+        "summary": "The latency regression was caused by the removal of the 'idx_cart_items_cart' index on the 'cart_id' column in the 'cart_items' table. This led to full table scans for queries like 'SELECT product_id, qty FROM cart_items WHERE cart_id = ?', significantly increasing checkout service latency.",
+        "confidence": 0.95,
+        "evidence": [
+          "Analytics: Latency (p50_ms) increased from ~108ms to ~268ms after deployment of checkout-service v1.2.0.",
+          "Analytics: Trace analysis shows 'db.query' span taking 185ms out of 287ms total request time, with database plan showing 'SCAN cart_items' for 'SELECT product_id, qty FROM cart_items WHERE cart_id = ?'.",
+          "Research: Commit '3acd9501af087500fe72be621bc7f9c2e97e9da1' in 'checkout/db.py' removed 'CREATE INDEX idx_cart_items_cart ON cart_items (cart_id);'.",
+          "Research: 'checkout/service.py' executes the query 'SELECT product_id, qty FROM cart_items WHERE cart_id = ? ORDER BY rowid', which relies on an index on 'cart_id' for efficient lookups."
+        ],
+        "ruled_out": [
+          "'slow query inventory_audit' log message rate did not change before and after the regression."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 3acd9501af"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.8,
+          "detail": "used 4/5 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-04",
+      "template": "missing_index",
+      "seed": 4,
+      "trial": 0,
+      "status": "completed",
+      "success": false,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 99.28,
+      "had_failure": false,
+      "agent_steps": 17,
+      "llm_calls": 20,
+      "tool_calls": 17,
+      "cost_usd": 0.04715,
+      "tokens": 84774,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_schema",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "c1377978e6969a7daecab6f2732626e4051183bd",
+        "file": "checkout/db.py",
+        "summary": "The commit 'perf(db): charge full table scans in the cost model' introduced an additional 'SELECT count(*)' query whenever a full table scan is detected in 'checkout/db.py'. This extra query significantly increases latency for operations that perform full table scans, which are already occurring due to a missing index on the 'cart_id' column in the 'cart_items' table. The commit exacerbated an existing performance issue.",
+        "confidence": 0.9,
+        "evidence": [
+          "Research findings: Commit 'c1377978e6969a7daecab6f2732626e4051183bd' introduced a conditional 'SELECT count(*)' query in 'checkout/db.py' when full table scans are detected.",
+          "Analytics findings: 'db.plan: SCAN cart_items' and 'db.query duration of 185ms in a 268ms request' indicate that full table scans are occurring and are a significant part of the request latency.",
+          "Analytics findings: The p95 latency increased by 2.26x, coinciding with the deployment of checkout-service v1.2.0, which includes the suspected commit.",
+          "Research findings: The commit message 'perf(db): charge full table scans in the cost model' aligns with the observed behavior of adding overhead for full table scans."
+        ],
+        "ruled_out": [
+          "The missing index on 'cart_id' in 'cart_items' table is an underlying issue that causes full table scans, but the *regression* in latency is directly attributable to the code change that made these full table scans more expensive. The missing index itself was likely present before the regression and only became a critical performance bottleneck after the new code was deployed."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.5,
+          "detail": "right file (checkout/db.py) but wrong commit c1377978e6"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.8,
+          "detail": "used 4/5 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-missing_index-05",
+      "template": "missing_index",
+      "seed": 5,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 88.4,
+      "had_failure": false,
+      "agent_steps": 17,
+      "llm_calls": 20,
+      "tool_calls": 17,
+      "cost_usd": 0.04765,
+      "tokens": 90842,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "explain_query",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_schema",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "3acd9501af087500fe72be621bc7f9c2e97e9da1",
+        "file": "checkout/db.py",
+        "summary": "The `idx_cart_items_cart` index on the `cart_id` column in the `cart_items` table was removed by commit 3acd9501af087500fe72be621bc7f9c2e97e9da1 in `checkout/db.py`. This caused database queries filtering by `cart_id` to perform full table scans instead of using an index, leading to a significant increase in checkout latency (p50 by 2.47x, p95 by 2.26x).",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics trace 2e19ab0ac1bcd7c6807012e12a818439 shows a 'db.query' span with 'db.plan: SCAN cart_items' and 'db.rows_scanned: 650' for a query filtering by 'cart_id', consuming 185ms of a 280ms request.",
+          "Research identified commit 3acd9501af087500fe72be621bc7f9c2e97e9da1 with subject 'chore(db): drop redundant cart_items index' which removed the line '-CREATE INDEX idx_cart_items_cart ON cart_items (cart_id);' from `checkout/db.py`.",
+          "The latency increase coincided with the deployment of checkout-service v1.2.0 (commit 0982c3015cc60549ad1ae563a96566d26b15c93b), which included the index removal."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 3acd9501af"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 5/5 expected tools; 6% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-01",
+      "template": "n_plus_one",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 121.32,
+      "had_failure": false,
+      "agent_steps": 24,
+      "llm_calls": 27,
+      "tool_calls": 24,
+      "cost_usd": 0.06844,
+      "tokens": 123328,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_blame",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_code",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "b166e05cbb51137b8c796c881bbd4e687c0ea253",
+        "file": "checkout/catalog.py",
+        "summary": "The refactor in `checkout/catalog.py` (commit b166e05cbb51137b8c796c881bbd4e687c0ea253) introduced an N+1 query problem for fetching product details. This change replaced a batched cache-aside lookup with a loop that performs a separate database query for each product ID, leading to a significant increase in database queries and a complete loss of cache hits.",
+        "confidence": 0.95,
+        "evidence": [
+          "Analytics: p50_ms increased by 2.31x, p95_ms by 3.152x, avg_db_queries_per_request increased by 3.72x, and avg_cache_hits_per_request dropped to 0.0, indicating an N+1 query pattern for product details.",
+          "Research: Commit b166e05cbb51137b8c796c881bbd4e687c0ea253 in `checkout/catalog.py` refactored `get_products` to call `get_product` in a loop, causing N database queries for N products instead of one batched query."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit b166e05cbb"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 8% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-02",
+      "template": "n_plus_one",
+      "seed": 2,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 89.11,
+      "had_failure": false,
+      "agent_steps": 17,
+      "llm_calls": 20,
+      "tool_calls": 17,
+      "cost_usd": 0.04773,
+      "tokens": 83466,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "b166e05cbb51137b8c796c881bbd4e687c0ea253",
+        "file": "checkout/catalog.py",
+        "summary": "The latency regression in the checkout process is caused by the introduction of an N+1 query pattern for fetching product details. Commit b166e05cbb51137b8c796c881bbd4e687c0ea253 in `checkout/catalog.py` removed the batched cache-aside product lookup, replacing it with individual database queries for each product. This resulted in a significant increase in database queries per request and a complete loss of cache utilization.",
+        "confidence": 0.95,
+        "evidence": [
+          "Analytics findings show a 3.69x increase in `avg_db_queries_per_request` and a drop to 0.0 in `avg_cache_hits_per_request` after the deployment.",
+          "A sample trace (`b0cf63944d247a84191a6e8872693447`) clearly shows one query for cart items followed by 12 individual `SELECT id, name, price_cents FROM products WHERE id = ?` queries for each product.",
+          "Research findings confirm that commit b166e05cbb51137b8c796c881bbd4e687c0ea253 removed the batched cache-aside logic from `get_products` in `checkout/catalog.py`, leading to N separate database queries for N product IDs and no caching.",
+          "The commit message 'refactor(catalog): simplify product lookup' aligns with the observed change in product lookup mechanism."
+        ],
+        "ruled_out": [
+          "slow query inventory_audit: Its rate did not change across the deployment, indicating it's a pre-existing issue and not the cause of the new slowdown."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit b166e05cbb"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-03",
+      "template": "n_plus_one",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 81.04,
+      "had_failure": false,
+      "agent_steps": 15,
+      "llm_calls": 18,
+      "tool_calls": 15,
+      "cost_usd": 0.04273,
+      "tokens": 73628,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "b166e05cbb51137b8c796c881bbd4e687c0ea253",
+        "file": "checkout/catalog.py",
+        "summary": "The latency regression is caused by an N+1 query issue introduced in `checkout/catalog.py`. The commit 'refactor(catalog): simplify product lookup' (b166e05cbb51137b8c796c881bbd4e687c0ea253) removed both caching and batched database queries for product lookups in the `get_products` function. This resulted in the service performing individual database queries for each cart item, leading to a 3.7x increase in average database queries per request and a complete loss of caching benefits.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: avg_db_queries_per_request increased from 2.05 to 7.58 (3.7x ratio).",
+          "Analytics: avg_cache_hits_per_request dropped from 7.59 to 0.0 (0.0x ratio).",
+          "Analytics: Trace analysis shows multiple 'SELECT id, name, price_cents FROM products WHERE id = ?' queries for each item after an initial 'SELECT product_id, qty FROM cart_items WHERE cart_id = ?' query.",
+          "Research: The diff for commit b166e05cbb51137b8c796c881bbd4e687c0ea253 clearly shows the removal of caching logic and the change from a batched SQL query to individual queries within a loop in `get_products` function in `checkout/catalog.py`."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit b166e05cbb"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-04",
+      "template": "n_plus_one",
+      "seed": 4,
+      "trial": 0,
+      "status": "completed",
+      "success": false,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 138.32,
+      "had_failure": false,
+      "agent_steps": 29,
+      "llm_calls": 32,
+      "tool_calls": 29,
+      "cost_usd": 0.07979,
+      "tokens": 153933,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "f3f14195ae9dc461d17122915115714f9cadb3c1",
+        "file": "checkout/service.py",
+        "summary": "The latency regression is caused by a new periodic inventory audit feature introduced in commit f3f14195ae9dc461d17122915115714f9cadb3c1. This feature, triggered every 25th checkout request, performs a full scan of products with low stock, leading to increased database queries and a complete loss of product cache hits, manifesting as an N+1 query problem.",
+        "confidence": 0.9,
+        "evidence": [
+          "p95 latency increased by 3.143x after deployment.",
+          "Average database queries per request increased by 3.67x (from ~2.03 to ~7.45) after deployment.",
+          "Average cache hits per request dropped to 0 after deployment.",
+          "Trace analysis shows an N+1 query pattern for fetching product details after deployment.",
+          "The diff for commit f3f14195ae9dc461d17122915115714f9cadb3c1 shows the creation of checkout/audit.py and modifications to checkout/service.py.",
+          "checkout/audit.py defines AUDIT_EVERY = 25 and a maybe_audit function that performs a database query with extra_ms=AUDIT_SCAN_MS.",
+          "checkout/service.py was modified to increment ctx.request_count and call audit.maybe_audit(ctx) within handle_checkout, directly linking the audit to the checkout process and its latency."
+        ],
+        "ruled_out": [
+          "slow query inventory_audit",
+          "checkout failed: upstream error"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": false,
+          "score": 0.0,
+          "detail": "blamed checkout/service.py @ f3f14195ae; truth is checkout/catalog.py"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 3% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": false,
+          "score": 0.6,
+          "detail": "llm: {'identifies_root_cause': 1, 'evidence_quality': 4, 'fix_targets_cause': 2, 'verification_reported': 5, 'honesty': 3}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-n_plus_one-05",
+      "template": "n_plus_one",
+      "seed": 5,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 88.94,
+      "had_failure": false,
+      "agent_steps": 16,
+      "llm_calls": 19,
+      "tool_calls": 16,
+      "cost_usd": 0.04771,
+      "tokens": 78930,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "b166e05cbb51137b8c796c881bbd4e687c0ea253",
+        "file": "checkout/catalog.py",
+        "summary": "The commit 'refactor(catalog): simplify product lookup' (b166e05cbb51137b8c796c881bbd4e687c0ea253) in checkout/catalog.py removed the batched cache-aside product lookup logic. This introduced an N+1 query problem, causing `get_products` to perform individual database queries for each product ID instead of using a batched or cached approach. This led to a 3.7x increase in database queries per request and a complete loss of cache hits for product details, resulting in the observed checkout latency increase.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: avg_db_queries_per_request increased by 3.7x (from 2.04 to 7.54).",
+          "Analytics: avg_cache_hits_per_request dropped to 0 from 7.49.",
+          "Analytics: Trace d81b6447a458b465610e36d642109dd7 shows 1 initial DB query followed by 12 individual DB queries for product details, and 'cache_hits': 0 in logs.",
+          "Research: The diff for commit b166e05cbb51137b8c796c881bbd4e687c0ea253 clearly shows the removal of cache.get, ctx.cache.set, and the batched SQL query for 'id IN ({marks})'.",
+          "Research: The new implementation of `get_products` iterates through product IDs and calls `get_product` for each, which directly queries the database for a single product."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit b166e05cbb"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-01",
+      "template": "pricing_per_item_query",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 85.51,
+      "had_failure": false,
+      "agent_steps": 16,
+      "llm_calls": 19,
+      "tool_calls": 16,
+      "cost_usd": 0.04002,
+      "tokens": 66005,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "9cdd3fe2027de3b898084e2c68cf89c5e5df8e18",
+        "file": "checkout/pricing.py",
+        "summary": "An N+1 query problem was introduced in the `pricing.price_cart` function, causing a significant increase in database queries and checkout latency.",
+        "confidence": 1.0,
+        "evidence": [
+          "Checkout latency increased significantly after the deployment of checkout-service v1.2.0 due to an N+1 query problem in the pricing.price_cart function, causing a 4.2x increase in database queries per request.",
+          "The `price_cart` function in `checkout/pricing.py` was modified to perform a database query for each item in the cart to retrieve its price. Previously, the price was already available in the `products` object passed to the function. This change introduces an N+1 query problem, where N is the number of items in the cart, leading to a significant increase in checkout latency due to repeated database access.",
+          "The diff for commit 9cdd3fe2027de3b898084e2c68cf89c5e5df8e18 shows the change in checkout/pricing.py where a loop was introduced to query the database for each product's price, replacing a single sum operation."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 9cdd3fe202"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-02",
+      "template": "pricing_per_item_query",
+      "seed": 2,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 158.6,
+      "had_failure": false,
+      "agent_steps": 35,
+      "llm_calls": 38,
+      "tool_calls": 34,
+      "cost_usd": 0.11009,
+      "tokens": 216809,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_blame",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "9cdd3fe2027de3b898084e2c68cf89c5e5df8e18",
+        "file": "checkout/pricing.py",
+        "summary": "The `price_cart` function in `checkout/pricing.py` was modified by commit 9cdd3fe2027de3b898084e2c68cf89c5e5df8e18 to perform individual database queries for `price_cents` for each item in the cart, leading to an N+1 query problem and a significant increase in database operations and checkout latency.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics findings show a 4.19x increase in average database queries per request, specifically due to 'pricing.price_cart' performing individual 'SELECT price_cents FROM products WHERE id = ?' queries for each item.",
+          "Research findings confirm that commit 9cdd3fe2027de3b898084e2c68cf89c5e5df8e18 in checkout/pricing.py introduced an N+1 query problem in the `price_cart` function by re-reading `price_cents` from the database for each product.",
+          "The commit message 'fix(pricing): re-read prices from the database to avoid stale totals' directly correlates with the observed code change and its performance impact.",
+          "The slowdown coincided with the deployment of checkout-service v1.2.0, which likely included this commit."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 9cdd3fe202"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-03",
+      "template": "pricing_per_item_query",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 114.38,
+      "had_failure": false,
+      "agent_steps": 23,
+      "llm_calls": 26,
+      "tool_calls": 23,
+      "cost_usd": 0.06316,
+      "tokens": 108568,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "9cdd3fe2027de3b898084e2c68cf89c5e5df8e18",
+        "file": "checkout/pricing.py",
+        "summary": "An N+1 query problem was introduced in the price_cart function, causing multiple database calls for each item in the cart instead of a single batched query or calculation from existing data. This led to a 4x increase in database queries per request and a 2.5x increase in checkout latency.",
+        "confidence": 0.95,
+        "evidence": [
+          "avg_db_queries_per_request increased from ~2 to ~8.45 after deployment.",
+          "Trace analysis shows 12 separate 'SELECT price_cents FROM products WHERE id = ?' queries for a cart with 12 items.",
+          "The diff for commit 9cdd3fe2027de3b898084e2c68cf89c5e5df8e18 shows changes in checkout/pricing.py, specifically in the price_cart function.",
+          "The change replaces a single sum calculation with a loop that performs ctx.db.query('SELECT price_cents FROM products WHERE id = ?', (p['id'],)) for each product."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 9cdd3fe202"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 4% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-04",
+      "template": "pricing_per_item_query",
+      "seed": 4,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 111.05,
+      "had_failure": false,
+      "agent_steps": 18,
+      "llm_calls": 21,
+      "tool_calls": 18,
+      "cost_usd": 0.05272,
+      "tokens": 79086,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests"
+      ],
+      "root_cause": {
+        "commit_sha": "9cdd3fe2027de3b898084e2c68cf89c5e5df8e18",
+        "file": "checkout/pricing.py",
+        "summary": "The commit 'fix(pricing): re-read prices from the database to avoid stale totals' introduced an N+1 database query problem in the `price_cart` function within `checkout/pricing.py`. This change caused a database query to be executed for each product in the cart, leading to a significant increase in p95 latency for the checkout-service.",
+        "confidence": 1.0,
+        "evidence": [
+          "The p95 latency for checkout-service jumped from 127 ms to 424 ms (a 3.34x increase) coinciding with the deployment of version v1.2.0.",
+          "The diff for commit 9cdd3fe2027de3b898084e2c68cf89c5e5df8e18 clearly shows the introduction of a database query inside a loop for each product in the cart within `checkout/pricing.py`."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 9cdd3fe202"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": false,
+          "score": 0.5,
+          "detail": "used 2/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 0.92,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 4, 'fix_targets_cause': 5, 'verification_reported': 4, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-pricing_per_item_query-05",
+      "template": "pricing_per_item_query",
+      "seed": 5,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 289.34,
+      "had_failure": true,
+      "agent_steps": 51,
+      "llm_calls": 57,
+      "tool_calls": 49,
+      "cost_usd": 0.17714,
+      "tokens": 310333,
+      "plans": 2,
+      "verifications": [
+        "failed",
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_blame",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "sandbox_write_file",
+        "search_code",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "9cdd3fe2027de3b898084e2c68cf89c5e5df8e18",
+        "file": "checkout/pricing.py",
+        "summary": "The latency regression is caused by the re-introduction of an N+1 database query pattern in the `price_cart` function within `checkout/pricing.py`. Commit `9cdd3fe2027de3b898084e2c68cf89c5e5df8e18` replaced a batched price calculation with a loop that queries the database for each product individually, leading to a significant increase in database queries per request and overall latency.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics: Trace analysis shows 12 individual 'SELECT price_cents FROM products WHERE id = ?' queries for a cart with 12 items, all originating from 'pricing.price_cart'.",
+          "Analytics: Average database queries per request increased by 4.255x after the deployment.",
+          "Analytics: P95 latency increased by 3.342x after the deployment.",
+          "Research: Commit `9cdd3fe2027de3b898084e2c68cf89c5e5df8e18` changed the `price_cart` function in `checkout/pricing.py` to iterate over products and perform a `ctx.db.query(\"SELECT price_cents FROM products WHERE id = ?\", (p[\"id\"],))` inside the loop, replacing a single sum operation.",
+          "Research: The `get_diff` output between the last good commit and `9cdd3fe2027de3b898084e2c68cf89c5e5df8e18` for `checkout/pricing.py` clearly shows the introduction of a `for` loop with a `ctx.db.query` call inside it."
+        ],
+        "ruled_out": [
+          "'slow query inventory_audit' log messages (rate unchanged)",
+          "'checkout failed: upstream error' log messages (rate unchanged)",
+          "Average cache hits per request (rate unchanged)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit 9cdd3fe202"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": false,
+          "score": 0.5,
+          "detail": "sound plan; replanned"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-01",
+      "template": "serialization_quadratic",
+      "seed": 1,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 113.5,
+      "had_failure": false,
+      "agent_steps": 22,
+      "llm_calls": 25,
+      "tool_calls": 21,
+      "cost_usd": 0.06169,
+      "tokens": 105323,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_code",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "e6e4f131609d68103604ed860b4ea3013d473dea",
+        "file": "checkout/serializer.py",
+        "summary": "The latency increase is caused by a performance regression in the `serialize_receipt` function within `checkout/serializer.py`. Commit `e6e4f131609d68103604ed860b4ea3013d473dea` introduced an O(N^2) iterative re-serialization process instead of an efficient single `json.dumps` call, significantly increasing computational work for receipts with multiple items.",
+        "confidence": 1.0,
+        "evidence": [
+          "Trace analysis shows the 'serialize_receipt' span taking 234.62ms in a 360.58ms request after the deployment of checkout-service v1.2.0.",
+          "The diff for commit e6e4f131609d68103604ed860b4ea3013d473dea in checkout/serializer.py shows the introduction of a for loop that re-serializes a growing subset of items in each iteration, leading to O(N^2) complexity.",
+          "The cost metering in checkout/serializer.py was changed from a linear calculation to a quadratic one within the new loop, indicating a significant increase in reported work."
+        ],
+        "ruled_out": [
+          "'slow query inventory_audit' log message: its rate did not change across the deployment.",
+          "'checkout failed: upstream error' log message: its rate decreased."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit e6e4f13160"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-02",
+      "template": "serialization_quadratic",
+      "seed": 2,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 188.7,
+      "had_failure": false,
+      "agent_steps": 35,
+      "llm_calls": 38,
+      "tool_calls": 35,
+      "cost_usd": 0.12637,
+      "tokens": 246925,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "sandbox_write_file"
+      ],
+      "root_cause": {
+        "commit_sha": "e6e4f131609d68103604ed860b4ea3013d473dea",
+        "file": "checkout/serializer.py",
+        "summary": "The commit introduced a quadratic complexity issue in the `serialize_receipt` function within `checkout/serializer.py`, causing all previously processed items to be re-serialized in each iteration. This changed the serialization complexity from O(N) to O(N^2), leading to a significant latency increase in checkout operations.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics confirmed a significant latency increase correlating with the deployment of checkout-service v1.2.0.",
+          "Research identified a specific commit introducing quadratic complexity in receipt serialization, directly explaining the performance regression.",
+          "The error rate decreased, suggesting slower successful requests rather than fast failures, consistent with a processing bottleneck."
+        ],
+        "ruled_out": [
+          "Minor changes in DB queries and cache hits are not sufficient to explain the observed latency increase.",
+          "The rate of 'slow query inventory_audit' log messages did not change."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit e6e4f13160"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 0.75,
+          "detail": "used 3/4 expected tools; 3% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 0.92,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 3, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-03",
+      "template": "serialization_quadratic",
+      "seed": 3,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 96.43,
+      "had_failure": false,
+      "agent_steps": 16,
+      "llm_calls": 19,
+      "tool_calls": 16,
+      "cost_usd": 0.0474,
+      "tokens": 74958,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "e6e4f131609d68103604ed860b4ea3013d473dea",
+        "file": "checkout/serializer.py",
+        "summary": "The `serialize_receipt` function in `checkout/serializer.py` was refactored in commit e6e4f131609d68103604ed860b4ea3013d473dea, introducing a quadratic time complexity (O(n^2)) for receipt serialization due to re-encoding all items in each loop iteration. This change is the direct cause of the increased latency observed in the checkout process.",
+        "confidence": 0.95,
+        "evidence": [
+          "The checkout process became sluggish after the deployment of checkout-service v1.2.0 at 2026-03-10T14:00:00Z. Latency metrics (p50, p95, p99) significantly increased.",
+          "The 'serialize_receipt' component within the checkout-service is the primary bottleneck, consuming a large portion of the request duration.",
+          "Trace 3320a9a413be8fb312b59b41ee32828e shows 'serialize_receipt' taking 234.62ms out of a total 361.14ms for the checkout request.",
+          "The diff for commit `e6e4f131609d68103604ed860b4ea3013d473dea` shows the change in `checkout/serializer.py`.",
+          "The line `encoded = [json.dumps(it, sort_keys=True, separators=(\",\", \":\")) for it in items[: i + 1]]` inside a `for` loop is the direct cause of the quadratic complexity.",
+          "The line `ctx.meter.add(SERIALIZE_ITEM_MS * 15 * (i + 1))` further highlights the increased cost within the loop."
+        ],
+        "ruled_out": [
+          "'slow query inventory_audit' log message rate did not change across the deployment.",
+          "'checkout failed: upstream error' log message had a minor increase, but trace analysis points to serialization as the primary bottleneck."
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit e6e4f13160"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-04",
+      "template": "serialization_quadratic",
+      "seed": 4,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 156.21,
+      "had_failure": false,
+      "agent_steps": 37,
+      "llm_calls": 40,
+      "tool_calls": 36,
+      "cost_usd": 0.11072,
+      "tokens": 237261,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_file",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_exec",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "e6e4f131609d68103604ed860b4ea3013d473dea",
+        "file": "checkout/serializer.py",
+        "summary": "The commit 'e6e4f131609d68103604ed860b4ea3013d473dea' introduced a quadratic time complexity issue in the `serialize_receipt` function within `checkout/serializer.py` by re-encoding all previously processed items in each loop iteration, leading to increased latency for checkout-service.",
+        "confidence": 0.9,
+        "evidence": [
+          "Analytics showed p95 latency for checkout-service jumped by 181.8% after deployment of v1.2.0, coinciding with increased duration of the 'serialize_receipt' span.",
+          "Research identified commit 'e6e4f131609d68103604ed860b4ea3013d473dea' as introducing a quadratic time complexity (O(n^2)) in the `serialize_receipt` function due to re-encoding items in a loop.",
+          "The diff for commit e6e4f131609d68103604ed860b4ea3013d473dea clearly shows the introduction of a loop that re-encodes items quadratically in `checkout/serializer.py`."
+        ],
+        "ruled_out": []
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit e6e4f13160"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 0% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 1.0,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 5, 'honesty': 5}"
+        }
+      }
+    },
+    {
+      "task_id": "latency-serialization_quadratic-05",
+      "template": "serialization_quadratic",
+      "seed": 5,
+      "trial": 0,
+      "status": "completed",
+      "success": true,
+      "fix_success": true,
+      "error": null,
+      "latency_s": 133.85,
+      "had_failure": false,
+      "agent_steps": 22,
+      "llm_calls": 25,
+      "tool_calls": 21,
+      "cost_usd": 0.07505,
+      "tokens": 127451,
+      "plans": 1,
+      "verifications": [
+        "passed"
+      ],
+      "tools_used": [
+        "commit_patch",
+        "compare_time_windows",
+        "create_branch",
+        "create_pull_request",
+        "get_diff",
+        "get_metrics",
+        "get_repository",
+        "get_trace",
+        "list_commits",
+        "list_deployments",
+        "sandbox_compare_to_baseline",
+        "sandbox_edit_file",
+        "sandbox_read_file",
+        "sandbox_run_tests",
+        "search_logs",
+        "search_traces"
+      ],
+      "root_cause": {
+        "commit_sha": "e6e4f131609d68103604ed860b4ea3013d473dea",
+        "file": "checkout/serializer.py",
+        "summary": "The commit 'e6e4f131609d68103604ed860b4ea3013d473dea' introduced a quadratic time complexity in the `serialize_receipt` function within `checkout/serializer.py`, causing the observed checkout latency regression. This change from linear to quadratic complexity directly explains the doubling of p50, p95, and p99 latency metrics after the v1.2.0 deployment.",
+        "confidence": 1.0,
+        "evidence": [
+          "Analytics shows checkout latency doubled across p50, p95, and p99 metrics after the v1.2.0 deployment, which is consistent with a change from linear to quadratic time complexity.",
+          "Research identified commit 'e6e4f131609d68103604ed860b4ea3013d473dea' in 'checkout/serializer.py' as introducing a quadratic time complexity in the `serialize_receipt` function.",
+          "The new implementation of `serialize_receipt` includes a loop with `ctx.meter.add(SERIALIZE_ITEM_MS * 15 * (i + 1))` and `encoded = [json.dumps(it, ...) for it in items[: i + 1]]`, both contributing to quadratic time complexity."
+        ],
+        "ruled_out": [
+          "'checkout failed: upstream error' log messages (rate decreased after latency increase)",
+          "'slow query inventory_audit' log messages (rate remained constant)"
+        ]
+      },
+      "grades": {
+        "outcome_tests": {
+          "name": "outcome_tests",
+          "passed": true,
+          "score": 1.0,
+          "detail": "4 tests, 0 failing"
+        },
+        "outcome_benchmark": {
+          "name": "outcome_benchmark",
+          "passed": true,
+          "score": 1.0,
+          "detail": "p95 4.52 -> 4.52 ms (+0.0% vs baseline)"
+        },
+        "root_cause_match": {
+          "name": "root_cause_match",
+          "passed": true,
+          "score": 1.0,
+          "detail": "commit e6e4f13160"
+        },
+        "trace_policy": {
+          "name": "trace_policy",
+          "passed": true,
+          "score": 1.0,
+          "detail": "clean"
+        },
+        "tool_selection": {
+          "name": "tool_selection",
+          "passed": true,
+          "score": 1.0,
+          "detail": "used 4/4 expected tools; 5% of calls errored"
+        },
+        "planning": {
+          "name": "planning",
+          "passed": true,
+          "score": 1.0,
+          "detail": "sound plan"
+        },
+        "llm_rubric": {
+          "name": "llm_rubric",
+          "passed": true,
+          "score": 0.92,
+          "detail": "llm: {'identifies_root_cause': 5, 'evidence_quality': 5, 'fix_targets_cause': 5, 'verification_reported': 4, 'honesty': 4}"
+        }
+      }
+    }
+  ],
+  "vs_baseline": {
+    "file": "evals/results/20261003T024031Z_live-gemini-full.json",
+    "deltas": [
+      {
+        "metric": "success_rate",
+        "label": "Task success (outcome + root cause + policy)",
+        "previous": 0.5,
+        "current": 0.8667,
+        "delta": 0.3667,
+        "regressed": false
+      },
+      {
+        "metric": "root_cause_accuracy",
+        "label": "Root cause correct",
+        "previous": 0.6,
+        "current": 0.8833,
+        "delta": 0.2833,
+        "regressed": false
+      },
+      {
+        "metric": "tool_selection",
+        "label": "Tool-selection recall",
+        "previous": 0.8083,
+        "current": 0.8867,
+        "delta": 0.0784,
+        "regressed": false
+      },
+      {
+        "metric": "planning_accuracy",
+        "label": "Plan v1 sound and not revised",
+        "previous": 0.7667,
+        "current": 0.9667,
+        "delta": 0.2,
+        "regressed": false
+      },
+      {
+        "metric": "recovery_rate",
+        "label": "Recovered after a failed attempt",
+        "previous": 0.2222,
+        "current": 0.5,
+        "delta": 0.2778,
+        "regressed": false
+      },
+      {
+        "metric": "human_intervention_rate",
+        "label": "Needed a human (escalated)",
+        "previous": 0.1333,
+        "current": 0.0333,
+        "delta": -0.1,
+        "regressed": false
+      },
+      {
+        "metric": "rubric_score",
+        "label": "LLM/heuristic rubric score",
+        "previous": 0.0,
+        "current": 0.9627,
+        "delta": 0.9627,
+        "regressed": false
+      },
+      {
+        "metric": "avg_agent_steps",
+        "label": "Agent steps per task",
+        "previous": 32.0667,
+        "current": 22.3667,
+        "delta": -9.7,
+        "regressed": false
+      },
+      {
+        "metric": "avg_llm_calls",
+        "label": "LLM calls per task",
+        "previous": 35.7333,
+        "current": 25.6,
+        "delta": -10.1333,
+        "regressed": false
+      },
+      {
+        "metric": "avg_cost_usd",
+        "label": "Cost per task (USD)",
+        "previous": 0.0926,
+        "current": 0.0653,
+        "delta": -0.0273,
+        "regressed": false
+      },
+      {
+        "metric": "avg_latency_s",
+        "label": "Latency per task (s)",
+        "previous": 321.711,
+        "current": 115.7787,
+        "delta": -205.9323,
+        "regressed": false
+      }
+    ]
+  }
+}

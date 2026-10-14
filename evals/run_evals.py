@@ -241,14 +241,19 @@ async def main_async(args: argparse.Namespace) -> int:
         "aggregate": aggregate(results),
         "runs": results,
     }  # fmt: skip
-    deltas = None
-    if args.baseline:
-        previous = json.loads(await asyncio.to_thread(Path(args.baseline).read_text))
-        deltas = compare(result["aggregate"], previous["aggregate"])
-        result["vs_baseline"] = {"file": args.baseline, "deltas": deltas}
     RESULTS.mkdir(exist_ok=True)
     stem = f"{run_id}_{label}".replace(" ", "-")
+    # Save the runs FIRST: a live run costs real money, so nothing after this point may lose it.
     (RESULTS / f"{stem}.json").write_text(json.dumps(result, indent=2, default=str))
+    deltas = None
+    if args.baseline:
+        try:
+            previous = json.loads(await asyncio.to_thread(Path(args.baseline).read_text))
+            deltas = compare(result["aggregate"], previous["aggregate"])
+            result["vs_baseline"] = {"file": args.baseline, "deltas": deltas}
+            (RESULTS / f"{stem}.json").write_text(json.dumps(result, indent=2, default=str))
+        except Exception as exc:  # noqa: BLE001 - the saved results stand without a comparison
+            print(f"warning: could not compare with {args.baseline}: {exc!r}", file=sys.stderr)
     md = markdown(result, deltas)
     (RESULTS / f"{stem}.md").write_text(md)
     print("\n" + md)
